@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Investment Decision: Real Returns — Portfolio</title>
+  <title>Investment Decision: Real Returns - Portfolio</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -72,7 +72,7 @@ main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
 .chart-title{font-family:var(--mono);font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
   margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
 .chart-title span{color:var(--accent);}
-.chart-canvas-wrap{position:relative;width:100%;height:300px;}
+.chart-canvas-wrap{position:relative;width:100%;height:320px;}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);margin-bottom:3rem;}
 .chart-row .chart-wrap{margin-bottom:0;border:none;}
 /* METRICS */
@@ -88,12 +88,12 @@ main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
 .table-header-title{font-family:var(--mono);font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
 .table-header-title span{color:var(--accent);}
 .table-badge{font-family:var(--mono);font-size:0.6rem;padding:0.2rem 0.55rem;border:1px solid var(--border);color:var(--muted);}
-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.77rem;}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.76rem;}
 thead th{padding:0.7rem 1.25rem;text-align:left;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
 tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
 tbody tr:last-child{border-bottom:none;}
 tbody tr:hover{background:var(--bg3);}
-tbody td{padding:0.65rem 1.25rem;color:var(--text);vertical-align:top;}
+tbody td{padding:0.78rem 1.25rem;color:var(--text);vertical-align:middle;}
 td.pos{color:#059669;}td.neg{color:#ef4444;}td.acc{color:var(--accent);}td.mu{color:var(--muted);font-size:0.7rem;}
 /* INSIGHTS */
 .insights-list{list-style:none;margin-bottom:3rem;}
@@ -115,7 +115,7 @@ td.pos{color:#059669;}td.neg{color:#ef4444;}td.acc{color:var(--accent);}td.mu{co
 .case-card-title{font-family:var(--mono);font-size:0.8rem;color:var(--text);margin-bottom:0.5rem;}
 .case-card-amount{font-family:var(--mono);font-size:1.4rem;color:var(--accent);line-height:1;margin-bottom:0.35rem;}
 .case-card-rate{font-family:var(--mono);font-size:0.72rem;color:var(--accent4);}
-.case-card-note{font-size:0.76rem;color:var(--muted);margin-top:0.4rem;}
+.case-card-note{font-size:0.78rem;color:var(--muted);margin-top:0.45rem;}
 .total-card{background:var(--bg3);border:1px solid rgba(245,197,24,0.3);padding:1.5rem;margin-bottom:2rem;}
 .total-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border);}
 .total-row:last-child{border-bottom:none;}
@@ -197,40 +197,40 @@ body{}
 
 <main>
   <div class="summary">
-    <p><strong data-i18n="obj_lbl">Objective:</strong> <span data-i18n="obj_text">A full financial decision analysis: comparing compound interest across 3 banks, calculating real returns with the Fisher equation, evaluating 3 investment alternatives over 5 years, and applying the results to a real portfolio strategy.</span></p>
-    <p style="margin-top:0.75rem"><strong data-i18n="kf_lbl">Key Finding:</strong> <span data-i18n="kf_text">Bank C (11% annual compounding) generates the highest final value at 68,382 AZN despite compounding the least frequently — which shows that nominal rate outweighs compounding frequency at these levels. On a 100,000 AZN deposit at 12%, cumulative inflation of 14.53% reduces the real balance to 122,665 AZN. The deposit is still profitable, but about 18,000 AZN less powerful than the nominal figure suggests.</span></p>
+    <p><strong data-i18n="obj_lbl">Objective:</strong> <span data-i18n="obj_text">This analysis compares bank deposits, inflation-adjusted returns, alternative investment choices, and a practical portfolio split for an Azerbaijani investor. The aim is not only to find the highest nominal return, but to see which option still makes sense after risk, liquidity, and inflation are considered.</span></p>
+    <p style="margin-top:0.75rem"><strong data-i18n="kf_lbl">Key Finding:</strong> <span data-i18n="kf_text">Bank C gives the highest 3-year final value, 68,382 AZN, even though it compounds only once a year. In this case, the higher nominal rate matters more than compounding frequency. For the 100,000 AZN deposit at 12%, inflation reduces the apparent gain by about 18,000 AZN, but the real balance is still positive at 122,665 AZN.</span></p>
   </div>
 
   <div class="findings-grid">
-    <div class="finding-card"><div class="finding-num">68,382</div><div class="finding-label" data-i18n="f1l">Bank C — Best FV (AZN)</div><div class="finding-desc" data-i18n="f1d">11% annual compounding beats monthly & quarterly rivals over 3 years</div></div>
-    <div class="finding-card"><div class="finding-num">7.04%</div><div class="finding-label" data-i18n="f2l">Real Return</div><div class="finding-desc" data-i18n="f2d">Fisher-corrected real return on 12% deposit — after 4.63% avg inflation</div></div>
-    <div class="finding-card"><div class="finding-num">34,355</div><div class="finding-label" data-i18n="f3l">Best Safe Gain (AZN)</div><div class="finding-desc" data-i18n="f3d">Bank deposit (10.5%) guaranteed gain vs fund's wide ±4% uncertainty</div></div>
-    <div class="finding-card"><div class="finding-num">59,620</div><div class="finding-label" data-i18n="f4l">Fund Upside (AZN)</div><div class="finding-desc" data-i18n="f4d">Optimistic fund scenario (17%) — but pessimistic is only +26,930 AZN</div></div>
+    <div class="finding-card"><div class="finding-num">68,382</div><div class="finding-label" data-i18n="f1l">Bank C - Highest FV (AZN)</div><div class="finding-desc" data-i18n="f1d">The 11% annual rate produces the strongest 3-year result despite lower compounding frequency.</div></div>
+    <div class="finding-card"><div class="finding-num">7.04%</div><div class="finding-label" data-i18n="f2l">Real Return</div><div class="finding-desc" data-i18n="f2d">After adjusting the 12% deposit for 4.63% average inflation, the real annual return is 7.04%.</div></div>
+    <div class="finding-card"><div class="finding-num">34,355</div><div class="finding-label" data-i18n="f3l">Best Safe Gain (AZN)</div><div class="finding-desc" data-i18n="f3d">The 10.5% bank deposit gives a guaranteed gain, while the fund still carries a wide risk range.</div></div>
+    <div class="finding-card"><div class="finding-num">59,620</div><div class="finding-label" data-i18n="f4l">Fund Upside (AZN)</div><div class="finding-desc" data-i18n="f4d">The fund can reach a 59,620 AZN gain in the optimistic case, but its downside is clearly weaker.</div></div>
   </div>
 
   <hr class="divider"/>
 
   <!-- TASK A.1 -->
   <div id="compound" class="section-anchor">
-    <p class="content-label" data-i18n="a1_lbl">Task A.1 — Compound Interest</p>
-    <h2 class="content-title" data-i18n="a1_title">Three Banks: Which Compounds Best?</h2>
+    <p class="content-label" data-i18n="a1_lbl">Task A.1 - Compound Interest</p>
+    <h2 class="content-title" data-i18n="a1_title">Three Banks: Which Option Grows More?</h2>
   </div>
-  <p class="content-text" data-i18n="a1_text">Principal of 50,000 AZN over 3 years. Bank A compounds monthly at 9.5%, Bank B quarterly at 10.2%, and Bank C annually at 11%. The Effective Annual Rate (EIR) shows the true annual yield once compounding frequency is factored in.</p>
+  <p class="content-text" data-i18n="a1_text">The starting principal is 50,000 AZN for 3 years. Bank A compounds monthly at 9.5%, Bank B compounds quarterly at 10.2%, and Bank C compounds annually at 11%. I used the Effective Annual Rate (EIR) to compare them on the same basis, because the stated rate alone does not show the full effect of compounding.</p>
 
   <div class="chart-row">
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 01</span> — <span data-i18n="c1t">Final Value (AZN) after 3 Years</span></div>
+      <div class="chart-title"><span>Fig 01</span> - <span data-i18n="c1t">Final Value (AZN) after 3 Years</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-fv"></canvas></div>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 02</span> — <span data-i18n="c2t">Effective Annual Rate (EIR) vs Nominal</span></div>
+      <div class="chart-title"><span>Fig 02</span> - <span data-i18n="c2t">Effective Annual Rate (EIR) vs Nominal</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-eir"></canvas></div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <span class="table-header-title"><span>Tab 01</span> — <span data-i18n="t1h">Bank Compound Interest Comparison</span></span>
+      <span class="table-header-title"><span>Tab 01</span> - <span data-i18n="t1h">Bank Compound Interest Comparison</span></span>
       <span class="table-badge" data-i18n="t1b">3 banks · 3 years</span>
     </div>
     <table>
@@ -251,58 +251,58 @@ body{}
   </div>
 
   <ul class="insights-list">
-    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a1_1"><strong>Higher nominal rate beats higher compounding frequency here.</strong> Bank C's 11% annual compounds least often, yet produces the highest FV. Compounding frequency advantage only matters when rates are very close.</span></li>
-    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a1_2"><strong>Bank A's EIR (9.921%) exceeds its nominal rate (9.5%)</strong> — proof that monthly compounding does add value. But the 1.5% nominal gap vs Bank C cannot be closed by frequency alone.</span></li>
+    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a1_1"><strong>The main driver here is the nominal rate, not the compounding schedule.</strong> Bank C compounds less often than the others, but its 11% rate is enough to produce the highest final value. Frequency becomes more important only when the rates are very close.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a1_2"><strong>Bank A's EIR is higher than its nominal rate, so monthly compounding does help.</strong> However, that extra effect is not strong enough to close the 1.5 percentage point gap between Bank A and Bank C.</span></li>
   </ul>
 
   <hr class="divider"/>
 
   <!-- TASK A.2 -->
   <div id="inflation" class="section-anchor">
-    <p class="content-label" data-i18n="a2_lbl">Task A.2 — Inflation Correction</p>
+    <p class="content-label" data-i18n="a2_lbl">Task A.2 - Inflation Correction</p>
     <h2 class="content-title" data-i18n="a2_title">Real Purchasing Power: Fisher Equation</h2>
   </div>
-  <p class="content-text" data-i18n="a2_text">A 100,000 AZN deposit at 12% for 3 years. The nominal balance after 3 years is 140,493 AZN — but once adjusted for cumulative inflation of 14.53% (2024: 4.4%, 2025: 5.5%, 2026: 4.0%), the real balance is 122,665 AZN. Fisher formula: real = (1+nominal)/(1+inflation) − 1.</p>
+  <p class="content-text" data-i18n="a2_text">For the 100,000 AZN deposit at 12% over 3 years, the nominal balance reaches 140,493 AZN. After cumulative inflation of 14.53% is applied, the real balance becomes 122,665 AZN. I used the Fisher formula, real return = (1 + nominal return) / (1 + inflation) - 1, to show the purchasing power behind the bank statement number.</p>
 
   <div class="chart-row">
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 03</span> — <span data-i18n="c3t">Nominal vs Real Balance Over 3 Years (AZN)</span></div>
+      <div class="chart-title"><span>Fig 03</span> - <span data-i18n="c3t">Nominal vs Real Balance Over 3 Years (AZN)</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-nominal-real"></canvas></div>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 04</span> — <span data-i18n="c4t">Annual Inflation vs Deposit Rate</span></div>
+      <div class="chart-title"><span>Fig 04</span> - <span data-i18n="c4t">Annual Inflation vs Deposit Rate</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-inflation"></canvas></div>
     </div>
   </div>
 
   <div class="findings-grid col3">
-    <div class="finding-card"><div class="finding-num">140,493</div><div class="finding-label" data-i18n="f5l">Nominal Balance (AZN)</div><div class="finding-desc" data-i18n="f5d">What the bank statement shows after 3 years at 12%</div></div>
-    <div class="finding-card"><div class="finding-num">122,665</div><div class="finding-label" data-i18n="f6l">Real Balance (AZN)</div><div class="finding-desc" data-i18n="f6d">Actual purchasing power after 14.53% cumulative inflation</div></div>
-    <div class="finding-card"><div class="finding-num">7.04%</div><div class="finding-label" data-i18n="f7l">Real Annual Return</div><div class="finding-desc" data-i18n="f7d">Fisher-corrected return: 12% nominal − 4.63% avg inflation</div></div>
+    <div class="finding-card"><div class="finding-num">140,493</div><div class="finding-label" data-i18n="f5l">Nominal Balance (AZN)</div><div class="finding-desc" data-i18n="f5d">The amount shown by the bank after 3 years at a 12% nominal rate.</div></div>
+    <div class="finding-card"><div class="finding-num">122,665</div><div class="finding-label" data-i18n="f6l">Real Balance (AZN)</div><div class="finding-desc" data-i18n="f6d">The purchasing power left after 14.53% cumulative inflation.</div></div>
+    <div class="finding-card"><div class="finding-num">7.04%</div><div class="finding-label" data-i18n="f7l">Real Annual Return</div><div class="finding-desc" data-i18n="f7d">Fisher-adjusted return after comparing 12% nominal growth with 4.63% average inflation.</div></div>
   </div>
 
   <ul class="insights-list">
-    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a2_1"><strong>The investor is still profitable.</strong> Real return of 7.04% means the bank deposit (12%) significantly outpaces inflation (4.63%). Every AZN kept in the bank genuinely grows in purchasing power.</span></li>
-    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a2_2"><strong>Nominal gains are deceptive.</strong> The 40,493 AZN "gain" on paper becomes a real gain of only 22,665 AZN. Nearly 18,000 AZN of the nominal return is absorbed by price-level changes — not lost, but not as powerful as it appears.</span></li>
+    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a2_1"><strong>The deposit still protects purchasing power.</strong> A 7.04% real return means the 12% deposit is comfortably above the average inflation rate. The money is not just increasing on paper; it is gaining real value.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a2_2"><strong>The nominal gain should not be read at face value.</strong> The 40,493 AZN increase becomes a real gain of 22,665 AZN after inflation. That does not make the deposit bad, but it shows why real return is the more useful decision metric.</span></li>
   </ul>
 
   <hr class="divider"/>
 
   <!-- TASK A.3 -->
   <div id="alternatives" class="section-anchor">
-    <p class="content-label" data-i18n="a3_lbl">Task A.3 — Alternative Investment Analysis</p>
+    <p class="content-label" data-i18n="a3_lbl">Task A.3 - Alternative Investment Analysis</p>
     <h2 class="content-title" data-i18n="a3_title">Three Strategies: 50,000 AZN Over 5 Years</h2>
   </div>
-  <p class="content-text" data-i18n="a3_text">Three options compared: a bank deposit at 10.5% with monthly compounding, government bonds at 9.8% annual, and a mutual fund averaging 13% with a standard deviation of ±4%. The fund's uncertainty produces three distinct scenarios: pessimistic (9%), normal (13%), and optimistic (17%).</p>
+  <p class="content-text" data-i18n="a3_text">I compared a bank deposit at 10.5% with monthly compounding, government bonds at 9.8% annually, and a mutual fund with an expected 13% return and a 4% standard deviation. For the fund, I separated the result into pessimistic, normal, and optimistic scenarios so the return is not shown without its risk.</p>
 
   <div class="chart-wrap">
-    <div class="chart-title"><span>Fig 05</span> — <span data-i18n="c5t">5-Year Final Value by Strategy (AZN)</span></div>
+    <div class="chart-title"><span>Fig 05</span> - <span data-i18n="c5t">5-Year Final Value by Strategy (AZN)</span></div>
     <div class="chart-canvas-wrap" style="height:280px"><canvas id="c-alt"></canvas></div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <span class="table-header-title"><span>Tab 02</span> — <span data-i18n="t2h">Investment Strategy Comparison</span></span>
+      <span class="table-header-title"><span>Tab 02</span> - <span data-i18n="t2h">Investment Strategy Comparison</span></span>
       <span class="table-badge" data-i18n="t2b">5 years · 50,000 AZN</span>
     </div>
     <table>
@@ -315,77 +315,77 @@ body{}
       <tbody>
         <tr><td class="acc" data-i18n="row_dep">Bank Deposit (10.5%)</td><td>84,355</td><td class="pos">+34,355</td><td data-i18n="r_low">✓ Insured (ASF)</td></tr>
         <tr><td class="acc" data-i18n="row_bond">Gov. Bonds (9.8%)</td><td>79,795</td><td>+29,795</td><td data-i18n="r_low">✓ Insured (ASF)</td></tr>
-        <tr><td class="mu" data-i18n="row_fpess">Fund — Pessimistic (9%)</td><td class="neg">76,930</td><td class="neg">+26,930</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
-        <tr><td class="mu" data-i18n="row_fnorm">Fund — Normal (13%)</td><td>92,120</td><td>+42,120</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
-        <tr><td class="mu" data-i18n="row_fopt">Fund — Optimistic (17%)</td><td class="pos">109,620</td><td class="pos">+59,620</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
+        <tr><td class="mu" data-i18n="row_fpess">Fund - Pessimistic (9%)</td><td class="neg">76,930</td><td class="neg">+26,930</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
+        <tr><td class="mu" data-i18n="row_fnorm">Fund - Normal (13%)</td><td>92,120</td><td>+42,120</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
+        <tr><td class="mu" data-i18n="row_fopt">Fund - Optimistic (17%)</td><td class="pos">109,620</td><td class="pos">+59,620</td><td class="neg" data-i18n="r_high">High Risk</td></tr>
       </tbody>
     </table>
   </div>
 
   <ul class="insights-list">
-    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a3_1"><strong>The fund's pessimistic outcome (26,930 AZN) falls below the guaranteed deposit gain (34,355 AZN).</strong> If you accept the fund's downside risk, you could end up worse than a fully protected bank deposit.</span></li>
-    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a3_2"><strong>Decision logic: if you can tolerate risk, choose the fund; if you can't, choose the deposit.</strong> Bonds offer slightly less return for the same safety as a deposit — making them the weakest option on a risk-adjusted basis at these rates.</span></li>
+    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_a3_1"><strong>The fund's pessimistic result is below the guaranteed deposit gain.</strong> If the fund performs at the lower end, the investor earns 26,930 AZN, compared with 34,355 AZN from the protected deposit.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_a3_2"><strong>The choice depends on risk tolerance, not only on the highest possible number.</strong> The fund has the best upside, while the deposit is stronger for a conservative investor. The bond option is safe, but at these rates it gives less return than the deposit for a similar risk level.</span></li>
   </ul>
 
   <hr class="divider"/>
 
-  <!-- TASK B — Essays -->
+  <!-- TASK B - Essays -->
   <div id="essays" class="section-anchor">
-    <p class="content-label" data-i18n="b_lbl">Task B — Analytical Essays</p>
+    <p class="content-label" data-i18n="b_lbl">Task B - Analytical Essays</p>
     <h2 class="content-title" data-i18n="b_title">Interest Rate Policy & Deposit Insurance</h2>
   </div>
 
   <div class="essay-block">
-    <h3 data-i18n="b1_h">B.1 — Interest Rate Transmission Mechanism</h3>
-    <p data-i18n="b1_p1">Central banks use various tools to manage the economy. The most powerful of these is the discount rate. The Central Bank of Azerbaijan (CBAR) uses this tool to directly influence the behaviour of commercial banks and, indirectly, the deposit income of the population. This essay explains the mechanism of that influence, real examples from Azerbaijan, and the weaknesses of the system in sequence.<br><br>The discount rate is the price at which the central bank lends to commercial banks. When this rate rises, borrowing from the central bank becomes more expensive for commercial banks. They therefore turn to an alternative source — the deposits of the public. To attract more deposits, they raise their deposit rates. In this way, a rise in the discount rate triggers a chain reaction that also raises deposit rates. The reverse is also true. When the discount rate falls, banks can borrow cheaply from the central bank. The need for public deposits decreases, and deposit rates fall. In economics, this process is called the <strong>interest rate transmission mechanism</strong>. A central bank decision affects the entire banking system.</p>
-    <p data-i18n="b1_p2">In 2022, annual inflation in Azerbaijan reached 13.85%. This rapid rise in prices forced CBAR to raise its discount rate. Banks in turn raised their deposit rates. That period played a key role in shaping the 10–12% deposit rates we see in the market today.<br><br>By 2024, inflation had fallen sharply to 2.21%. CBAR began lowering its rate. However, commercial banks did not lower their deposit rates at the same pace. The reason is simple: banks do not want to lose customers in a competitive environment. Suddenly cutting rates could lead to customer losses. This is what economists call <strong>"asymmetric transmission"</strong> — banks react quickly when rates go up, but slowly when they come down.</p>
-    <p data-i18n="b1_p3">There are three main reasons why this mechanism does not work with full efficiency in Azerbaijan.<br><br>The first is high dollarisation. A portion of the population still holds their savings in dollars or euros. For these people, changes in deposit rates set in manats are not very significant. This is why CBAR's rate decisions on the manat do not affect every member of society.<br><br>The second is that state banks reduce competition. State banks like Kapital Bank and ABB know they have government backing. This sense of security sometimes leads them to react more slowly to market signals. The less competition there is, the weaker the transmission mechanism works.<br><br>The third is the influence of oil revenues on the interest rate channel. Because Azerbaijan's economy is highly dependent on oil exports, when oil revenues are high, banks have extra resources. At that point, the significance of the central bank's rate changes diminishes, because banks already have sufficient resources.<br><br>In Georgia, the transmission mechanism works faster and more transparently. Large private banks such as TBC Bank and Bank of Georgia respond to every rate decision by the National Bank of Georgia within 4–6 weeks and adjust their deposit rates accordingly. Behind this are a strong private competitive environment, transparency requirements from international investors, and declining dollarisation in recent years. This comparison clearly shows that the effectiveness of the transmission mechanism depends not only on the central bank's intentions, but on the overall maturity of the banking sector environment.<br><br>Although CBAR's discount rate policy does influence commercial banks' deposit rates to a certain degree, this influence is neither complete nor fast. Dollarisation, state banks, and the oil economy block this mechanism. Compared to Georgia, it is clear that a strong private competitive environment, central bank independence, and currency choices are essential conditions for effective transmission.</p>
+    <h3 data-i18n="b1_h">B.1 - Interest Rate Transmission Mechanism</h3>
+    <p data-i18n="b1_p1">Central banks influence economic activity through the policy rate. When the Central Bank of Azerbaijan raises this rate, commercial banks face higher funding costs and usually respond by increasing deposit rates to attract retail savings. This link between the policy rate and bank-level interest rates is the interest rate transmission mechanism.</p>
+    <p data-i18n="b1_p2">In 2022, inflation in Azerbaijan reached 13.85%, which pushed the Central Bank to tighten monetary policy. Banks followed with higher deposit rates. By 2024, inflation had fallen to 2.21%, but banks were slower to reduce rates because cutting deposit returns can push customers toward competitors. This slower reaction on the way down is known as asymmetric transmission.</p>
+    <p data-i18n="b1_p3">Transmission in Azerbaijan is limited by several local factors. Many depositors still hold part of their savings in USD or EUR, so AZN rate changes do not affect everyone equally. Large state-backed banks such as Kapital Bank and ABB also have stronger market positions, which can reduce pressure to react quickly. Oil revenues matter as well, because strong liquidity in the banking system lowers the need to compete aggressively for deposits. In more competitive markets such as Georgia, banks like TBC Bank and Bank of Georgia tend to adjust deposit pricing faster after central bank decisions.</p>
   </div>
 
   <div class="essay-block">
-    <h3 data-i18n="b2_h">B.2 — Deposit Insurance: Protection or Moral Hazard?</h3>
-    <p data-i18n="b2_p1">The main instrument of legal protection for depositors in Azerbaijan is the Deposit Insurance Fund (ASF/ƏSF). The ASF pays compensation equal to 100% of the insured deposit at each participating bank, provided it does not exceed 100,000 AZN. This limit applies separately for each bank: for example, if the same depositor holds 100,000 AZN in two different banks, both amounts are fully insured. From the day the system was created until 1 January 2025, a total of 1 billion 717 million manats in compensation has been paid to 62,520 depositors across 19 banks under liquidation.</p>
-    <p data-i18n="b2_p2">In economic theory, <strong>moral hazard</strong> describes a situation where one party's protection from the consequences of risk leads that party to behave more recklessly. In the banking context, this manifests in two directions.<br><br>From the depositor's side: the existence of insurance frees people from researching a bank's financial health. If every amount up to 100,000 AZN is guaranteed, the customer does not investigate the bank's credit quality or reliability — they simply look for the highest interest rate. This is the main factor that weakens market discipline.<br><br>From the bank's side, the situation is more troubling. The bank knows that depositors will not withdraw their money, because insurance exists. At that point, it becomes more profitable for bank management to take excessive risks, because when bets succeed the profit goes to the bank's shareholders, and when they fail, the loss is paid by the ASF — meaning taxpayers bear the cost.<br><br>The 100,000 AZN limit is a significant threshold in the context of Azerbaijan's economy. Given the country's average annual wage, this amount allows the vast majority of the population to keep their savings fully insured. The practical result is that almost no depositor evaluates banks sufficiently. The main selection factor in the market becomes only the interest rate. This creates a particular competition model among banks. The bank offering the highest rate attracts more deposits. But to meet the high interest obligation, the bank must direct those funds into more profitable assets — which are naturally riskier.</p>
-    <p data-i18n="b2_p3">Taking into account the current structure of the ASF system, the following strategy can be considered optimal for a depositor.<br><br>First, apply the principle of portfolio allocation. This means amounts above 100,000 AZN should be held in more than one ASF-member bank so that each portion remains fully insured. This may be the most powerful risk-reduction measure available at the depositor level.<br><br>Second, for amounts close to the insurance limit, it is necessary to investigate the bank's financial indicators — in particular, the capital adequacy ratio (CAR) and the liquid assets ratio in the public reports of the Financial Market Supervisory Authority (FIMSA/MBDP) should be monitored.<br><br>Third, for amounts exceeding 100,000 AZN, it is more advantageous to choose state-participant banks. For example, the implicit government support present in banks such as Kapital Bank and ABB does not provide a written guarantee, but given that similar situations have occurred in the past, they appear more reliable.<br><br>Fourth, one should approach with caution any bank promising rates sharply above the market average. A bank promising 3–4% above the market average is either experiencing a liquidity problem or pursuing an excessively risky lending policy. A high interest rate is not always attractive — sometimes it is a warning signal.</p>
+    <h3 data-i18n="b2_h">B.2 - Deposit Insurance: Protection or Moral Hazard?</h3>
+    <p data-i18n="b2_p1">Azerbaijan's Deposit Insurance Fund (ASF/ƏSF) protects deposits up to 100,000 AZN per bank and per depositor. This is an important safety net, especially because the fund has already paid 1.717 billion AZN to 62,520 depositors in 19 liquidated banks. At the same time, deposit insurance can create moral hazard if people stop checking bank quality simply because the deposit is insured.</p>
+    <p data-i18n="b2_p2">The risk is that insured depositors may chase the highest advertised rate without looking at the bank behind it. Banks can then raise rates to attract money and take more risk with the funds they collect. If the strategy fails, the loss is carried by the insurance system and, indirectly, by the public rather than only by the bank shareholders.</p>
+    <p data-i18n="b2_p3"><strong>A practical depositor strategy is simple:</strong> keep amounts above 100,000 AZN split across several ASF-member banks, follow capital adequacy and non-performing loan indicators in MBDP reports, prefer stronger or state-backed banks for large deposits, and treat any rate that is 3-4 percentage points above the market average as a warning sign rather than a gift.</p>
   </div>
 
   <hr class="divider"/>
 
-  <!-- TASK C — Case Study -->
+  <!-- TASK C - Case Study -->
   <div id="casestudy" class="section-anchor">
-    <p class="content-label" data-i18n="c_lbl">Task C — Case Study</p>
+    <p class="content-label" data-i18n="c_lbl">Task C - Case Study</p>
     <h2 class="content-title" data-i18n="c_title">Leyla's Capital Strategy: 80,000 AZN Portfolio</h2>
   </div>
-  <p class="content-text" data-i18n="c_text">Three constraints had to be met at once: protect the capital, earn a real return above inflation, and keep at least 30% (24,000 AZN) accessible at any time. Meeting all three simultaneously requires splitting the money across several banks by purpose — not putting everything in one place.</p>
+  <p class="content-text" data-i18n="c_text">Leyla has three priorities: protect the capital, earn a return above inflation, and keep at least 30% of the money, or 24,000 AZN, accessible at all times. The portfolio is therefore split across four banks by purpose: liquidity, core income, diversification, and flexible reserve.</p>
 
   <div class="case-grid">
     <div class="case-card">
-      <div class="case-card-label" data-i18n="cc1_lbl">Part 1 — Liquid (30%)</div>
-      <div class="case-card-title">AccessBank — <span data-i18n="demand">Demand Account</span></div>
+      <div class="case-card-label" data-i18n="cc1_lbl">Part 1 - Liquid (30%)</div>
+      <div class="case-card-title">AccessBank - <span data-i18n="demand">Demand Account</span></div>
       <div class="case-card-amount">24,000 AZN</div>
       <div class="case-card-rate">8.50% → 2,040 AZN/<span data-i18n="yr">yr</span></div>
-      <div class="case-card-note" data-i18n="cc1_note">Withdrawable any time. ASF member, wide branch network.</div>
+      <div class="case-card-note" data-i18n="cc1_note">Available at any time, with ASF membership and a broad branch network.</div>
     </div>
     <div class="case-card">
-      <div class="case-card-label" data-i18n="cc2_lbl">Part 2 — Core Income (35%)</div>
-      <div class="case-card-title">Kapital Bank — 12-<span data-i18n="month">month</span></div>
+      <div class="case-card-label" data-i18n="cc2_lbl">Part 2 - Core Income (35%)</div>
+      <div class="case-card-title">Kapital Bank - 12-<span data-i18n="month">month</span></div>
       <div class="case-card-amount">28,000 AZN</div>
       <div class="case-card-rate">11.90% → 3,332 AZN/<span data-i18n="yr">yr</span></div>
-      <div class="case-card-note" data-i18n="cc2_note">Highest market rate. State-backed. Well below 100k insurance limit.</div>
+      <div class="case-card-note" data-i18n="cc2_note">The highest selected market rate, supported by a strong state-backed bank and still well below the insurance limit.</div>
     </div>
     <div class="case-card">
-      <div class="case-card-label" data-i18n="cc3_lbl">Part 3 — Diversification (25%)</div>
-      <div class="case-card-title">ABB Bank — 12-<span data-i18n="month">month</span></div>
+      <div class="case-card-label" data-i18n="cc3_lbl">Part 3 - Diversification (25%)</div>
+      <div class="case-card-title">ABB Bank - 12-<span data-i18n="month">month</span></div>
       <div class="case-card-amount">20,000 AZN</div>
       <div class="case-card-rate">11.00% → 2,200 AZN/<span data-i18n="yr">yr</span></div>
-      <div class="case-card-note" data-i18n="cc3_note">Hedge if Kapital Bank faces any issue. Also state-backed.</div>
+      <div class="case-card-note" data-i18n="cc3_note">Reduces reliance on Kapital Bank and keeps another state-backed bank in the portfolio.</div>
     </div>
     <div class="case-card">
-      <div class="case-card-label" data-i18n="cc4_lbl">Part 4 — Flex Reserve (10%)</div>
-      <div class="case-card-title">Bank of Baku — 6-<span data-i18n="month">month</span></div>
+      <div class="case-card-label" data-i18n="cc4_lbl">Part 4 - Flex Reserve (10%)</div>
+      <div class="case-card-title">Bank of Baku - 6-<span data-i18n="month">month</span></div>
       <div class="case-card-amount">8,000 AZN</div>
       <div class="case-card-rate">10.75% → 860 AZN/<span data-i18n="yr">yr</span></div>
-      <div class="case-card-note" data-i18n="cc4_note">Semi-liquid: accessible every 6 months. Bridges short-term needs.</div>
+      <div class="case-card-note" data-i18n="cc4_note">Semi-liquid money that can be reviewed every 6 months for short-term needs or better rates.</div>
     </div>
   </div>
 
@@ -397,38 +397,38 @@ body{}
 
   <div class="chart-row">
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 06</span> — <span data-i18n="c6t">Portfolio Allocation (%)</span></div>
+      <div class="chart-title"><span>Fig 06</span> - <span data-i18n="c6t">Portfolio Allocation (%)</span></div>
       <div class="chart-canvas-wrap" style="height:260px"><canvas id="c-leyla-pie"></canvas></div>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 07</span> — <span data-i18n="c7t">Annual Income per Bank Allocation (AZN)</span></div>
+      <div class="chart-title"><span>Fig 07</span> - <span data-i18n="c7t">Annual Income per Bank Allocation (AZN)</span></div>
       <div class="chart-canvas-wrap" style="height:260px"><canvas id="c-leyla-bar"></canvas></div>
     </div>
   </div>
 
   <hr class="divider"/>
 
-  <!-- TASK D — International -->
+  <!-- TASK D - International -->
   <div id="international" class="section-anchor">
-    <p class="content-label" data-i18n="d_lbl">Task D — International Comparison</p>
+    <p class="content-label" data-i18n="d_lbl">Task D - International Comparison</p>
     <h2 class="content-title" data-i18n="d_title">Regional Deposit Rates: 4 Countries</h2>
   </div>
-  <p class="content-text" data-i18n="d_text">Nominal rates alone do not tell the full story. Turkey's 41.49% looks extraordinary, but after 31.1% inflation the real return is only around 7.93%. Kazakhstan's 14.2% at 12.9% inflation produces the weakest real return in the region at just 1.69%. Azerbaijan's 11.9% at an average inflation of 4.63% delivers a competitive 7.04% real return — with significantly less currency risk than its neighbours.</p>
+  <p class="content-text" data-i18n="d_text">Nominal rates are only the first layer of the comparison. Turkey's 41.49% rate looks very high, but inflation of about 31.1% leaves a much smaller real return and adds major currency risk. Kazakhstan's 14.2% deposit rate is also weakened by 12.9% inflation. Azerbaijan's 11.9% rate is lower in nominal terms, but with 4.63% average inflation it produces a competitive real return and avoids currency conversion risk for an AZN-based investor.</p>
 
   <div class="chart-row">
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 08</span> — <span data-i18n="c8t">Nominal Deposit Rate by Country (%)</span></div>
+      <div class="chart-title"><span>Fig 08</span> - <span data-i18n="c8t">Nominal Deposit Rate by Country (%)</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-intl-nominal"></canvas></div>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title"><span>Fig 09</span> — <span data-i18n="c9t">Real Return by Country (%) — Fisher Adjusted</span></div>
+      <div class="chart-title"><span>Fig 09</span> - <span data-i18n="c9t">Real Return by Country (%) - Fisher Adjusted</span></div>
       <div class="chart-canvas-wrap"><canvas id="c-intl-real"></canvas></div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <span class="table-header-title"><span>Tab 03</span> — <span data-i18n="t3h">Regional Deposit Comparison</span></span>
+      <span class="table-header-title"><span>Tab 03</span> - <span data-i18n="t3h">Regional Deposit Comparison</span></span>
       <span class="table-badge" data-i18n="t3b">4 countries</span>
     </div>
     <table>
@@ -450,9 +450,9 @@ body{}
   </div>
 
   <ul class="insights-list">
-    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_d1"><strong>Georgia offers the best risk-adjusted real return (7.79%)</strong> — but converting 50,000 AZN to GEL and back costs ~1.5% in conversion fees, bringing net return to ~10.4% vs Azerbaijan's 11.9% in nominal terms. Stay local.</span></li>
-    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_d2"><strong>Turkey's rate is inflation-compensating, not wealth-generating.</strong> If TRY depreciates faster than expected (as is historically common), foreign investors can lose more in FX than they gain in interest. The 40%+ rate is a necessity, not an opportunity.</span></li>
-    <li><span class="insight-bullet">03</span><span class="insight-text" data-i18n="i_d3"><strong>Azerbaijan is the most stable option for AZN-based investors.</strong> No currency conversion risk, competitive real return (7.04%), and a manat anchored to oil-backed fiscal reserves.</span></li>
+    <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="i_d1"><strong>Georgia has the strongest real return in the table, but the practical result is lower after conversion costs.</strong> Changing 50,000 AZN into GEL and then back again can cost around 1.5%, which reduces the advantage for an Azerbaijani investor.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="i_d2"><strong>Turkey's high rate is mostly compensation for inflation and currency risk.</strong> If the lira weakens faster than expected, the foreign investor can lose more through exchange rate movement than they gain from interest.</span></li>
+    <li><span class="insight-bullet">03</span><span class="insight-text" data-i18n="i_d3"><strong>Azerbaijan is the cleanest option for an AZN-based investor.</strong> There is no currency conversion risk, the real return is competitive at 7.04%, and the manat remains supported by oil-backed fiscal reserves.</span></li>
   </ul>
 
   <hr class="divider"/>
@@ -462,9 +462,9 @@ body{}
     <p class="content-label" data-i18n="risk_lbl">Risk Assessment</p>
     <h2 class="content-title">⚠ <span data-i18n="risk_title">Key Risks</span></h2>
   </div>
-  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r1t">Inflation surge scenario</span></div><div class="block-text" data-i18n="r1b">If inflation rises above 9%, the 12% deposit rate produces a negative real return. This is the primary macro risk — low probability given current AZN stability, but not zero. <strong>Monitor CBAR announcements quarterly.</strong></div></div>
-  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r2t">Mutual fund downside scenario</span></div><div class="block-text" data-i18n="r2b">The fund's pessimistic outcome (26,930 AZN gain) is lower than the guaranteed deposit gain (34,355 AZN). Accepting fund risk without sufficient risk tolerance is a strictly worse outcome than the bank deposit on a risk-adjusted basis.</div></div>
-  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r3t">Concentration risk in Leyla's portfolio</span></div><div class="block-text" data-i18n="r3b">Kapital Bank holds 35% of the portfolio (28,000 AZN). Even though it's below the 100k insurance limit, a simultaneous multi-bank crisis (as seen in 2015–16) could delay access to funds even when they're fully insured.</div></div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r1t">Inflation surge scenario</span></div><div class="block-text" data-i18n="r1b">If inflation rises above 9%, the 12% deposit rate can turn into a weak or negative real return. This is the main macro risk. It is not the base case under current AZN stability, but it should be checked through CBAR updates each quarter.</div></div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r2t">Mutual fund downside scenario</span></div><div class="block-text" data-i18n="r2b">The fund's pessimistic gain of 26,930 AZN is lower than the guaranteed deposit gain of 34,355 AZN. Without enough risk tolerance, choosing the fund can produce a worse result than the bank deposit.</div></div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span><span data-i18n="r3t">Concentration risk in Leyla's portfolio</span></div><div class="block-text" data-i18n="r3b">Kapital Bank holds 35% of the portfolio, or 28,000 AZN. The amount is below the insurance limit, but a wider banking stress event could still delay access to funds even when the deposit is insured.</div></div>
 
   <hr class="divider"/>
 
@@ -473,14 +473,14 @@ body{}
     <p class="content-label" data-i18n="rec_lbl">Action Items</p>
     <h2 class="content-title">✓ <span data-i18n="rec_title">Recommendations</span></h2>
   </div>
-  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec1t">For individual investors: Bank C (11% annual) for 3-year horizon</span></div><div class="block-text" data-i18n="rec1b">On a 50,000 AZN principal over 3 years, Bank C delivers the highest FV (68,382 AZN) without any compounding complexity premium. Avoid over-engineering with frequency when rates differ by 1.5%+.</div></div>
-  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec2t">For inflation protection: confirm deposit rate exceeds 5% above inflation</span></div><div class="block-text" data-i18n="rec2b">The Fisher rule of thumb: a deposit at 12% with 4.63% inflation produces 7.04% real return. Always use the Fisher formula to verify real returns before committing capital. Any deposit below 6% nominal is inflation-neutral or negative in Azerbaijan's current environment.</div></div>
-  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec3t">For multi-bank portfolio strategy: match bank choice to liquidity need</span></div><div class="block-text" data-i18n="rec3b">Leyla's portfolio model is the optimal template: liquid + income + diversification + flex reserve. Never put more than 100,000 AZN in a single bank. Use 6-month term deposits for the flex portion. Review allocations at each maturity date to capture any rate improvements.</div></div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec1t">For individual investors: choose Bank C for a 3-year horizon</span></div><div class="block-text" data-i18n="rec1b">For a 50,000 AZN principal over 3 years, Bank C gives the highest final value at 68,382 AZN. The comparison shows that a higher nominal rate can matter more than a more frequent compounding schedule when the rate gap is large enough.</div></div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec2t">For inflation protection: check the real return before depositing</span></div><div class="block-text" data-i18n="rec2b">A 12% deposit with 4.63% average inflation gives a 7.04% real return. Before committing capital, the investor should use the Fisher formula instead of relying only on the advertised nominal rate. In the current Azerbaijani environment, very low nominal deposits can easily become inflation-neutral or negative.</div></div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span><span data-i18n="rec3t">For a multi-bank portfolio: match each bank to a purpose</span></div><div class="block-text" data-i18n="rec3b">Leyla's split works because each part has a role: liquidity, income, diversification, and flexible reserve. No single bank should hold more than the insured limit. The flexible part can stay in shorter 6-month deposits so the investor can respond if rates improve.</div></div>
 </main>
 
 <footer>
-  <span>← <a href="index.html" data-i18n="back">Back to Portfolio</a></span>
-  <span>© 2026 — Junior Data Analyst Portfolio</span>
+  <span>← <a href="index.html" data-i18n="back">← Back to Portfolio</a></span>
+  <span>© 2026 · Junior Data Analyst Portfolio</span>
 </footer>
 
 <script>
@@ -493,38 +493,44 @@ const scl={x:{grid:{color:GRID},ticks:{color:MUT}},y:{grid:{color:GRID},ticks:{c
 
 const LABELS = {
   en:{
-    banks:['Bank C (11% Annual)','Bank B (10.2% Quarterly)','Bank A (9.5% Monthly)'],
-    fv_label:'Final Value (AZN)',
-    eir_nom:['Bank A Nominal','Bank A EIR','Bank B Nominal','Bank B EIR','Bank C Nominal','Bank C EIR'],
-    eir_label:'Rate %',
-    nom_real_x:['Start','Year 1','Year 2','Year 3'],
-    nom_lbl:'Nominal Balance',real_lbl:'Real Balance',
-    inf_x:['2024','2025','2026'],
-    inf_dep:'Deposit Rate 12%',inf_inf:'Inflation %',
-    alt_x:['Deposit\n10.5%','Gov Bonds\n9.8%','Fund Pessimistic\n9%','Fund Normal\n13%','Fund Optimistic\n17%'],
-    alt_lbl:'5-Year Final Value (AZN)',
-    leyla_parts:['Liquid (AccessBank)','Core Income (Kapital)','Diversification (ABB)','Flex Reserve (BoB)'],
-    leyla_income_x:['AccessBank\n8.5%','Kapital Bank\n11.9%','ABB Bank\n11%','Bank of Baku\n10.75%'],
-    leyla_income_lbl:'Annual Income (AZN)',
-    countries:['Georgia','Azerbaijan','Turkey','Kazakhstan'],
-    nom_lbl2:'Nominal Rate %',real_lbl2:'Real Return %',
+    banks:["Bank C (11% Annual)", "Bank B (10.2% Quarterly)", "Bank A (9.5% Monthly)"],
+    fv_label:"Final Value (AZN)",
+    eir_nom:["Bank A Nominal", "Bank A EIR", "Bank B Nominal", "Bank B EIR", "Bank C Nominal", "Bank C EIR"],
+    eir_label:"Rate %",
+    nom_real_x:["Start", "Year 1", "Year 2", "Year 3"],
+    nom_lbl:"Nominal Balance",
+    real_lbl:"Real Balance",
+    inf_x:["2024", "2025", "2026"],
+    inf_dep:"Deposit Rate 12%",
+    inf_inf:"Inflation %",
+    alt_x:["Deposit\n10.5%", "Gov. Bonds\n9.8%", "Fund Pessimistic\n9%", "Fund Normal\n13%", "Fund Optimistic\n17%"],
+    alt_lbl:"5-Year Final Value (AZN)",
+    leyla_parts:["Liquid (AccessBank)", "Core Income (Kapital)", "Diversification (ABB)", "Flex Reserve (BoB)"],
+    leyla_income_x:["AccessBank\n8.5%", "Kapital Bank\n11.9%", "ABB Bank\n11%", "Bank of Baku\n10.75%"],
+    leyla_income_lbl:"Annual Income (AZN)",
+    countries:["Georgia", "Azerbaijan", "Turkey", "Kazakhstan"],
+    nom_lbl2:"Nominal Rate %",
+    real_lbl2:"Real Return %",
   },
   az:{
-    banks:['Bank C (11% İllik)','Bank B (10.2% Rüblük)','Bank A (9.5% Aylıq)'],
-    fv_label:'Yekun Məbləğ (AZN)',
-    eir_nom:['Bank A Nominal','Bank A EİF','Bank B Nominal','Bank B EİF','Bank C Nominal','Bank C EİF'],
-    eir_label:'Faiz %',
-    nom_real_x:['Başlanğıc','1-ci il','2-ci il','3-cü il'],
-    nom_lbl:'Nominal Balans',real_lbl:'Real Balans',
-    inf_x:['2024','2025','2026'],
-    inf_dep:'Depozit Faizi 12%',inf_inf:'İnflyasiya %',
-    alt_x:['Depozit\n10.5%','Dövlət İstiqrazı\n9.8%','Fond Pessimist\n9%','Fond Normal\n13%','Fond Optimist\n17%'],
-    alt_lbl:'5 İllik Yekun Məbləğ (AZN)',
-    leyla_parts:['Likvid (AccessBank)','Əsas Gəlir (Kapital)','Diversifikasiya (ABB)','Çevik Ehtiyat (BoB)'],
-    leyla_income_x:['AccessBank\n8.5%','Kapital Bank\n11.9%','ABB Bank\n11%','Bank of Baku\n10.75%'],
-    leyla_income_lbl:'İllik Gəlir (AZN)',
-    countries:['Gürcüstan','Azərbaycan','Türkiyə','Qazaxıstan'],
-    nom_lbl2:'Nominal Faiz %',real_lbl2:'Real Gəlir %',
+    banks:["Bank C (11% illik)", "Bank B (10.2% rüblük)", "Bank A (9.5% aylıq)"],
+    fv_label:"Yekun məbləğ (AZN)",
+    eir_nom:["Bank A nominal", "Bank A EİF", "Bank B nominal", "Bank B EİF", "Bank C nominal", "Bank C EİF"],
+    eir_label:"Faiz %",
+    nom_real_x:["Başlanğıc", "1-ci il", "2-ci il", "3-cü il"],
+    nom_lbl:"Nominal balans",
+    real_lbl:"Real balans",
+    inf_x:["2024", "2025", "2026"],
+    inf_dep:"Depozit faizi 12%",
+    inf_inf:"İnflyasiya %",
+    alt_x:["Depozit\n10.5%", "Dövlət istiqrazı\n9.8%", "Fond pessimist\n9%", "Fond normal\n13%", "Fond optimist\n17%"],
+    alt_lbl:"5 illik yekun məbləğ (AZN)",
+    leyla_parts:["Likvid (AccessBank)", "Əsas gəlir (Kapital)", "Diversifikasiya (ABB)", "Çevik ehtiyat (BoB)"],
+    leyla_income_x:["AccessBank\n8.5%", "Kapital Bank\n11.9%", "ABB Bank\n11%", "Bank of Baku\n10.75%"],
+    leyla_income_lbl:"İllik gəlir (AZN)",
+    countries:["Gürcüstan", "Azərbaycan", "Türkiyə", "Qazaxıstan"],
+    nom_lbl2:"Nominal faiz %",
+    real_lbl2:"Real gəlir %",
   }
 };
 
@@ -604,182 +610,304 @@ function buildCharts(l){
 // ============ i18n ============
 const T = {
   en:{
-    back:'← Back to Portfolio',
-    tag:'Financial Modelling · Investment Analysis · Azerbaijan',
-    title_html:'Investment Decision:<br><em>Real Returns Analysis</em>',
-    m1l:'Tasks Covered',m1v:'A (Calculations) · B (Essays) · C (Case Study) · D (International)',
-    m2l:'Tools',m3l:'Principals Analysed',
-    m4l:'Dimensions',m4v:'Rate · EIR · Real Return · Risk · Portfolio',
-    jt:'Jump to →',
-    qn1:'Compound',qn2:'Inflation',qn3:'Alternatives',qn4:'Case Study',qn5:'International',qn6:'Risks',qn7:'Recommendations',
-    obj_lbl:'Objective:',
-    obj_text:"A full financial decision analysis: comparing compound interest across 3 banks, calculating real returns with the Fisher equation, evaluating 3 investment alternatives over 5 years, and applying the results to a real portfolio strategy.",
-    kf_lbl:'Key Finding:',
-    kf_text:"Bank C (11% annual compounding) generates the highest final value at 68,382 AZN despite compounding the least frequently — which shows that nominal rate outweighs compounding frequency at these levels. On a 100,000 AZN deposit at 12%, cumulative inflation of 14.53% reduces the real balance to 122,665 AZN. The deposit is still profitable, but about 18,000 AZN less powerful than the nominal figure suggests.",
-    f1l:'Bank C — Best FV (AZN)',f1d:'11% annual compounding beats monthly & quarterly rivals over 3 years',
-    f2l:'Real Return',f2d:'Fisher-corrected real return on 12% deposit — after 4.63% avg inflation',
-    f3l:'Best Safe Gain (AZN)',f3d:"Bank deposit (10.5%) guaranteed gain vs fund's wide ±4% uncertainty",
-    f4l:'Fund Upside (AZN)',f4d:'Optimistic fund scenario (17%) — but pessimistic is only +26,930 AZN',
-    a1_lbl:'Task A.1 — Compound Interest',
-    a1_title:'Three Banks: Which Compounds Best?',
-    a1_text:'Principal 50,000 AZN over 3 years. Bank A compounds monthly (9.5%), Bank B quarterly (10.2%), Bank C annually (11%). The Effective Annual Rate (EIR) shows the true annual yield after compounding frequency is accounted for.',
-    c1t:'Final Value (AZN) after 3 Years',c2t:'Effective Annual Rate (EIR) vs Nominal',
-    t1h:'Bank Compound Interest Comparison',t1b:'3 banks · 3 years',
-    th_bank:'Bank',th_rate:'Nominal Rate',th_freq:'Compounding',th_eir:'EIR',th_fv:'Final Value (AZN)',th_gain:'Gain (AZN)',
-    annual:'Annual',quarterly:'Quarterly',monthly:'Monthly',
-    i_a1_1:"<strong>A higher nominal rate beats a higher compounding frequency in this scenario.</strong> Bank C compounds the least often but produces the highest final value. The frequency advantage only matters when the nominal rates are very close to each other.",
-    i_a1_2:"<strong>Bank A's EIR (9.921%) is higher than its nominal rate (9.5%)</strong> — monthly compounding does add real value. But a 1.5% nominal rate gap against Bank C is too large to close through frequency alone.",
-    a2_lbl:'Task A.2 — Inflation Correction',
-    a2_title:'Real Purchasing Power: Fisher Equation',
-    a2_text:'A 100,000 AZN deposit at 12% for 3 years. Nominal growth looks impressive (140,493 AZN) — but adjusted for cumulative inflation of 14.53% (2024: 4.4%, 2025: 5.5%, 2026: 4%), the real balance is 122,665 AZN. Fisher formula: real = (1+nominal)/(1+inflation) − 1.',
-    c3t:'Nominal vs Real Balance Over 3 Years (AZN)',c4t:'Annual Inflation vs Deposit Rate',
-    f5l:'Nominal Balance (AZN)',f5d:'What the bank statement shows after 3 years at 12%',
-    f6l:'Real Balance (AZN)',f6d:'Actual purchasing power after 14.53% cumulative inflation',
-    f7l:'Real Annual Return',f7d:'Fisher-corrected return: 12% nominal − 4.63% avg inflation',
-    i_a2_1:"<strong>The investor still comes out ahead.</strong> A real return of 7.04% means the 12% deposit rate comfortably outpaces average inflation of 4.63%. Every AZN in the bank is genuinely growing in purchasing power.",
-    i_a2_2:"<strong>Nominal gains are misleading.</strong> The 40,493 AZN gain on paper becomes a real gain of only 22,665 AZN. About 18,000 AZN of the nominal return is absorbed by rising prices — the money is not lost, but it is far less powerful than the bank statement suggests.",
-    a3_lbl:'Task A.3 — Alternative Investment Analysis',
-    a3_title:'Three Strategies: 50,000 AZN Over 5 Years',
-    a3_text:"Three options compared: a bank deposit at 10.5% with monthly compounding, government bonds at 9.8% annual, and a mutual fund averaging 13% with a standard deviation of ±4%. The fund's uncertainty produces three distinct scenarios: pessimistic (9%), normal (13%), and optimistic (17%).",
-    c5t:'5-Year Final Value by Strategy (AZN)',
-    t2h:'Investment Strategy Comparison',t2b:'5 years · 50,000 AZN',
-    th_option:'Option',th_5yr:'5-Year FV (AZN)',th_gainn:'Gain (AZN)',th_risk:'Risk',
-    row_dep:'Bank Deposit (10.5%)',row_bond:'Gov. Bonds (9.8%)',
-    row_fpess:'Fund — Pessimistic (9%)',row_fnorm:'Fund — Normal (13%)',row_fopt:'Fund — Optimistic (17%)',
-    r_low:'✓ Insured (ASF)',r_high:'High Risk',
-    i_a3_1:"<strong>In the pessimistic scenario, the fund (26,930 AZN) underperforms the guaranteed deposit gain (34,355 AZN).</strong> Taking on fund risk without sufficient risk tolerance means you could end up worse off than simply choosing a fully insured bank deposit.",
-    i_a3_2:"<strong>The logic is simple: if you can tolerate risk, choose the fund; if you cannot, choose the deposit.</strong> Government bonds offer slightly lower returns for the same level of safety as a deposit, which makes them the weakest option on a risk-adjusted basis at these rates.",
-    b_lbl:'Task B — Analytical Essays',
-    b_title:'Interest Rate Policy & Deposit Insurance',
-    b1_h:'B.1 — Interest Rate Transmission Mechanism',
-    b1_p1:'Mərkəzi banklar iqtisadiyyatı idarə etmək üçün müxtəlif alətlərdən istifadə edir. Bu alətlərin ən güclüsü isə uçot faiz dərəcəsidir. Azərbaycan Mərkəzi Bankı (CBAR) bu aləti vasitəsilə kommersiya banklarının davranışına, dolayı yolla isə əhalinin əmanət gəlirinə birbaşa təsir göstərir. Bu essedə həmin təsirin mexanizmi, Azərbaycandakı real nümunələri və sistemin zəif tərəfləri ardıcıl şəkildə izah olunur.<br><br>Uçot faizi Mərkəzi Bankın kommersiya banklarına verdiyi kreditin qiymətidir. Bu faiz artanda kommersiya bankları üçün Mərkəzi Bankdan borc almaq baha başa gəlir. Buna görə banklar alternativ mənbəyə, yəni əhalinin əmanətlərinə müraciət edir. Daha çox əmanət cəlb etmək üçün isə depozit faizlərini artırırlar. Beləliklə, uçot faizinin artması zəncir reaksiya kimi depozit faizlərinin də artmasına gətirib çıxarır. Əksi də doğrudur. Uçot faizi azalanda banklar Mərkəzi Bankdan ucuz borca pul ala bilir. Əhalinin əmanətinə ehtiyac azalır və depozit faizləri aşağı düşür. İqtisad elmində bu prosesə <strong>faiz transmissiya mexanizmi</strong> deyilir. Mərkəzi Bankın qərarı bütün bank sisteminə təsir edir.',
-    b1_p2:'2022-ci ildə Azərbaycanda illik inflyasiya 13.85%-ə çatdı. Qiymətlərin bu qədər sürətli artması CBAR-ı uçot faizini qaldırmağa məcbur etdi. Banklar da öz növbəsində əmanət faizlərini artırdı. Bu gün bazarda gördüyümüz 10–12% aralığındakı depozit faizlərinin formalaşmasında həmin dövr əsas rol oynadı.<br><br>2024-cü ilə gəlincə, inflyasiya kəskin şəkildə azaldı və 2.21% səviyyəsinə düşdü. CBAR uçot faizini aşağı salmağa başladı. Lakin kommersiya bankları depozit faizlərini eyni sürətlə aşağı salmadı. Bunun səbəbi isə sadədir: banklar rəqabət şəraitində müştərini itirmək istəmir. Faizləri anidən endirmək müştəri itkisinə səbəb ola bilər. Bu hal iqtisadçıların <strong>"asimmetrik transmissiya"</strong> adlandırdığı hadisədir, yəni faizlər qalxanda banklar tez reaksiya verir, düşəndə isə yavaş.',
-    b1_p3:'Azərbaycanda bu mexanizm tam səmərəli işləməməsinin üç əsas səbəbi var.<br><br>Birincisi, yüksək dollar dəyəridir. Əhalinin bir hissəsi hələ də əmanətlərini dollar və ya avro şəklində saxlayır. Bu insanlar üçün manatla müəyyən edilən depozit faizlərindəki dəyişiklik o qədər də əhəmiyyət daşımır. Buna görə CBAR-ın manat üzrə faiz qərarları cəmiyyətin bütün üzvlərinə təsir etmir.<br><br>İkincisi, dövlət bankları rəqabəti azaldır. Kapital Bank və ABB kimi dövlət bankları arxalarında dövlət dəstəyi olduğunu bilirlər. Bu güvən hissi onları bəzən bazar siqnallarına daha yavaş reaksiya verməyə sövq edir. Rəqabət nə qədər az olsa, transmissiya mexanizmi bir o qədər zəif işləyir.<br><br>Üçüncüsü, neft gəlirinin faiz kanalına təsiridir. Azərbaycan iqtisadiyyatı neft ixracından çox asılı olduğu üçün neft gəlirləri yüksək olanda banklar əlavə büdcəyə sahib olur. Bu zaman Mərkəzi Bankın faiz dəyişikliyinin əhəmiyyəti azalır, çünki banklar onsuzda kifayət qədər resursa sahibdir.<br><br>Gürcüstanda transmissiya mexanizmi daha sürətli və daha şəffaf işləyir. TBC Bank və Bank of Georgia kimi iri özəl banklar Gürcüstan Milli Bankının hər faiz qərarına 4–6 həftə ərzində reaksiya verir və öz depozit faizlərini buna uyğun tənzimləyir. Bunun arxasında güclü özəl rəqabət mühiti, beynəlxalq investorların şəffaflıq tələbləri və son illərdə azalan dollar dəyərləri dayanır. Bu müqayisə açıq şəkildə göstərir ki, transmissiya mexanizminin effektivliyi yalnız Mərkəzi Bankın niyyətindən deyil, bütövlükdə bank sektoru mühitinin yetkinliyindən asılıdır.<br><br>Azərbaycan Mərkəzi Bankının uçot faiz siyasəti kommersiya banklarının depozit faizlərinə müəyyən dərəcədə təsir etsə də, bu təsir tam və sürətli deyil. Dolların dəyəri, dövlət bankları və neft iqtisadiyyatı bu mexanizmin önünü kəsir. Gürcüstanla müqayisədə görünür ki, effektiv transmissiya üçün güclü özəl rəqabət mühiti, mərkəzi bankın müstəqilliyi və valyuta seçimləri vacib şərtlərdir.',
-    b2_h:"B.2 — Deposit Insurance: Protection or Moral Hazard?",
-    b2_p1:"The main instrument of legal protection for depositors in Azerbaijan is the Deposit Insurance Fund (ASF/ƏSF). The ASF pays compensation equal to 100% of the insured deposit at each participating bank, provided it does not exceed 100,000 AZN. This limit applies separately for each bank: for example, if the same depositor holds 100,000 AZN in two different banks, both amounts are fully insured. From the day the system was created until 1 January 2025, a total of 1 billion 717 million manats in compensation has been paid to 62,520 depositors across 19 banks under liquidation.",
-    b2_p2:"In economic theory, <strong>moral hazard</strong> describes a situation where one party's protection from the consequences of risk leads that party to behave more recklessly. In the banking context, this manifests in two directions.<br><br>From the depositor's side: the existence of insurance frees people from researching a bank's financial health. If every amount up to 100,000 AZN is guaranteed, the customer does not investigate the bank's credit quality or reliability — they simply look for the highest interest rate. This is the main factor that weakens market discipline.<br><br>From the bank's side, the situation is more troubling. The bank knows that depositors will not withdraw their money, because insurance exists. At that point, it becomes more profitable for bank management to take excessive risks, because when bets succeed the profit goes to the bank's shareholders, and when they fail, the loss is paid by the ASF — meaning taxpayers bear the cost.<br><br>The 100,000 AZN limit is a significant threshold in the context of Azerbaijan's economy. Given the country's average annual wage, this amount allows the vast majority of the population to keep their savings fully insured. The practical result is that almost no depositor evaluates banks sufficiently. The main selection factor in the market becomes only the interest rate. This creates a particular competition model among banks. The bank offering the highest rate attracts more deposits. But to meet the high interest obligation, the bank must direct those funds into more profitable assets — which are naturally riskier.",
-    b2_p3:"Taking into account the current structure of the ASF system, the following strategy can be considered optimal for a depositor.<br><br>First, apply the principle of portfolio allocation. This means amounts above 100,000 AZN should be held in more than one ASF-member bank so that each portion remains fully insured. This may be the most powerful risk-reduction measure available at the depositor level.<br><br>Second, for amounts close to the insurance limit, it is necessary to investigate the bank's financial indicators — in particular, the capital adequacy ratio (CAR) and the liquid assets ratio in the public reports of the Financial Market Supervisory Authority (FIMSA/MBDP) should be monitored.<br><br>Third, for amounts exceeding 100,000 AZN, it is more advantageous to choose state-participant banks. For example, the implicit government support present in banks such as Kapital Bank and ABB does not provide a written guarantee, but given that similar situations have occurred in the past, they appear more reliable.<br><br>Fourth, one should approach with caution any bank promising rates sharply above the market average. A bank promising 3–4% above the market average is either experiencing a liquidity problem or pursuing an excessively risky lending policy. A high interest rate is not always attractive — sometimes it is a warning signal.",
-    c_lbl:'Task C — Case Study',
+    back:"← Back to Portfolio",
+    tag:"Financial Modelling · Investment Analysis · Azerbaijan",
+    title_html:"Investment Decision:<br><em>Real Returns Analysis</em>",
+    m1l:"Tasks Covered",
+    m1v:"A (Calculations) · B (Essays) · C (Case Study) · D (International)",
+    m2l:"Tools",
+    m3l:"Principals Analysed",
+    m4l:"Dimensions",
+    m4v:"Rate · EIR · Real Return · Risk · Portfolio",
+    jt:"Jump to →",
+    qn1:"Compound",
+    qn2:"Inflation",
+    qn3:"Alternatives",
+    qn4:"Case Study",
+    qn5:"International",
+    qn6:"Risks",
+    qn7:"Recommendations",
+    obj_lbl:"Objective:",
+    obj_text:"This analysis compares bank deposits, inflation-adjusted returns, alternative investment choices, and a practical portfolio split for an Azerbaijani investor. The aim is not only to find the highest nominal return, but to see which option still makes sense after risk, liquidity, and inflation are considered.",
+    kf_lbl:"Key Finding:",
+    kf_text:"Bank C gives the highest 3-year final value, 68,382 AZN, even though it compounds only once a year. In this case, the higher nominal rate matters more than compounding frequency. For the 100,000 AZN deposit at 12%, inflation reduces the apparent gain by about 18,000 AZN, but the real balance is still positive at 122,665 AZN.",
+    f1l:"Bank C - Highest FV (AZN)",
+    f1d:"The 11% annual rate produces the strongest 3-year result despite lower compounding frequency.",
+    f2l:"Real Return",
+    f2d:"After adjusting the 12% deposit for 4.63% average inflation, the real annual return is 7.04%.",
+    f3l:"Best Safe Gain (AZN)",
+    f3d:"The 10.5% bank deposit gives a guaranteed gain, while the fund still carries a wide risk range.",
+    f4l:"Fund Upside (AZN)",
+    f4d:"The fund can reach a 59,620 AZN gain in the optimistic case, but its downside is clearly weaker.",
+    a1_lbl:"Task A.1 - Compound Interest",
+    a1_title:"Three Banks: Which Option Grows More?",
+    a1_text:"The starting principal is 50,000 AZN for 3 years. Bank A compounds monthly at 9.5%, Bank B compounds quarterly at 10.2%, and Bank C compounds annually at 11%. I used the Effective Annual Rate (EIR) to compare them on the same basis, because the stated rate alone does not show the full effect of compounding.",
+    c1t:"Final Value (AZN) after 3 Years",
+    c2t:"Effective Annual Rate (EIR) vs Nominal",
+    t1h:"Bank Compound Interest Comparison",
+    t1b:"3 banks · 3 years",
+    th_bank:"Bank",
+    th_rate:"Nominal Rate",
+    th_freq:"Compounding",
+    th_eir:"EIR",
+    th_fv:"Final Value (AZN)",
+    th_gain:"Gain (AZN)",
+    annual:"Annual",
+    quarterly:"Quarterly",
+    monthly:"Monthly",
+    i_a1_1:"<strong>The main driver here is the nominal rate, not the compounding schedule.</strong> Bank C compounds less often than the others, but its 11% rate is enough to produce the highest final value. Frequency becomes more important only when the rates are very close.",
+    i_a1_2:"<strong>Bank A's EIR is higher than its nominal rate, so monthly compounding does help.</strong> However, that extra effect is not strong enough to close the 1.5 percentage point gap between Bank A and Bank C.",
+    a2_lbl:"Task A.2 - Inflation Correction",
+    a2_title:"Real Purchasing Power: Fisher Equation",
+    a2_text:"For the 100,000 AZN deposit at 12% over 3 years, the nominal balance reaches 140,493 AZN. After cumulative inflation of 14.53% is applied, the real balance becomes 122,665 AZN. I used the Fisher formula, real return = (1 + nominal return) / (1 + inflation) - 1, to show the purchasing power behind the bank statement number.",
+    c3t:"Nominal vs Real Balance Over 3 Years (AZN)",
+    c4t:"Annual Inflation vs Deposit Rate",
+    f5l:"Nominal Balance (AZN)",
+    f5d:"The amount shown by the bank after 3 years at a 12% nominal rate.",
+    f6l:"Real Balance (AZN)",
+    f6d:"The purchasing power left after 14.53% cumulative inflation.",
+    f7l:"Real Annual Return",
+    f7d:"Fisher-adjusted return after comparing 12% nominal growth with 4.63% average inflation.",
+    i_a2_1:"<strong>The deposit still protects purchasing power.</strong> A 7.04% real return means the 12% deposit is comfortably above the average inflation rate. The money is not just increasing on paper; it is gaining real value.",
+    i_a2_2:"<strong>The nominal gain should not be read at face value.</strong> The 40,493 AZN increase becomes a real gain of 22,665 AZN after inflation. That does not make the deposit bad, but it shows why real return is the more useful decision metric.",
+    a3_lbl:"Task A.3 - Alternative Investment Analysis",
+    a3_title:"Three Strategies: 50,000 AZN Over 5 Years",
+    a3_text:"I compared a bank deposit at 10.5% with monthly compounding, government bonds at 9.8% annually, and a mutual fund with an expected 13% return and a 4% standard deviation. For the fund, I separated the result into pessimistic, normal, and optimistic scenarios so the return is not shown without its risk.",
+    c5t:"5-Year Final Value by Strategy (AZN)",
+    t2h:"Investment Strategy Comparison",
+    t2b:"5 years · 50,000 AZN",
+    th_option:"Option",
+    th_5yr:"5-Year FV (AZN)",
+    th_gainn:"Gain (AZN)",
+    th_risk:"Risk",
+    row_dep:"Bank Deposit (10.5%)",
+    row_bond:"Gov. Bonds (9.8%)",
+    row_fpess:"Fund - Pessimistic (9%)",
+    row_fnorm:"Fund - Normal (13%)",
+    row_fopt:"Fund - Optimistic (17%)",
+    r_low:"✓ Insured (ASF)",
+    r_high:"High Risk",
+    i_a3_1:"<strong>The fund's pessimistic result is below the guaranteed deposit gain.</strong> If the fund performs at the lower end, the investor earns 26,930 AZN, compared with 34,355 AZN from the protected deposit.",
+    i_a3_2:"<strong>The choice depends on risk tolerance, not only on the highest possible number.</strong> The fund has the best upside, while the deposit is stronger for a conservative investor. The bond option is safe, but at these rates it gives less return than the deposit for a similar risk level.",
+    b_lbl:"Task B - Analytical Essays",
+    b_title:"Interest Rate Policy & Deposit Insurance",
+    b1_h:"B.1 - Interest Rate Transmission Mechanism",
+    b1_p1:"Central banks influence economic activity through the policy rate. When the Central Bank of Azerbaijan raises this rate, commercial banks face higher funding costs and usually respond by increasing deposit rates to attract retail savings. This link between the policy rate and bank-level interest rates is the interest rate transmission mechanism.",
+    b1_p2:"In 2022, inflation in Azerbaijan reached 13.85%, which pushed the Central Bank to tighten monetary policy. Banks followed with higher deposit rates. By 2024, inflation had fallen to 2.21%, but banks were slower to reduce rates because cutting deposit returns can push customers toward competitors. This slower reaction on the way down is known as asymmetric transmission.",
+    b1_p3:"Transmission in Azerbaijan is limited by several local factors. Many depositors still hold part of their savings in USD or EUR, so AZN rate changes do not affect everyone equally. Large state-backed banks such as Kapital Bank and ABB also have stronger market positions, which can reduce pressure to react quickly. Oil revenues matter as well, because strong liquidity in the banking system lowers the need to compete aggressively for deposits. In more competitive markets such as Georgia, banks like TBC Bank and Bank of Georgia tend to adjust deposit pricing faster after central bank decisions.",
+    b2_h:"B.2 - Deposit Insurance: Protection or Moral Hazard?",
+    b2_p1:"Azerbaijan's Deposit Insurance Fund (ASF/ƏSF) protects deposits up to 100,000 AZN per bank and per depositor. This is an important safety net, especially because the fund has already paid 1.717 billion AZN to 62,520 depositors in 19 liquidated banks. At the same time, deposit insurance can create moral hazard if people stop checking bank quality simply because the deposit is insured.",
+    b2_p2:"The risk is that insured depositors may chase the highest advertised rate without looking at the bank behind it. Banks can then raise rates to attract money and take more risk with the funds they collect. If the strategy fails, the loss is carried by the insurance system and, indirectly, by the public rather than only by the bank shareholders.",
+    b2_p3:"<strong>A practical depositor strategy is simple:</strong> keep amounts above 100,000 AZN split across several ASF-member banks, follow capital adequacy and non-performing loan indicators in MBDP reports, prefer stronger or state-backed banks for large deposits, and treat any rate that is 3-4 percentage points above the market average as a warning sign rather than a gift.",
+    c_lbl:"Task C - Case Study",
     c_title:"Leyla's Capital Strategy: 80,000 AZN Portfolio",
-    c_text:"Three constraints had to be met at once: protect the capital, earn a real return above inflation, and keep at least 30% (24,000 AZN) accessible at any time. Meeting all three simultaneously requires splitting the money across several banks by purpose — not putting everything in one place.",
-    cc1_lbl:'Part 1 — Liquid (30%)',cc1_note:'Can be withdrawn at any time. ASF member with a wide branch network.',
-    cc2_lbl:'Part 2 — Core Income (35%)',cc2_note:'Highest rate in the market. State-backed. Well below the 100k insurance limit.',
-    cc3_lbl:'Part 3 — Diversification (25%)',cc3_note:'A hedge in case Kapital Bank faces any problems. Also state-backed.',
-    cc4_lbl:'Part 4 — Flex Reserve (10%)',cc4_note:'Semi-liquid: funds become accessible every 6 months. Covers short-term needs without fully locking up capital.',
-    demand:'Demand Account',month:'month',yr:'yr',
-    tot1:'Total Annual Income',tot2:'Effective Rate',tot3:'Real Return (after avg 4.89% inflation)',
-    c6t:'Portfolio Allocation (%)',c7t:'Annual Income per Bank Allocation (AZN)',
-    d_lbl:'Task D — International Comparison',
-    d_title:'Regional Deposit Rates: 4 Countries',
-    d_text:"Nominal rates alone do not tell the full story. Turkey's 41.49% looks extraordinary, but after 31.1% inflation the real return is only around 7.93%. Kazakhstan's 14.2% at 12.9% inflation produces the weakest real return in the region at just 1.69%. Azerbaijan's 11.9% at an average inflation of 4.63% delivers a competitive 7.04% real return — with significantly less currency risk than its neighbours.",
-    c8t:'Nominal Deposit Rate by Country (%)',c9t:'Real Return by Country (%) — Fisher Adjusted',
-    t3h:'Regional Deposit Comparison',t3b:'4 countries',
-    th_country:'Country / Bank',th_nom:'Nominal %',th_curr:'Currency',th_inf:'Inflation %',th_real:'Real Return %',th_verdict:'Verdict',
-    row_geo:'Georgia / TBC Bank',row_az:'Azerbaijan / Kapital Bank',row_tr:'Turkey / İş Bankası',row_kz:'Kazakhstan / Halyk Bank',
-    v_best:'✓ Best real return',v_stable:'✓ Stable currency',v_fx:'⚠ High FX risk',v_weak:'✗ Weakest real',
-    i_d1:"<strong>Georgia offers the best risk-adjusted real return at 7.79%</strong> — but converting 50,000 AZN into GEL and back incurs around 1.5% in conversion costs, bringing the net nominal return down to roughly 10.4% versus Azerbaijan's 11.9%. There is no added currency risk or conversion hassle by staying local.",
-    i_d2:"<strong>Turkey's high rate compensates for inflation rather than generating real wealth.</strong> If the lira depreciates faster than expected — which has historically been the case — foreign investors can lose more in currency value than they gain in interest. The 40%+ rate is a structural necessity, not an investment opportunity.",
-    i_d3:"<strong>For AZN-based investors, Azerbaijan is the most stable choice.</strong> There is no currency conversion risk, the real return of 7.04% is competitive, and the manat is backed by oil-funded fiscal reserves.",
-    risk_lbl:'Risk Assessment',risk_title:'Key Risks',
-    r1t:'Inflation surge scenario',r1b:'If inflation rises above 9%, the 12% deposit rate begins producing a negative real return. This is the main macro risk — not very likely given current AZN stability, but not impossible either. <strong>Monitor CBAR announcements quarterly.</strong>',
-    r2t:'Mutual fund downside scenario',r2b:'In the pessimistic scenario, the fund returns 26,930 AZN — less than the guaranteed deposit gain of 34,355 AZN. If your risk tolerance does not genuinely match the fund\'s downside, a simple bank deposit is the better choice.',
-    r3t:"Concentration risk in Leyla's portfolio",r3b:'Kapital Bank holds 35% of the portfolio (28,000 AZN). Even though it\'s below the 100k insurance limit, a simultaneous multi-bank crisis (as seen in 2015–16) could delay access to funds even when fully insured.',
-    rec_lbl:'Action Items',rec_title:'Recommendations',
-    rec1t:'For individual investors: Bank C (11% annual) for 3-year horizon',
-    rec1b:'On a 50,000 AZN principal over 3 years, Bank C delivers the highest final value (68,382 AZN) with no added complexity. When rates differ by 1.5% or more, compounding frequency is not enough to close the gap — do not overcomplicate the decision.',
-    rec2t:'For inflation protection: confirm deposit rate exceeds 5% above inflation',
-    rec2b:'A practical check: a 12% deposit with 4.63% average inflation produces a 7.04% real return. Always verify real returns with the Fisher formula before committing capital. In Azerbaijan\'s current environment, any deposit below 6% nominal is effectively inflation-neutral or worse.',
-    rec3t:'For multi-bank portfolio strategy: match bank choice to liquidity need',
-    rec3b:"The four-part portfolio model — liquid, income, diversification, flex reserve — is the right template to follow. Never put more than 100,000 AZN in a single bank. Use 6-month term deposits for the flexible portion, and review allocations at each maturity date to take advantage of any rate improvements.",
+    c_text:"Leyla has three priorities: protect the capital, earn a return above inflation, and keep at least 30% of the money, or 24,000 AZN, accessible at all times. The portfolio is therefore split across four banks by purpose: liquidity, core income, diversification, and flexible reserve.",
+    cc1_lbl:"Part 1 - Liquid (30%)",
+    cc1_note:"Available at any time, with ASF membership and a broad branch network.",
+    cc2_lbl:"Part 2 - Core Income (35%)",
+    cc2_note:"The highest selected market rate, supported by a strong state-backed bank and still well below the insurance limit.",
+    cc3_lbl:"Part 3 - Diversification (25%)",
+    cc3_note:"Reduces reliance on Kapital Bank and keeps another state-backed bank in the portfolio.",
+    cc4_lbl:"Part 4 - Flex Reserve (10%)",
+    cc4_note:"Semi-liquid money that can be reviewed every 6 months for short-term needs or better rates.",
+    demand:"Demand Account",
+    month:"month",
+    yr:"yr",
+    tot1:"Total Annual Income",
+    tot2:"Effective Rate",
+    tot3:"Real Return (after avg 4.89% inflation)",
+    c6t:"Portfolio Allocation (%)",
+    c7t:"Annual Income per Bank Allocation (AZN)",
+    d_lbl:"Task D - International Comparison",
+    d_title:"Regional Deposit Rates: 4 Countries",
+    d_text:"Nominal rates are only the first layer of the comparison. Turkey's 41.49% rate looks very high, but inflation of about 31.1% leaves a much smaller real return and adds major currency risk. Kazakhstan's 14.2% deposit rate is also weakened by 12.9% inflation. Azerbaijan's 11.9% rate is lower in nominal terms, but with 4.63% average inflation it produces a competitive real return and avoids currency conversion risk for an AZN-based investor.",
+    c8t:"Nominal Deposit Rate by Country (%)",
+    c9t:"Real Return by Country (%) - Fisher Adjusted",
+    t3h:"Regional Deposit Comparison",
+    t3b:"4 countries",
+    th_country:"Country / Bank",
+    th_nom:"Nominal %",
+    th_curr:"Currency",
+    th_inf:"Inflation %",
+    th_real:"Real Return %",
+    th_verdict:"Verdict",
+    row_geo:"Georgia / TBC Bank",
+    row_az:"Azerbaijan / Kapital Bank",
+    row_tr:"Turkey / İş Bankası",
+    row_kz:"Kazakhstan / Halyk Bank",
+    v_best:"✓ Best real return",
+    v_stable:"✓ Stable currency",
+    v_fx:"⚠ High FX risk",
+    v_weak:"✗ Weakest real",
+    i_d1:"<strong>Georgia has the strongest real return in the table, but the practical result is lower after conversion costs.</strong> Changing 50,000 AZN into GEL and then back again can cost around 1.5%, which reduces the advantage for an Azerbaijani investor.",
+    i_d2:"<strong>Turkey's high rate is mostly compensation for inflation and currency risk.</strong> If the lira weakens faster than expected, the foreign investor can lose more through exchange rate movement than they gain from interest.",
+    i_d3:"<strong>Azerbaijan is the cleanest option for an AZN-based investor.</strong> There is no currency conversion risk, the real return is competitive at 7.04%, and the manat remains supported by oil-backed fiscal reserves.",
+    risk_lbl:"Risk Assessment",
+    risk_title:"Key Risks",
+    r1t:"Inflation surge scenario",
+    r1b:"If inflation rises above 9%, the 12% deposit rate can turn into a weak or negative real return. This is the main macro risk. It is not the base case under current AZN stability, but it should be checked through CBAR updates each quarter.",
+    r2t:"Mutual fund downside scenario",
+    r2b:"The fund's pessimistic gain of 26,930 AZN is lower than the guaranteed deposit gain of 34,355 AZN. Without enough risk tolerance, choosing the fund can produce a worse result than the bank deposit.",
+    r3t:"Concentration risk in Leyla's portfolio",
+    r3b:"Kapital Bank holds 35% of the portfolio, or 28,000 AZN. The amount is below the insurance limit, but a wider banking stress event could still delay access to funds even when the deposit is insured.",
+    rec_lbl:"Action Items",
+    rec_title:"Recommendations",
+    rec1t:"For individual investors: choose Bank C for a 3-year horizon",
+    rec1b:"For a 50,000 AZN principal over 3 years, Bank C gives the highest final value at 68,382 AZN. The comparison shows that a higher nominal rate can matter more than a more frequent compounding schedule when the rate gap is large enough.",
+    rec2t:"For inflation protection: check the real return before depositing",
+    rec2b:"A 12% deposit with 4.63% average inflation gives a 7.04% real return. Before committing capital, the investor should use the Fisher formula instead of relying only on the advertised nominal rate. In the current Azerbaijani environment, very low nominal deposits can easily become inflation-neutral or negative.",
+    rec3t:"For a multi-bank portfolio: match each bank to a purpose",
+    rec3b:"Leyla's split works because each part has a role: liquidity, income, diversification, and flexible reserve. No single bank should hold more than the insured limit. The flexible part can stay in shorter 6-month deposits so the investor can respond if rates improve.",
   },
   az:{
-    back:'← Portfolioya Qayıt',
-    tag:'Maliyyə Modelləşdirməsi · İnvestisiya Analizi · Azərbaycan',
-    title_html:'İnvestisiya Qərarı:<br><em>Real Gəlirlər Analizi</em>',
-    m1l:'Əhatə Edilən Tapşırıqlar',m1v:'A (Hesablamalar) · B (Esselər) · C (Keys-study) · D (Beynəlxalq)',
-    m2l:'Alətlər',m3l:'Əsas Məbləğlər',
-    m4l:'Ölçülər',m4v:'Faiz · EİF · Real Gəlir · Risk · Portfel',
-    jt:'Keç →',
-    qn1:'Mürəkkəb Faiz',qn2:'İnflyasiya',qn3:'Alternativlər',qn4:'Keys-study',qn5:'Beynəlxalq',qn6:'Risklər',qn7:'Tövsiyələr',
-    obj_lbl:'Məqsəd:',
-    obj_text:'Tam maliyyə qərarları analizi: 3 bank arasında mürəkkəb faizin müqayisəsi, Fisher tənliyi ilə real gəlirlərin hesablanması, 5 il üzrə 3 alternativ investisiya alətinin qiymətləndirilməsi və nəticələrin real portfel strategiyasına tətbiqi.',
-    kf_lbl:'Əsas Nəticə:',
-    kf_text:'Bank C (11% illik kapitallaşma) ən az tez-tez kapitallaşmasına baxmayaraq ən yüksək yekun məbləği (68,382 AZN) verir. Bu, nominal faizin kapitallaşma tezliyini üstələdiyini göstərir. 100,000 AZN-lik 12% depozitdə kümülyativ inflyasiya (14.53%) real balansi 122,665 AZN-ə endirir — depozit hələ də sərfəlidir, lakin nominal göstəricidən təxminən 18,000 AZN az güclüdür.',
-    f1l:'Bank C — Ən Yüksək Yekun (AZN)',f1d:'11% illik kapitallaşma 3 il ərzində aylıq və rüblük rəqiblərini üstələyir',
-    f2l:'Real Gəlir',f2d:'Fisher düzəlişli real gəlir — 12% depozit, 4.63% orta inflyasiya',
-    f3l:'Ən Yaxşı Etibarlı Qazanc (AZN)',f3d:'Bank depoziti (10.5%) zəmanətli qazanc vs fondun ±4% qeyri-müəyyənliyi',
-    f4l:'Fondun Ən Yaxşı Ssenarisi (AZN)',f4d:'17% optimistik ssenari — lakin pessimist ssenari yalnız +26,930 AZN',
-    a1_lbl:'Tapşırıq A.1 — Mürəkkəb Faiz',
-    a1_title:'Üç Bank: Hansı Daha Çox Artırır?',
-    a1_text:'Əsas: 50,000 AZN, 3 il müddəti. Bank A aylıq (9.5%), Bank B rüblük (10.2%), Bank C illik (11%) kapitallaşdırır. Effektiv İllik Faiz (EİF) kapitallaşma tezliyi nəzərə alındıqdan sonra həqiqi illik gəliri göstərir.',
-    c1t:'3 İldən Sonra Yekun Məbləğ (AZN)',c2t:'Effektiv İllik Faiz (EİF) vs Nominal',
-    t1h:'Banklar Üzrə Mürəkkəb Faiz Müqayisəsi',t1b:'3 bank · 3 il',
-    th_bank:'Bank',th_rate:'Nominal Faiz',th_freq:'Kapitallaşma',th_eir:'EİF',th_fv:'Yekun Məbləğ (AZN)',th_gain:'Gəlir (AZN)',
-    annual:'İllik',quarterly:'Rüblük',monthly:'Aylıq',
-    i_a1_1:'<strong>Bu ssenaridə daha yüksək nominal faiz daha tez-tez kapitallaşmadan üstündür.</strong> Bank C ən az tezliklə kapitallaşır, lakin ən yüksək yekun məbləği verir. Kapitallaşma tezliyinin üstünlüyü yalnız nominal faizlər bir-birinə çox yaxın olduqda nəzərə çarpır.',
-    i_a1_2:"<strong>Bank A-nın EİF (9.921%) nominal faizindən (9.5%) yüksəkdir</strong> — aylıq kapitallaşma həqiqətən dəyər əlavə edir. Lakin Bank C ilə 1.5%-lik nominal fərqi tezlik hesabına bağlamaq mümkün deyil.",
-    a2_lbl:'Tapşırıq A.2 — İnflyasiya Korreksiyası',
-    a2_title:'Real Alıcılıq Gücü: Fisher Tənliyi',
-    a2_text:'3 il müddətli 12% ilə 100,000 AZN depozit. Nominal artım cəlbedici görünür (140,493 AZN) — lakin kumulyativ inflyasiya 14.53% (2024: 4.4%, 2025: 5.5%, 2026: 4%) nəzərə alınarsa, real balans 122,665 AZN-dir. Fisher düsturu: real = (1+nominal)/(1+inflyasiya) − 1.',
-    c3t:'3 İl Ərzində Nominal vs Real Balans (AZN)',c4t:'İllik İnflyasiya vs Depozit Faizi',
-    f5l:'Nominal Balans (AZN)',f5d:'12% ilə 3 ildən sonra bank hesabatında göstərilən məbləğ',
-    f6l:'Real Balans (AZN)',f6d:'14.53% kumulyativ inflyasiyadan sonra həqiqi alıcılıq gücü',
-    f7l:'Real İllik Gəlir',f7d:'Fisher düzəlişli gəlir: 12% nominal − 4.63% orta inflyasiya',
-    i_a2_1:'<strong>İnvestor hələ də qazanclı çıxır.</strong> 7.04% real gəlir o deməkdir ki, 12% depozit faizi 4.63% orta inflyasiyanı rahat şəkildə üstələyir. Bankda saxlanılan hər AZN alıcılıq gücü baxımından həqiqətən artır.',
-    i_a2_2:'<strong>Nominal gəlirlər yanıldıcıdır.</strong> Kağız üzərindəki 40,493 AZN qazanc faktiki olaraq cəmi 22,665 AZN real qazanca çevrilir. Nominal gəlirin təxminən 18,000 AZN-i artan qiymətlər tərəfindən udulur — pul itmir, lakin bank hesabatının göstərdiyi qədər güclü deyil.',
-    a3_lbl:'Tapşırıq A.3 — Alternativ Xərc Analizi',
-    a3_title:'Üç Strategiya: 5 İl Üçün 50,000 AZN',
-    a3_text:'Üç seçim müqayisə edilir: 10.5% aylıq kapitallaşmalı bank depoziti, 9.8% illik dövlət istiqrazı və orta 13%, standart sapma ±4% olan fond. Fondun qeyri-müəyyənliyi üç ayrı ssenari yaradır: pessimist (9%), normal (13%) və optimist (17%).',
-    c5t:'5 İllik Strategiya üzrə Yekun Məbləğ (AZN)',
-    t2h:'İnvestisiya Strategiyaları Müqayisəsi',t2b:'5 il · 50,000 AZN',
-    th_option:'Seçim',th_5yr:'5 İllik Yekun (AZN)',th_gainn:'Gəlir (AZN)',th_risk:'Risk',
-    row_dep:'Bank Depoziti (10.5%)',row_bond:'Dövlət İstiqrazı (9.8%)',
-    row_fpess:'Fond — Pessimist (9%)',row_fnorm:'Fond — Normal (13%)',row_fopt:'Fond — Optimist (17%)',
-    r_low:'✓ Sığortalı (ƏSF)',r_high:'Yüksək Risk',
-    i_a3_1:'<strong>Pessimist ssenaridə fond (26,930 AZN) zəmanətli depozit qazancından (34,355 AZN) geri qalır.</strong> Kifayət qədər risk tolerantlığı olmadan fond riskini qəbul etmək tam sığortalı bank depozitindən daha pis nəticə verə bilər.',
-    i_a3_2:'<strong>Qərar məntiqi sadədir: riskə dözürsünüzsə fondu seçin, dözə bilmirsinizsə depoziti.</strong> Dövlət istiqrazları eyni təhlükəsizlik səviyyəsini depozitdən bir qədər az gəlirliliklə təklif edir — bu faizlərdə risk-düzəlişli baxımdan onları ən zəif seçimə çevirir.',
-    b_lbl:'Tapşırıq B — Analitik Esselər',
-    b_title:'Faiz Siyasəti və Əmanət Sığortası',
-    b1_h:'B.1 — Faiz Dərəcəsi Transmissiya Mexanizmi',
-    b1_p1:'Mərkəzi banklar iqtisadiyyatı idarə etmək üçün müxtəlif alətlərdən istifadə edir. Bu alətlərin ən güclüsü isə uçot faiz dərəcəsidir. Azərbaycan Mərkəzi Bankı (CBAR) bu aləti vasitəsilə kommersiya banklarının davranışına, dolayı yolla isə əhalinin əmanət gəlirinə birbaşa təsir göstərir. Bu essedə həmin təsirin mexanizmi, Azərbaycandakı real nümunələri və sistemin zəif tərəfləri ardıcıl şəkildə izah olunur.<br><br>Uçot faizi Mərkəzi Bankın kommersiya banklarına verdiyi kreditin qiymətidir. Bu faiz artanda kommersiya bankları üçün Mərkəzi Bankdan borc almaq baha başa gəlir. Buna görə banklar alternativ mənbəyə, yəni əhalinin əmanətlərinə müraciət edir. Daha çox əmanət cəlb etmək üçün isə depozit faizlərini artırırlar. Beləliklə, uçot faizinin artması zəncir reaksiya kimi depozit faizlərinin də artmasına gətirib çıxarır. Əksi də doğrudur. Uçot faizi azalanda banklar Mərkəzi Bankdan ucuz borca pul ala bilir. Əhalinin əmanətinə ehtiyac azalır və depozit faizləri aşağı düşür. İqtisad elmində bu prosesə <strong>faiz transmissiya mexanizmi</strong> deyilir. Mərkəzi Bankın qərarı bütün bank sisteminə təsir edir.',
-    b1_p2:'2022-ci ildə Azərbaycanda illik inflyasiya 13.85%-ə çatdı. Qiymətlərin bu qədər sürətli artması CBAR-ı uçot faizini qaldırmağa məcbur etdi. Banklar da öz növbəsində əmanət faizlərini artırdı. Bu gün bazarda gördüyümüz 10–12% aralığındakı depozit faizlərinin formalaşmasında həmin dövr əsas rol oynadı.<br><br>2024-cü ilə gəlincə, inflyasiya kəskin şəkildə azaldı və 2.21% səviyyəsinə düşdü. CBAR uçot faizini aşağı salmağa başladı. Lakin kommersiya bankları depozit faizlərini eyni sürətlə aşağı salmadı. Bunun səbəbi isə sadədir: banklar rəqabət şəraitində müştərini itirmək istəmir. Faizləri anidən endirmək müştəri itkisinə səbəb ola bilər. Bu hal iqtisadçıların <strong>"asimmetrik transmissiya"</strong> adlandırdığı hadisədir, yəni faizlər qalxanda banklar tez reaksiya verir, düşəndə isə yavaş.',
-    b1_p3:'Azərbaycanda bu mexanizm tam səmərəli işləməməsinin üç əsas səbəbi var.<br><br>Birincisi, yüksək dollar dəyəridir. Əhalinin bir hissəsi hələ də əmanətlərini dollar və ya avro şəklində saxlayır. Bu insanlar üçün manatla müəyyən edilən depozit faizlərindəki dəyişiklik o qədər də əhəmiyyət daşımır. Buna görə CBAR-ın manat üzrə faiz qərarları cəmiyyətin bütün üzvlərinə təsir etmir.<br><br>İkincisi, dövlət bankları rəqabəti azaldır. Kapital Bank və ABB kimi dövlət bankları arxalarında dövlət dəstəyi olduğunu bilirlər. Bu güvən hissi onları bəzən bazar siqnallarına daha yavaş reaksiya verməyə sövq edir. Rəqabət nə qədər az olsa, transmissiya mexanizmi bir o qədər zəif işləyir.<br><br>Üçüncüsü, neft gəlirinin faiz kanalına təsiridir. Azərbaycan iqtisadiyyatı neft ixracından çox asılı olduğu üçün neft gəlirləri yüksək olanda banklar əlavə büdcəyə sahib olur. Bu zaman Mərkəzi Bankın faiz dəyişikliyinin əhəmiyyəti azalır, çünki banklar onsuzda kifayət qədər resursa sahibdir.<br><br>Gürcüstanda transmissiya mexanizmi daha sürətli və daha şəffaf işləyir. TBC Bank və Bank of Georgia kimi iri özəl banklar Gürcüstan Milli Bankının hər faiz qərarına 4–6 həftə ərzində reaksiya verir və öz depozit faizlərini buna uyğun tənzimləyir. Bunun arxasında güclü özəl rəqabət mühiti, beynəlxalq investorların şəffaflıq tələbləri və son illərdə azalan dollar dəyərləri dayanır. Bu müqayisə açıq şəkildə göstərir ki, transmissiya mexanizminin effektivliyi yalnız Mərkəzi Bankın niyyətindən deyil, bütövlükdə bank sektoru mühitinin yetkinliyindən asılıdır.<br><br>Azərbaycan Mərkəzi Bankının uçot faiz siyasəti kommersiya banklarının depozit faizlərinə müəyyən dərəcədə təsir etsə də, bu təsir tam və sürətli deyil. Dolların dəyəri, dövlət bankları və neft iqtisadiyyatı bu mexanizmin önünü kəsir. Gürcüstanla müqayisədə görünür ki, effektiv transmissiya üçün güclü özəl rəqabət mühiti, mərkəzi bankın müstəqilliyi və valyuta seçimləri vacib şərtlərdir.',
-    b2_h:'B.2 — Əmanət Sığortası: Müdafiə yoxsa Moral Risk?',
-    b2_p1:'Azərbaycanda əmanətçilərin hüquqi müdafiəsinin əsas aləti Əmanətlərin Sığortası Fondudur (ƏSF). ƏSF hər bir iştirakçı bankda sığortalanmış əmanət üzrə əmanətin 100 faizi həcmində, lakin 100,000 AZN-dən çox olmamaq şərtilə kompensasiya ödəyir. Bu limit hər bank üzrə ayrıca tətbiq edilir: məsələn, əgər eyni əmanətçi iki fərqli bankda 100,000 AZN saxlayırsa, hər iki məbləğ tam sığorta altındadır. Sistem yaradıldığı gündən 2025-ci il yanvarın 1-dək ləğv prosesindəki 19 bank üzrə 62,520 əmanətçiyə ümumilikdə 1 milyard 717 milyon manat kompensasiya ödənilmişdir.',
-    b2_p2:'İqtisadi nəzəriyyədə <strong>moral risk</strong> o halı təsvir edir ki, burada bir tərəfin riskin nəticələrindən qorunması həmin tərəfi daha ehtiyatsız davranmağa sövq edir. Bankçılıq kontekstində bu hal iki istiqamətdə özünü göstərir.<br><br>Əmanətçi tərəfindən baxıldıqda: sığorta mövcudluğu insanı bankın maliyyə sağlamlığını araşdırmaqdan məhrum edir. Əgər 100,000 AZN-ə qədər hər məbləğ zəmanət altındadırsa, müştəri bankın kredit keyfiyyətini və güvənliyini araşdırmır, yalnız ən yüksək faizi axtarır. Bu isə bazar intizamını zəiflədən əsas amildir.<br><br>Bank tərəfindən baxıldıqda isə vəziyyət daha narahedicidir. Bank bilir ki əmanətçilər pullarını çıxarmayacaq, çünki sığorta var. Bu zaman bank rəhbərliyi üçün həddindən artıq risk almaq daha çox sərf edir, çünki uğurlu hallarda mənfəət bankın səhmdarlarına çatır, uğursuz hallarda isə zərər ƏSF ödəyir. Yəni vergi ödəyicilərinə zərər dəyir.<br><br>100,000 AZN-lik limit Azərbaycan iqtisadiyyatının miqyasında əhəmiyyətli bir həddir. Ölkədə orta illik əmək haqqını nəzərə aldıqda, bu məbləğ əhalinin böyük əksəriyyətinin əmanətlərini tam sığorta altında saxlamasına imkan verir. Praktiki nəticə belədir ki, demək olar ki, heç bir əmanətçi bankları kifayət qədər qiymətləndirmir. Bazarda əsas seçim faktoru yalnız faiz dərəcəsinə çevrilir. Bu, banklar arasında xüsusi bir rəqabət modeli formalaşdırır. Yüksək faiz təklif edən bank daha çox depozit toplayır. Lakin yüksək faiz öhdəliyini yerinə yetirmək üçün bank bu vəsaiti daha gəlirli aktivlərə yönəltməlidir, hansı ki təbii olaraq daha risklidir.',
-    b2_p3:'ƏSF sisteminin mövcud quruluşunu nəzərə alaraq bir əmanətçi üçün aşağıdakı strategiya optimal hesab edilə bilər.<br><br>Birincisi, portfel bölgüsü prinsipini tətbiq etmək. Bu o deməkdir ki, 100,000 AZN-dən artıq məbləğlər birdən çox ƏSF üzvü olan bankda saxlanılmalıdır ki, hər hissə tam sığorta altında qalsın. Bu əmanətçi səviyyəsindəki ən güclü risk azaldıcı tədbir ola bilər.<br><br>İkincisi, sığorta həddinə yaxın məbləğlər üçün bankın maliyyə göstəricilərini araşdırmaq lazımdır, xüsusilə Maliyyə Bazarlarına Nəzarət Palatasının (MBDP) açıq hesabatlarında kapital adekvatlıq əmsalı (CAR) və likvid aktivlər nisbəti nəzarətdə saxlanmalıdır.<br><br>Üçüncüsü, 100,000 AZN-i aşan məbləğlər üçün dövlət iştirakçısı bankları seçmək daha əlverişlidir. Məsələn, Kapital Bank və ABB kimi banklarda mövcud olan gizli dövlət dəstəyi yazılı zəmanət verməsə də, keçmişdə buna bənzər hadisələr olduğu üçün daha etibarlı görünür.<br><br>Dördüncüsü, bazarın ortasından kəskin şəkildə yüksək faiz vəd edən banklara ehtiyatla yanaşmaq lazımdır. Bazar ortalamasından 3-4 faiz yuxarı gəlir vəd edən bank ya likvidlik problemi yaşayır, ya da həddindən artıq riskli kredit siyasəti yürüdür. Yüksək faiz həmişə cəlbedici deyil, bəzən xəbərdarlıq siqnalıdır.',
-    c_lbl:'Tapşırıq C — Keys-Study',
-    c_title:"Leyla xanımın Kapital Strategiyası: 80,000 AZN Portfeli",
-    c_text:"Eyni anda üç şərti ödəmək lazım idi: kapitalı qorumaq, inflyasiyadan yüksək real gəlir əldə etmək və ən azı 30%-ni (24,000 AZN) istənilən an çıxarıla biləcək vəziyyətdə saxlamaq. Bu üç şərti eyni anda ödəmək üçün pulu məqsədə görə dörd hissəyə bölmək lazım idi.",
-    cc1_lbl:'Hissə 1 — Likvid (30%)',cc1_note:'İstənilən vaxt çıxarıla bilər. ƏSF üzvü, geniş filial şəbəkəsi.',
-    cc2_lbl:'Hissə 2 — Əsas Gəlir (35%)',cc2_note:'Ən yüksək bazar faizi. Dövlət dəstəkli. 100k sığorta limitindən xeyli aşağı.',
-    cc3_lbl:'Hissə 3 — Diversifikasiya (25%)',cc3_note:'Kapital Bank problem yaşayarsa sığorta. Həmçinin dövlət dəstəkli.',
-    cc4_lbl:'Hissə 4 — Çevik Ehtiyat (10%)',cc4_note:'Yarı-likvid: hər 6 aydan bir əlçatandır. Qısamüddətli ehtiyacları ödəyir.',
-    demand:'Tələbkar Hesab',month:'ay',yr:'il',
-    tot1:'Ümumi İllik Gəlir',tot2:'Effektiv Faiz',tot3:'Real Gəlir (orta 4.89% inflyasiyadan sonra)',
-    c6t:'Portfel Bölgüsü (%)',c7t:'Bank Bölgüsünə Görə İllik Gəlir (AZN)',
-    d_lbl:'Tapşırıq D — Beynəlxalq Müqayisə',
-    d_title:'Regional Depozit Faizləri: 4 Ölkə',
-    d_text:"Nominal faizlər məsələnin yalnız bir hissəsidir. Türkiyənin 41.49%-i böyük görünür, lakin 31.1% inflyasiyadan sonra real gəlir yalnız ~7.93%-dir. Qazaxıstanın 14.2%-i 12.9% inflyasiyada ən zəif real gəliri (1.69%) verir. Azərbaycanın 11.9%-i 4.63% orta inflyasiyada 7.04% real gəlir verir.",
-    c8t:'Ölkəyə Görə Nominal Depozit Faizi (%)',c9t:'Ölkəyə Görə Real Gəlir (%) — Fisher Tənliyi',
-    t3h:'Regional Depozit Müqayisəsi',t3b:'4 ölkə',
-    th_country:'Ölkə / Bank',th_nom:'Nominal %',th_curr:'Valyuta',th_inf:'İnflyasiya %',th_real:'Real Gəlir %',th_verdict:'Nəticə',
-    row_geo:'Gürcüstan / TBC Bank',row_az:'Azərbaycan / Kapital Bank',row_tr:'Türkiyə / İş Bankası',row_kz:'Qazaxıstan / Halyk Bank',
-    v_best:'✓ Ən yüksək real gəlir',v_stable:'✓ Stabil valyuta',v_fx:'⚠ Yüksək valyuta riski',v_weak:'✗ Ən zəif real gəlir',
-    i_d1:'<strong>Gürcüstan ən yüksək risk-düzəlişli real gəliri (7.79%) təklif edir</strong> — lakin 50,000 AZN-i GEL-ə çevirərək geri döndərmək təxminən 1.5% konversiya xərci yaradır. Bu da net nominal gəliri Azərbaycanın 11.9%-inə qarşı 10.4%-ə endirir. Heç bir əlavə valyuta riski və konversiya xərci olmadan Azərbaycanda qalmaq daha sərfəlidir.',
-    i_d2:'<strong>Türkiyənin yüksək faizi inflyasiyanı kompensasiya edir, real sərvət yaratmır.</strong> Lirə gözləniləndən sürətli düşsə — tarixən bu adi bir haldır — xarici investorlar faizlə qazandıqlarından daha çox valyuta kursunda itirə bilərlər. 40%+ faiz fürsət deyil, zərurətdir.',
-    i_d3:'<strong>AZN bazalı investorlar üçün Azərbaycan ən stabil seçimdir.</strong> Heç bir valyuta konversiya riski yoxdur, real gəlir 7.04% ilə rəqabətqabiliyyətlidir və manat neft fondundan dəstəklənən maliyyə ehtiyatları ilə sabitliyini qoruyur.',
-    risk_lbl:'Risk Qiymətləndirməsi',risk_title:'Əsas Risklər',
-    r1t:'İnflyasiyanın artması ssenarisi',r1b:'Əgər inflyasiya 9%-i keçsə, 12% depozit faizi mənfi real gəlir verməyə başlayır. Bu əsas makro riskdir — AZN-in hazırkı stabilliyini nəzərə alsaq, ehtimal azdır, lakin sıfır deyil. <strong>CBAR elanlarını rüblük izləyin.</strong>',
-    r2t:'Qarşılıqlı fondun aşağı ssenarisi',r2b:"Pessimist ssenaridə fond 26,930 AZN gəlir verir — zəmanətli depozit qazancından (34,355 AZN) azdır. Risk tolerantlığınız fondun aşağıya getmə ehtimalına həqiqətən uyğun gəlmirsə, sadə bank depoziti daha düzgün seçimdir.",
-    r3t:"Leyla xanımın portfelindəki konsentrasiya riski",r3b:"Kapital Bank portfelin 35%-ni (28,000 AZN) saxlayır. Bu məbləğ 100k sığorta limitindən aşağı olsa da, 2015–16-cı illərdəki kimi eyni anda çoxlu bankı əhatə edən böhran tam sığortalanmış vəsaitlərə belə müvəqqəti çıxışı gecikdirə bilər.",
-    rec_lbl:'Fəaliyyət Addımları',rec_title:'Tövsiyələr',
-    rec1t:'Fərdi investorlar üçün: 3 illik üfüqdə Bank C (11% illik)',
-    rec1b:'50,000 AZN əsas məbləğdə 3 il ərzində Bank C ən yüksək yekun məbləği (68,382 AZN) heç bir əlavə mürəkkəblik olmadan verir. Faizlər arasındakı fərq 1.5% və ya daha çox olduqda kapitallaşma tezliyi fərqi bağlaya bilmir — qərarı çətinləşdirməyin.',
-    rec2t:'İnflyasiyadan qoruma üçün: depozit faizinin inflyasiyadan 5%+ yüksək olduğunu təsdiqlə',
-    rec2b:"Praktiki yoxlama: 4.63% inflyasiyada 12% depozit 7.04% real gəlir verir. Kapital qoymadan əvvəl real gəliri həmişə Fisher düsturu ilə yoxlayın. Azərbaycanın hazırkı mühitində 6%-dən aşağı hər hansı nominal depozit inflyasiya ilə neytraldır ya da mənfidir.",
-    rec3t:'Çox banklı portfel strategiyası üçün: bank seçimini likvidlik ehtiyacına uyğunlaşdırın',
-    rec3b:"Dörd hissəli portfel modeli — likvid, gəlir, diversifikasiya, çevik ehtiyat — düzgün şablondur. Heç vaxt bir bankda 100,000 AZN-dən çox saxlamayın. Çevik hissə üçün 6 aylıq müddətli əmanətdən istifadə edin və hər ödəmə tarixində bölgünü yenidən qiymətləndirin ki, faiz yaxşılaşmalarından yararlanasınız.",
+    back:"← Portfolioya qayıt",
+    tag:"Maliyyə Modelləşdirməsi · İnvestisiya Analizi · Azərbaycan",
+    title_html:"İnvestisiya Qərarı:<br><em>Real Gəlirlər Analizi</em>",
+    m1l:"Əhatə edilən tapşırıqlar",
+    m1v:"A (Hesablamalar) · B (Esselər) · C (Keys-study) · D (Beynəlxalq)",
+    m2l:"Alətlər",
+    m3l:"Əsas məbləğlər",
+    m4l:"Ölçülər",
+    m4v:"Faiz · EİF · Real gəlir · Risk · Portfel",
+    jt:"Keçid →",
+    qn1:"Mürəkkəb faiz",
+    qn2:"İnflyasiya",
+    qn3:"Alternativlər",
+    qn4:"Keys-study",
+    qn5:"Beynəlxalq",
+    qn6:"Risklər",
+    qn7:"Tövsiyələr",
+    obj_lbl:"Məqsəd:",
+    obj_text:"Bu analiz bank depozitlərini, inflyasiya nəzərə alınmış real gəlirləri, alternativ investisiya seçimlərini və Azərbaycan investoruna uyğun praktiki portfel bölgüsünü müqayisə edir. Məqsəd yalnız ən yüksək nominal faizi tapmaq deyil, risk, likvidlik və inflyasiya nəzərə alınanda hansı seçimin daha məntiqli olduğunu göstərməkdir.",
+    kf_lbl:"Əsas nəticə:",
+    kf_text:"Bank C 3 il sonunda ən yüksək yekun məbləği, 68,382 AZN-i verir, baxmayaraq ki, kapitallaşma yalnız ildə bir dəfə aparılır. Bu nümunədə daha yüksək nominal faiz kapitallaşma tezliyindən daha güclü təsir göstərir. 100,000 AZN-in 12% ilə depozitə qoyulması zamanı inflyasiya görünən qazancı təxminən 18,000 AZN azaldır, amma real balans yenə də müsbətdir: 122,665 AZN.",
+    f1l:"Bank C - Ən yüksək yekun (AZN)",
+    f1d:"11% illik faiz daha az kapitallaşma tezliyinə baxmayaraq 3 il üzrə ən güclü nəticəni verir.",
+    f2l:"Real gəlir",
+    f2d:"12% depozit 4.63% orta inflyasiya ilə düzəldildikdən sonra real illik gəlir 7.04% olur.",
+    f3l:"Ən yaxşı təhlükəsiz qazanc (AZN)",
+    f3d:"10.5% bank depoziti zəmanətli qazanc verir, fond isə daha geniş risk aralığı daşıyır.",
+    f4l:"Fondun yuxarı potensialı (AZN)",
+    f4d:"Fond optimistik ssenaridə 59,620 AZN qazanc verə bilər, amma aşağı ssenarisi daha zəifdir.",
+    a1_lbl:"Tapşırıq A.1 - Mürəkkəb faiz",
+    a1_title:"Üç bank: hansı seçim daha çox artırır?",
+    a1_text:"Başlanğıc məbləği 50,000 AZN, müddət isə 3 ildir. Bank A 9.5% ilə aylıq, Bank B 10.2% ilə rüblük, Bank C isə 11% ilə illik kapitallaşma tətbiq edir. Müqayisəni eyni əsasda aparmaq üçün Effektiv İllik Faizdən (EİF) istifadə etdim, çünki təkcə nominal faiz kapitallaşmanın tam təsirini göstərmir.",
+    c1t:"3 ildən sonra yekun məbləğ (AZN)",
+    c2t:"Effektiv illik faiz (EİF) və nominal faiz",
+    t1h:"Banklar üzrə mürəkkəb faiz müqayisəsi",
+    t1b:"3 bank · 3 il",
+    th_bank:"Bank",
+    th_rate:"Nominal faiz",
+    th_freq:"Kapitallaşma",
+    th_eir:"EİF",
+    th_fv:"Yekun məbləğ (AZN)",
+    th_gain:"Qazanc (AZN)",
+    annual:"İllik",
+    quarterly:"Rüblük",
+    monthly:"Aylıq",
+    i_a1_1:"<strong>Bu müqayisədə əsas təsir kapitallaşma tezliyindən yox, nominal faizdən gəlir.</strong> Bank C digərlərindən daha az kapitallaşır, amma 11% faiz ona ən yüksək yekun məbləği verir. Kapitallaşma tezliyi əsasən faizlər bir-birinə çox yaxın olanda daha ciddi rol oynayır.",
+    i_a1_2:"<strong>Bank A-nın EİF göstəricisi nominal faizindən yuxarıdır, yəni aylıq kapitallaşma həqiqətən əlavə dəyər yaradır.</strong> Amma bu təsir Bank A ilə Bank C arasındakı 1.5 faiz bəndlik fərqi bağlamağa kifayət etmir.",
+    a2_lbl:"Tapşırıq A.2 - İnflyasiya korreksiyası",
+    a2_title:"Real alıcılıq gücü: Fisher tənliyi",
+    a2_text:"100,000 AZN 12% ilə 3 illik depozitə qoyulduqda nominal balans 140,493 AZN-ə çatır. 14.53% kumulyativ inflyasiya tətbiq olunduqdan sonra real balans 122,665 AZN olur. Bank çıxarışında görünən məbləğin arxasındakı alıcılıq gücünü göstərmək üçün Fisher düsturundan istifadə etdim: real gəlir = (1 + nominal gəlir) / (1 + inflyasiya) - 1.",
+    c3t:"3 il ərzində nominal və real balans (AZN)",
+    c4t:"İllik inflyasiya və depozit faizi",
+    f5l:"Nominal balans (AZN)",
+    f5d:"12% nominal faizlə 3 ildən sonra bankın göstərdiyi məbləğ.",
+    f6l:"Real balans (AZN)",
+    f6d:"14.53% kumulyativ inflyasiyadan sonra qalan alıcılıq gücü.",
+    f7l:"Real illik gəlir",
+    f7d:"12% nominal artımın 4.63% orta inflyasiya ilə müqayisəsindən alınan Fisher-düzəlişli gəlir.",
+    i_a2_1:"<strong>Depozit yenə də alıcılıq gücünü qoruyur.</strong> 7.04% real gəlir o deməkdir ki, 12% depozit orta inflyasiyadan rahat şəkildə yuxarıdır. Pul yalnız kağız üzərində artmır, real dəyər də qazanır.",
+    i_a2_2:"<strong>Nominal qazancı olduğu kimi qəbul etmək düzgün deyil.</strong> 40,493 AZN artım inflyasiyadan sonra 22,665 AZN real qazanca çevrilir. Bu depoziti zəif etmir, sadəcə qərar verərkən real gəlirin daha doğru göstərici olduğunu göstərir.",
+    a3_lbl:"Tapşırıq A.3 - Alternativ investisiya analizi",
+    a3_title:"Üç strategiya: 50,000 AZN üçün 5 illik baxış",
+    a3_text:"Aylıq kapitallaşma ilə 10.5% bank depozitini, illik 9.8% dövlət istiqrazlarını və gözlənilən 13% gəlirə, 4% standart sapmaya malik qarşılıqlı fondu müqayisə etdim. Fond üzrə nəticəni pessimist, normal və optimistik ssenarilərə ayırdım ki, gəlir riskdən ayrı göstərilməsin.",
+    c5t:"Strategiyalar üzrə 5 illik yekun məbləğ (AZN)",
+    t2h:"İnvestisiya strategiyalarının müqayisəsi",
+    t2b:"5 il · 50,000 AZN",
+    th_option:"Seçim",
+    th_5yr:"5 illik yekun (AZN)",
+    th_gainn:"Qazanc (AZN)",
+    th_risk:"Risk",
+    row_dep:"Bank depoziti (10.5%)",
+    row_bond:"Dövlət istiqrazı (9.8%)",
+    row_fpess:"Fond - Pessimist (9%)",
+    row_fnorm:"Fond - Normal (13%)",
+    row_fopt:"Fond - Optimist (17%)",
+    r_low:"✓ Sığortalı (ƏSF)",
+    r_high:"Yüksək risk",
+    i_a3_1:"<strong>Fondun pessimist nəticəsi zəmanətli depozit qazancından aşağıdır.</strong> Fond aşağı ssenari üzrə nəticə versə, investor 26,930 AZN qazanır, qorunan depozit isə 34,355 AZN qazanc verir.",
+    i_a3_2:"<strong>Seçim yalnız ən böyük rəqəmdən yox, risk tolerantlığından asılıdır.</strong> Fondun yuxarı potensialı daha yüksəkdir, depozit isə konservativ investor üçün daha güclüdür. İstiqraz təhlükəsizdir, amma bu faizlərdə oxşar risk səviyyəsinə görə depozitdən daha az gəlir verir.",
+    b_lbl:"Tapşırıq B - Analitik esselər",
+    b_title:"Faiz siyasəti və əmanət sığortası",
+    b1_h:"B.1 - Faiz dərəcəsinin transmissiya mexanizmi",
+    b1_p1:"Mərkəzi banklar iqtisadi fəaliyyəti siyasət faizi vasitəsilə yönləndirir. Azərbaycan Mərkəzi Bankı bu faizi artıranda kommersiya banklarının maliyyələşmə xərci yüksəlir və banklar pərakəndə əmanətləri cəlb etmək üçün depozit faizlərini artırmağa meylli olurlar. Siyasət faizi ilə bankların təklif etdiyi faizlər arasındakı bu əlaqə faiz transmissiya mexanizmi adlanır.",
+    b1_p2:"2022-ci ildə Azərbaycanda inflyasiya 13.85%-ə çatdığı üçün Mərkəzi Bank pul siyasətini sərtləşdirdi. Banklar da daha yüksək depozit faizləri ilə buna uyğunlaşdı. 2024-cü ildə inflyasiya 2.21%-ə düşsə də, banklar faizləri azaltmaqda daha yavaş davrandılar, çünki aşağı faiz müştərilərin rəqiblərə keçməsinə səbəb ola bilər. Faiz artımına tez, azalmasına isə gec reaksiya verilməsi asimmetrik transmissiya kimi izah olunur.",
+    b1_p3:"Azərbaycanda transmissiyanın təsirini bir neçə yerli amil məhdudlaşdırır. Əmanətçilərin bir hissəsi hələ də vəsaitini USD və ya EUR ilə saxladığı üçün AZN faizlərindəki dəyişiklik hamıya eyni dərəcədə təsir etmir. Kapital Bank və ABB kimi iri, dövlət dəstəkli bankların bazar mövqeyi də güclüdür, bu isə onların tez reaksiya vermə təzyiqini azalda bilər. Neft gəlirləri də önəmlidir, çünki bank sistemində likvidlik güclü olanda bankların depozit üçün aqressiv rəqabət aparmaq ehtiyacı azalır. Gürcüstan kimi daha rəqabətli bazarlarda isə TBC Bank və Bank of Georgia kimi banklar mərkəzi bank qərarlarından sonra faizləri daha sürətli tənzimləyir.",
+    b2_h:"B.2 - Əmanət sığortası: müdafiə, yoxsa moral risk?",
+    b2_p1:"Azərbaycanın Əmanətlərin Sığortalanması Fondu (ƏSF) hər bank üzrə hər əmanətçini 100,000 AZN-ə qədər qoruyur. Bu mühüm təhlükəsizlik mexanizmidir, xüsusilə də fondun indiyə qədər 19 ləğv edilmiş bank üzrə 62,520 əmanətçiyə 1.717 milyard AZN ödədiyini nəzərə alsaq. Bununla yanaşı, əmanət sığortası bəzi hallarda moral risk yarada bilər, çünki insanlar depozit sığortalanıb deyə bankın keyfiyyətini yoxlamağı dayandıra bilirlər.",
+    b2_p2:"Risk ondan ibarətdir ki, sığortalanmış əmanətçi bankın vəziyyətinə baxmadan ən yüksək elan edilən faizi seçə bilər. Banklar da daha çox vəsait cəlb etmək üçün faizləri qaldırıb topladıqları vəsaiti daha riskli aktivlərə yönəldə bilərlər. Strategiya uğursuz olarsa, zərəri təkcə bank səhmdarları yox, sığorta sistemi və dolayı olaraq cəmiyyət daşıyır.",
+    b2_p3:"<strong>Əmanətçi üçün praktik strategiya sadədir:</strong> 100,000 AZN-dən yuxarı məbləği bir neçə ƏSF üzvü bank arasında bölmək, MBDP hesabatlarında kapital adekvatlığı və problemli kredit göstəricilərini izləmək, böyük məbləğlər üçün daha güclü və ya dövlət dəstəkli banklara üstünlük vermək, bazar ortalamasından 3-4 faiz bəndi yüksək faizi isə hədiyyə yox, xəbərdarlıq siqnalı kimi qəbul etmək.",
+    c_lbl:"Tapşırıq C - Keys-study",
+    c_title:"Leyla xanımın kapital strategiyası: 80,000 AZN portfel",
+    c_text:"Leyla xanımın üç prioriteti var: kapitalı qorumaq, inflyasiyadan yuxarı gəlir əldə etmək və pulun ən azı 30%-ni, yəni 24,000 AZN-i hər zaman əlçatan saxlamaq. Buna görə portfel dörd bank arasında məqsədə görə bölünür: likvidlik, əsas gəlir, diversifikasiya və çevik ehtiyat.",
+    cc1_lbl:"Hissə 1 - Likvid (30%)",
+    cc1_note:"İstənilən vaxt əlçatan olur, ƏSF üzvlüyü və geniş filial şəbəkəsi var.",
+    cc2_lbl:"Hissə 2 - Əsas gəlir (35%)",
+    cc2_note:"Seçilən ən yüksək bazar faizi, güclü dövlət dəstəkli bank və sığorta limitindən xeyli aşağı məbləğ.",
+    cc3_lbl:"Hissə 3 - Diversifikasiya (25%)",
+    cc3_note:"Kapital Bankdan asılılığı azaldır və portfeldə ikinci dövlət dəstəkli bank saxlayır.",
+    cc4_lbl:"Hissə 4 - Çevik ehtiyat (10%)",
+    cc4_note:"Qısamüddətli ehtiyaclar və daha yaxşı faiz imkanları üçün hər 6 aydan bir yenidən baxıla bilən yarı-likvid hissə.",
+    demand:"Tələbli hesab",
+    month:"ay",
+    yr:"il",
+    tot1:"Ümumi illik gəlir",
+    tot2:"Effektiv faiz",
+    tot3:"Real gəlir (orta 4.89% inflyasiyadan sonra)",
+    c6t:"Portfel bölgüsü (%)",
+    c7t:"Bank bölgüsünə görə illik gəlir (AZN)",
+    d_lbl:"Tapşırıq D - Beynəlxalq müqayisə",
+    d_title:"Regional depozit faizləri: 4 ölkə",
+    d_text:"Nominal faiz müqayisənin yalnız ilk hissəsidir. Türkiyənin 41.49% faizi çox yüksək görünür, amma təxminən 31.1% inflyasiya real gəliri xeyli azaldır və ciddi valyuta riski yaradır. Qazaxıstanın 14.2% depozit faizi də 12.9% inflyasiya ilə zəifləyir. Azərbaycanın 11.9% faizi nominal olaraq daha aşağıdır, amma 4.63% orta inflyasiya ilə rəqabətli real gəlir verir və AZN əsaslı investor üçün valyuta çevrilməsi riski yaratmır.",
+    c8t:"Ölkəyə görə nominal depozit faizi (%)",
+    c9t:"Ölkəyə görə real gəlir (%) - Fisher düzəlişi",
+    t3h:"Regional depozit müqayisəsi",
+    t3b:"4 ölkə",
+    th_country:"Ölkə / Bank",
+    th_nom:"Nominal %",
+    th_curr:"Valyuta",
+    th_inf:"İnflyasiya %",
+    th_real:"Real gəlir %",
+    th_verdict:"Nəticə",
+    row_geo:"Gürcüstan / TBC Bank",
+    row_az:"Azərbaycan / Kapital Bank",
+    row_tr:"Türkiyə / İş Bankası",
+    row_kz:"Qazaxıstan / Halyk Bank",
+    v_best:"✓ Ən yüksək real gəlir",
+    v_stable:"✓ Stabil valyuta",
+    v_fx:"⚠ Yüksək valyuta riski",
+    v_weak:"✗ Ən zəif real gəlir",
+    i_d1:"<strong>Cədvəldə ən güclü real gəlir Gürcüstandadır, amma çevirmə xərclərindən sonra praktik nəticə azalır.</strong> 50,000 AZN-i GEL-ə çevirmək və sonra geri çevirmək təxminən 1.5% xərc yarada bilər, bu da Azərbaycan investoru üçün üstünlüyü azaldır.",
+    i_d2:"<strong>Türkiyədə yüksək faiz əsasən inflyasiya və valyuta riskinin kompensasiyasıdır.</strong> Lirə gözləniləndən daha sürətlə zəifləsə, xarici investor faizdən qazandığından daha çox məzənnə fərqində itirə bilər.",
+    i_d3:"<strong>AZN əsaslı investor üçün ən təmiz seçim Azərbaycandır.</strong> Valyuta çevrilməsi riski yoxdur, real gəlir 7.04% ilə rəqabətlidir və manat neft gəlirlərinə əsaslanan fiskal ehtiyatlarla dəstəklənir.",
+    risk_lbl:"Risk qiymətləndirməsi",
+    risk_title:"Əsas risklər",
+    r1t:"İnflyasiyanın yüksəlməsi ssenarisi",
+    r1b:"İnflyasiya 9%-dən yuxarı qalxarsa, 12% depozit faizi zəif və ya mənfi real gəlirə çevrilə bilər. Bu əsas makro riskdir. Hazırkı AZN stabilliyi fonunda baza ssenari deyil, amma hər rüb CBAR məlumatları ilə izlənməlidir.",
+    r2t:"Qarşılıqlı fondun aşağı ssenarisi",
+    r2b:"Fondun pessimist qazancı 26,930 AZN-dir və 34,355 AZN-lik zəmanətli depozit qazancından aşağıdır. Kifayət qədər risk tolerantlığı olmadan fond seçimi bank depozitindən daha zəif nəticə verə bilər.",
+    r3t:"Leyla xanımın portfelində konsentrasiya riski",
+    r3b:"Kapital Bank portfelin 35%-ni, yəni 28,000 AZN-i saxlayır. Məbləğ sığorta limitindən aşağıdır, amma geniş bank stressi baş verərsə, depozit sığortalanmış olsa belə vəsaitə çıxış gecikə bilər.",
+    rec_lbl:"Fəaliyyət addımları",
+    rec_title:"Tövsiyələr",
+    rec1t:"Fərdi investorlar üçün: 3 illik müddətdə Bank C seçimi",
+    rec1b:"50,000 AZN əsas məbləğ 3 il saxlanıldıqda Bank C 68,382 AZN ilə ən yüksək yekun dəyəri verir. Müqayisə göstərir ki, faiz fərqi kifayət qədər böyükdürsə, daha yüksək nominal faiz daha tez-tez kapitallaşmadan üstün ola bilər.",
+    rec2t:"İnflyasiyadan qorunmaq üçün: depozitdən əvvəl real gəliri yoxlayın",
+    rec2b:"4.63% orta inflyasiya şəraitində 12% depozit 7.04% real gəlir verir. Kapitalı yerləşdirməzdən əvvəl investor yalnız elan edilən nominal faizə yox, Fisher düsturuna əsaslanmalıdır. Azərbaycanın hazırkı mühitində çox aşağı nominal depozitlər asanlıqla inflyasiya baxımından neytral və ya mənfi ola bilər.",
+    rec3t:"Çox banklı portfel üçün: hər bankı konkret məqsədə bağlayın",
+    rec3b:"Leyla xanımın bölgüsü ona görə işləyir ki, hər hissənin rolu var: likvidlik, gəlir, diversifikasiya və çevik ehtiyat. Heç bir bankda sığorta limitindən artıq məbləğ saxlanılmamalıdır. Çevik hissə 6 aylıq depozitlərdə qala bilər ki, faizlər yaxşılaşanda investor daha rahat reaksiya versin.",
   }
 };
 
