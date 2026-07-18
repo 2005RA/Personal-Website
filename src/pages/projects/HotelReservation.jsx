@@ -375,14 +375,10 @@ export default function HotelReservation() {
           </p>
         </div>
         <div className="video-wrap">
-          <video controls preload="none">
-            <source src="/videos/hotel-reservation-demo.mp4" type="video/mp4" />
-          </video>
-          <p className="video-note">
-            Video hələ əlavə olunmayıb. Video faylını <code>public/videos/hotel-reservation-demo.mp4</code>{' '}
-            olaraq yerləşdirin — avtomatik burada görünəcək.
-          </p>
-        </div>
+  <video controls preload="none">
+    <source src="/videos/hotel-reservation-demo.mp4" type="video/mp4" />
+  </video>
+</div>
       </main>
 
       <footer>
