@@ -772,7 +772,7 @@ const bodyHtml = `
           <div class="photo-inner">
             <!-- PHOTO: replace content of this div with your <img> tag -->
             <span class="photo-initials"></span>
-            <img src="${import.meta.env.BASE_URL}my_picture.jpg" alt="Ruqiyya Agatalibova" style="width:110%;height:110%;object-fit:contain;object-position:center top;">
+            <img src="${import.meta.env.BASE_URL}my_picture.jpg" alt="Ruqiyya Agatalibova" style="padding-left:15px;width:110%;height:110%;object-fit:contain;object-position:center top;">
           </div>
           <div class="chip chip-d">
             <i class="fa-solid fa-chart-simple"></i>
