@@ -48,6 +48,14 @@ main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
 .content-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
 .content-title{font-family:var(--serif);font-size:1.75rem;margin-bottom:1.25rem;}
 .content-text{color:var(--muted);margin-bottom:2rem;max-width:740px;font-size:0.92rem;}
+.task-steps{list-style:none;counter-reset:step;margin-bottom:2.25rem;max-width:740px;}
+.task-steps li{counter-increment:step;padding:0.65rem 0;border-top:1px solid var(--border);display:flex;gap:0.85rem;font-size:0.9rem;color:var(--muted);}
+.task-steps li:first-child{border-top:none;}
+.task-steps li::before{content:counter(step);font-family:var(--mono);font-size:0.72rem;color:var(--accent);flex-shrink:0;margin-top:0.15rem;}
+.task-list{list-style:none;margin-bottom:2.25rem;max-width:740px;}
+.task-list li{padding:0.5rem 0;padding-left:1.25rem;position:relative;font-size:0.9rem;color:var(--muted);}
+.task-list li::before{content:'—';position:absolute;left:0;color:var(--accent);}
+.task-subhead{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);margin-bottom:0.75rem;}
 .problem-block{margin-bottom:2.5rem;}
 .problem-num{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
 .risk-block{border:1px solid rgba(239,68,68,0.25);background:rgba(239,68,68,0.05);padding:1.5rem 1.75rem;margin-bottom:0.9rem;}
@@ -144,10 +152,35 @@ const T = {
     ],
     quickNavLabel: 'Keç →',
     quickNav: [
+      { href: '#task', label: 'Tapşırıq' },
       { href: '#problem', label: 'Problem Analizi' },
       { href: '#flow', label: 'Proses Axını' },
       { href: '#scenarios', label: 'Kritik Ssenarilər' },
       { href: '#video', label: 'Video' },
+    ],
+    taskLabel: 'Tapşırıq',
+    taskTitle: 'Taskın Təsviri',
+    taskIntro: 'Şirkətin hotel rezervasiya sistemi artıq istifadədədir. Hazırda rezervasiya prosesi aşağıdakı kimidir:',
+    taskSteps: [
+      'İstifadəçi hotel və tarixləri seçir.',
+      'Sistem uyğun otaqları göstərir.',
+      'İstifadəçi otağı seçərək rezervasiya yaradır.',
+      'Ödəniş uğurla tamamlandıqdan sonra rezervasiya təsdiqlənir.',
+      'Müştəri rezervasiyanı müəyyən edilmiş qaydalara uyğun olaraq ləğv edə bilər.',
+    ],
+    taskProblemsIntro: 'Son aylarda biznes aşağıdakı problemləri müşahidə edib:',
+    taskProblems: [
+      'Müştərilər rezervasiya etdikləri otaqları son anda ləğv edirlər.',
+      'Bəzi müştərilər rezervasiya etsələr də, ümumiyyətlə hotelə gəlmirlər (No show).',
+      'Bu səbəbdən otaqlar uzun müddət boş qalır və hotel gəlir itkisi yaşayır.',
+      'Digər tərəfdən, bəzi tarixlərdə otaq olmadığı göstərildiyi üçün yeni müştərilər rezervasiya edə bilmirlər.',
+    ],
+    taskReqIntro: 'Biznes tələblər:',
+    taskRequirements: [
+      'Son anda ləğv olunan rezervasiyalar nəticəsində otaqların boş qalmasının qarşısı alınsın.',
+      'No show hallarının sayı azaldılsın.',
+      'Boşalan otaqların digər müştərilər üçün daha operativ şəkildə əlçatan olması təmin edilsin.',
+      'Yeni qaydalar həm müştəri məmnuniyyətini, həm də hotelin gəlirlərini nəzərə almalıdır.',
     ],
     summaryGoalLabel: 'Məqsəd:',
     summaryGoal: 'Otel rezervasiya sistemində son anda ləğvetmə, no-show halları və boş qalan otaqlardan yaranan gəlir itkisinin qarşısını almaq üçün proses təkmilləşdirmələri təklif etmək.',
@@ -267,10 +300,35 @@ const T = {
     ],
     quickNavLabel: 'Jump to →',
     quickNav: [
+      { href: '#task', label: 'Task' },
       { href: '#problem', label: 'Problem Analysis' },
       { href: '#flow', label: 'Process Flow' },
       { href: '#scenarios', label: 'Critical Scenarios' },
       { href: '#video', label: 'Video' },
+    ],
+    taskLabel: 'Task',
+    taskTitle: 'Task Description',
+    taskIntro: "The company's hotel reservation system is already in use. The current reservation process works as follows:",
+    taskSteps: [
+      'The user selects a hotel and dates.',
+      'The system shows available rooms.',
+      'The user selects a room and creates a reservation.',
+      'Once payment is completed successfully, the reservation is confirmed.',
+      'The customer can cancel the reservation according to the established rules.',
+    ],
+    taskProblemsIntro: 'In recent months, the business has observed the following problems:',
+    taskProblems: [
+      'Customers cancel their reserved rooms at the last minute.',
+      'Some customers make a reservation but never show up at the hotel at all (no-show).',
+      'As a result, rooms stay empty for long periods and the hotel experiences revenue loss.',
+      "On top of that, on certain dates new customers can't make a reservation because the system shows no rooms available.",
+    ],
+    taskReqIntro: 'Business requirements:',
+    taskRequirements: [
+      'Prevent rooms from staying empty as a result of last-minute cancellations.',
+      'Reduce the number of no-show cases.',
+      'Ensure that rooms which become available are made accessible to other customers more quickly.',
+      "The new rules must take into account both customer satisfaction and the hotel's revenue.",
     ],
     summaryGoalLabel: 'Goal:',
     summaryGoal: 'To propose process improvements that prevent revenue loss caused by last-minute cancellations, no-shows, and rooms left vacant in the hotel reservation system.',
@@ -422,6 +480,33 @@ export default function HotelReservation() {
       </div>
 
       <main>
+        <div id="task" className="section-anchor">
+          <p className="content-label">{t.taskLabel}</p>
+          <h2 className="content-title">{t.taskTitle}</h2>
+        </div>
+        <p className="content-text">{t.taskIntro}</p>
+        <ol className="task-steps">
+          {t.taskSteps.map((step, i) => (
+            <li key={i}>{step}</li>
+          ))}
+        </ol>
+
+        <p className="task-subhead">{t.taskProblemsIntro}</p>
+        <ul className="task-list">
+          {t.taskProblems.map((p, i) => (
+            <li key={i}>{p}</li>
+          ))}
+        </ul>
+
+        <p className="task-subhead">{t.taskReqIntro}</p>
+        <ul className="task-list">
+          {t.taskRequirements.map((r, i) => (
+            <li key={i}>{r}</li>
+          ))}
+        </ul>
+
+        <hr className="divider" />
+
         <div className="summary">
           <p><strong>{t.summaryGoalLabel}</strong> {t.summaryGoal}</p>
           <p style={{ marginTop: '0.75rem' }}><strong>{t.summaryPropLabel}</strong> {t.summaryProp}</p>
