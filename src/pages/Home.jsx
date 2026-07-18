@@ -760,7 +760,7 @@ const bodyHtml = `
           <a href="#portfolio" class="btn-o">
             <span data-en="See My Work" data-az="İşlərimə bax">See My Work</span>
           </a>
-          <a href="/projects" class="btn-o" style="border-color:var(--mint-500,#10b981);color:var(--mint-600,#059669)">
+          <a href="${import.meta.env.BASE_URL}projects" class="btn-o" style="border-color:var(--mint-500,#10b981);color:var(--mint-600,#059669)">
             <span data-en="My Projects" data-az="Layihələrim">My Projects</span>
             <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.75rem"></i>
           </a>
@@ -772,7 +772,7 @@ const bodyHtml = `
           <div class="photo-inner">
             <!-- PHOTO: replace content of this div with your <img> tag -->
             <span class="photo-initials"></span>
-            <img src="/my_picture.jpg" alt="Ruqiyya Agatalibova" style="width:110%;height:110%;object-fit:contain;object-position:center top;">
+            <img src="${import.meta.env.BASE_URL}my_picture.jpg" alt="Ruqiyya Agatalibova" style="width:110%;height:110%;object-fit:contain;object-position:center top;">
           </div>
           <div class="chip chip-d">
             <i class="fa-solid fa-chart-simple"></i>
@@ -1062,8 +1062,8 @@ const bodyHtml = `
         ──────────────────────────────────────────────────────────── -->
 
         <div class="cert-card reveal d1">
-          <!-- Replace below with: <img src="/cert1.jpg" class="cert-img" alt="Certificate 1"> -->
-          <img src="/cert2.jpg" class="cert-img" alt="Certificate 1">
+          <!-- Replace below with: <img src="${import.meta.env.BASE_URL}cert1.jpg" class="cert-img" alt="Certificate 1"> -->
+          <img src="${import.meta.env.BASE_URL}cert2.jpg" class="cert-img" alt="Certificate 1">
           <div class="cert-info">
             <div class="cert-name" data-en="Oracle Certified Foundations Associate" data-az="Oracle Certified Foundations Associate">Oracle Certified Foundations Associate</div>
             <div class="cert-issuer" data-en="Oracle University" data-az="Oracle University">Oracle University</div>
@@ -1072,7 +1072,7 @@ const bodyHtml = `
         </div>
 
         <div class="cert-card reveal d2">
-          <img src="/cert1.jpg" class="cert-img" alt="Certificate 1">
+          <img src="${import.meta.env.BASE_URL}cert1.jpg" class="cert-img" alt="Certificate 1">
           <div class="cert-info">
             <div class="cert-name" data-en="Rəqəmsal Üfüqlər - Python Foundations" data-az="Rəqəmsal Üfüqlər - Python'un Əsasları">Rəqəmsal Üfüqlə - Python</div>
             <div class="cert-issuer" data-en="Alas Academy" data-az="Alas Academy">Alas Academy</div>
@@ -1081,7 +1081,7 @@ const bodyHtml = `
         </div>
 
         <div class="cert-card reveal d3">
-          <img src="/cert3.jpg" class="cert-img" alt="Certificate 1">
+          <img src="${import.meta.env.BASE_URL}cert3.jpg" class="cert-img" alt="Certificate 1">
           <div class="cert-info">
             <div class="cert-name" data-en="Digital LevelUP - Data Analytics" data-az="Digital LevelUP - Data Analytics">Digital LevelUP - Data Analytics</div>
             <div class="cert-issuer" data-en="Strategeast - İDDA" data-az="Strategeast - İDDA">Strategeast - İDDA</div>
@@ -1090,7 +1090,7 @@ const bodyHtml = `
         </div>
 
         <div class="cert-card reveal d4">
-          <img src="/cert4.jpg" class="cert-img" alt="Certificate 1">
+          <img src="${import.meta.env.BASE_URL}cert4.jpg" class="cert-img" alt="Certificate 1">
           <div class="cert-info">
             <div class="cert-name" data-en="GenAI" data-az="GenAI">Certificate Name</div>
             <div class="cert-issuer" data-en="Holberton School · Pasha Holding" data-az="Holberton School · Paşa Holding">Issuer · Platform</div>
@@ -1120,7 +1120,7 @@ const bodyHtml = `
       <div class="proj-grid reveal" style="margin-top:40px">
 
         <!-- DA -->
-        <div class="pc" data-cat="da" onclick="location.href='/projects/bank-deposits'" style="">
+        <div class="pc" data-cat="da" onclick="location.href='${import.meta.env.BASE_URL}projects/bank-deposits'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#f5f3ff,#e9e3fd)">
             <i class="fa-solid fa-building-columns pt-icon"></i>
             <span class="pt-type" data-en="Data Analysis" data-az="Data Analiz">Data Analysis</span>
@@ -1130,13 +1130,13 @@ const bodyHtml = `
             <p class="p-desc" data-en="Compared deposit rates across 5 Azerbaijani banks. Kapital Bank leads at 11.90% — 165 AZN more per year than the market minimum." data-az="5 Azərbaycan bankının əmanət faizlərini müqayisə etdi. Kapital Bank 11.90% ilə liderdir.">Compared deposit rates across 5 Azerbaijani banks. Kapital Bank leads at 11.90% — 165 AZN more per year than the market minimum.</p>
             <div class="p-foot">
               <div class="p-tags"><span class="ptag" data-en="Excel" data-az="Excel">Excel</span><span class="ptag" data-en="Financial Modelling" data-az="Maliyyə Modelləşdirməsi">Financial Modelling</span></div>
-              <a href="/projects/bank-deposits" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="${import.meta.env.BASE_URL}projects/bank-deposits" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
 
         <!-- Hotel Reservation System (IT Business Analysis) -->
-        <div class="pc" data-cat="da" onclick="location.href='/projects/hotel-reservation'" style="">
+        <div class="pc" data-cat="da" onclick="location.href='${import.meta.env.BASE_URL}projects/hotel-reservation'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#fef3f2,#fecaca)">
             <i class="fa-solid fa-hotel pt-icon" style="color:#dc2626"></i>
             <span class="pt-type" style="color:#dc2626" data-en="Business Analysis" data-az="Biznes Analizi">Business Analysis</span>
@@ -1146,13 +1146,13 @@ const bodyHtml = `
             <p class="p-desc" data-en="IT business analysis case study on cancellations, no-shows and waitlists — 48h cancellation policy, automated penalties, and a loyalty-based waitlist system." data-az="Ləğvetmə, no-show və gözləmə siyahısı üzrə IT biznes analiz layihəsi — 48 saatlıq ləğvetmə siyasəti, avtomatik cərimə və sadiqlik əsaslı gözləmə siyahısı sistemi.">IT business analysis case study on cancellations, no-shows and waitlists — 48h cancellation policy, automated penalties, and a loyalty-based waitlist system.</p>
             <div class="p-foot">
               <div class="p-tags"><span class="ptag" data-en="Process Design" data-az="Proses Dizaynı">Process Design</span><span class="ptag" data-en="Case Study" data-az="Case Study">Case Study</span></div>
-              <a href="/projects/hotel-reservation" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="${import.meta.env.BASE_URL}projects/hotel-reservation" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
 
         <!-- English -->
-        <div class="pc" data-cat="edu" onclick="location.href='projects.html'" style="">
+        <div class="pc" data-cat="edu" onclick="location.href='${import.meta.env.BASE_URL}projects'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd)">
             <i class="fa-solid fa-clone pt-icon" style="color:white"></i>
             <span class="pt-type" style="color:#6d28d9" data-en="English Teacher" data-az="İngilis müəllimi">English Teacher</span>
@@ -1162,13 +1162,13 @@ const bodyHtml = `
             <p class="p-desc" data-en="Drag-and-drop card matching game — English words with Azerbaijani translations across 5 topic sets. Built for ages 8–12." data-az="Sürüklə-burax kart oyunu — 5 mövzu üzrə ingilis sözlərini azərbaycan dilinə uyğunlaşdır. 8–12 yaş üçün.">Drag-and-drop card matching game — English words with Azerbaijani translations across 5 topic sets. Built for ages 8–12.</p>
             <div class="p-foot">
               <div class="p-tags"><span class="ptag" data-en="Game" data-az="Oyun">Game</span><span class="ptag" data-en="Ages 8–12" data-az="8–12 yaş">Ages 8–12</span></div>
-              <a href="/projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="${import.meta.env.BASE_URL}projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
 
         <!-- Math -->
-        <div class="pc" data-cat="edu" onclick="location.href='projects.html'" style="">
+        <div class="pc" data-cat="edu" onclick="location.href='${import.meta.env.BASE_URL}projects'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#ecfdf5,#a7f3d0)">
             <i class="fa-solid fa-rocket pt-icon" style="color:#059669"></i>
             <span class="pt-type" style="color:#059669" data-en="Math Teacher" data-az="Riyaziyyat müəllimi">Math Teacher</span>
@@ -1178,13 +1178,13 @@ const bodyHtml = `
             <p class="p-desc" data-en="Solve arithmetic problems to fire your spaceship's laser and destroy incoming asteroids. Built for ages 9–13." data-az="Riyazi məsələləri həll edərək kosmik gəminin lazerini aç, asteroidləri məhv et. 9–13 yaş üçün.">Solve arithmetic problems to fire your spaceship's laser and destroy incoming asteroids. Built for ages 9–13.</p>
             <div class="p-foot">
               <div class="p-tags"><span class="ptag" data-en="Simulator" data-az="Simulyator">Simulator</span><span class="ptag" data-en="Ages 9–13" data-az="9–13 yaş">Ages 9–13</span></div>
-              <a href="/projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="${import.meta.env.BASE_URL}projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
 
         <!-- CS -->
-        <div class="pc" data-cat="edu" onclick="location.href='projects.html'" style="">
+        <div class="pc" data-cat="edu" onclick="location.href='${import.meta.env.BASE_URL}projects'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe)">
             <i class="fa-solid fa-computer pt-icon" style="color:#2563eb"></i>
             <span class="pt-type" style="color:#2563eb" data-en="CS Teacher" data-az="İnformatika müəllimi">CS Teacher</span>
@@ -1194,7 +1194,7 @@ const bodyHtml = `
             <p class="p-desc" data-en="Answer CS trivia questions to advance your car. Hardware, software, networks — 4 levels of difficulty. Built for ages 10–14." data-az="CS suallarına cavab ver, maşınını irəlilət. Hardware, software, şəbəkələr — 4 çətinlik səviyyəsi. 10–14 yaş üçün.">Answer CS trivia questions to advance your car. Hardware, software, networks — 4 levels of difficulty. Built for ages 10–14.</p>
             <div class="p-foot">
               <div class="p-tags"><span class="ptag" data-en="Quiz Game" data-az="Viktorina Oyunu">Quiz Game</span><span class="ptag" data-en="Ages 10–14" data-az="10–14 yaş">Ages 10–14</span></div>
-              <a href="/projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="${import.meta.env.BASE_URL}projects" class="p-link" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
@@ -1202,7 +1202,7 @@ const bodyHtml = `
       </div>
 
       <div style="text-align:center;margin-top:36px" class="reveal">
-        <a href="/projects" style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.06em;color:var(--lav);border:1.5px solid var(--lav);padding:11px 28px;border-radius:28px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#ede9fe'" onmouseout="this.style.background='transparent'" data-en="See all projects →" data-az="Bütün layihələrə bax →">See all projects →</a>
+        <a href="${import.meta.env.BASE_URL}projects" style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.06em;color:var(--lav);border:1.5px solid var(--lav);padding:11px 28px;border-radius:28px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#ede9fe'" onmouseout="this.style.background='transparent'" data-en="See all projects →" data-az="Bütün layihələrə bax →">See all projects →</a>
       </div>
     </div>
   </section>
@@ -1350,7 +1350,7 @@ const bodyHtml = `
   
 
   <!-- Certificate Lightbox -->
-  <div class="cert-lb-overlay" id="certLb" onclick="closeCertLb(event)">
+  <div class="cert-lb-overlay" id="certLb">
     <div class="cert-lb-inner">
       <button class="cert-lb-close" onclick="document.getElementById('certLb').classList.remove('open')">
         <i class="fa-solid fa-xmark"></i>
@@ -1405,10 +1405,7 @@ const form = document.getElementById('contactForm');
     
     
     /* Hover state */
-    document.querySelectorAll('a,button,.cert-card,.pc,.sc-card').forEach(el => {
-      el.addEventListener('mouseenter',()=>{ dot.classList.add('on-link'); ring.classList.add('on-link'); });
-      el.addEventListener('mouseleave',()=>{ dot.classList.remove('on-link'); ring.classList.remove('on-link'); });
-    });
+    /* custom-cursor hover effect removed (dot/ring elements no longer exist) */
 
     /* ── Navbar ── */
     window.addEventListener('scroll',()=>{
