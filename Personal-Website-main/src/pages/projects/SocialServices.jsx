@@ -1,0 +1,519 @@
+import { useEffect } from 'react'
+import { parseWithHandlers } from '../../lib/parseHtml.js'
+
+const css = `
+:root{
+  --bg:#faf9f7;--bg2:#ffffff;--bg3:#f0ecff;
+  --border:#e8e4f0;
+  --accent:#7c3aed;--accent2:#059669;--accent3:#ef4444;
+  --text:#1a1a2e;--muted:#4a4a6a;
+  --mono:'Syne',sans-serif;
+  --serif:'Fraunces',serif;
+  --sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden;}
+body::before{display:none;}
+body::after{content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(0,0,0,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.028) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;}
+nav,main,footer,.project-hero,.page-hero{position:relative;z-index:1;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 3rem;background:rgba(250,249,247,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--mono);font-size:0.84rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a,.nav-back{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-back:hover{color:var(--accent);}
+/* PROJECT HERO */
+.project-hero{padding:9rem 3rem 4rem;border-bottom:1px solid var(--border);}
+.project-tag{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.project-title{font-family:var(--serif);font-size:clamp(2rem,5.5vw,4.5rem);line-height:1.05;letter-spacing:-0.02em;max-width:900px;}
+.project-title em{font-style:italic;color:var(--accent);}
+.project-meta{display:flex;gap:3rem;margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.5rem;flex-wrap:wrap;}
+.meta-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
+.meta-value{font-family:var(--mono);font-size:0.78rem;color:var(--text);}
+/* QUICK-NAV */
+.quick-nav{position:sticky;top:65px;z-index:50;background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0.65rem 3rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.quick-nav-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;}
+.qn-btn{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.3rem 0.8rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.qn-btn:hover{border-color:var(--accent);color:var(--accent);}
+.qn-btn.risk{border-color:rgba(239,68,68,0.3);color:var(--accent3);}
+.qn-btn.risk:hover{border-color:var(--accent3);background:rgba(239,68,68,0.08);}
+.qn-btn.rec{border-color:rgba(5,150,105,0.3);color:var(--accent2);}
+.qn-btn.rec:hover{border-color:var(--accent2);background:rgba(5,150,105,0.08);}
+/* MAIN CONTENT */
+main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
+.summary{border-left:2px solid var(--accent);padding:1.5rem 2rem;background:var(--bg2);margin-bottom:4rem;}
+.summary p{color:var(--muted);}
+.summary p strong{color:var(--text);}
+.content-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+.content-title{font-family:var(--serif);font-size:1.75rem;margin-bottom:1.25rem;}
+.content-text{color:var(--muted);margin-bottom:2.5rem;max-width:740px;font-size:0.92rem;}
+/* CHARTS */
+.chart-wrap{background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:3rem;}
+.chart-title{font-family:var(--mono);font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.chart-title span{color:var(--accent);}
+.chart-canvas-wrap{position:relative;width:100%;height:320px;}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);margin-bottom:3rem;}
+.chart-row .chart-wrap{margin-bottom:0;border:none;}
+/* METRICS */
+.findings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--border);margin-bottom:3rem;}
+.findings-grid.col3{grid-template-columns:repeat(3,1fr);}
+.finding-card{background:var(--bg2);padding:1.5rem;}
+.finding-num{font-family:var(--mono);font-size:1.9rem;color:var(--accent);line-height:1;margin-bottom:0.4rem;}
+.finding-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;}
+.finding-desc{font-size:0.76rem;color:var(--muted);}
+/* TABLE */
+.table-wrap{background:var(--bg2);border:1px solid var(--border);overflow-x:auto;margin-bottom:3rem;}
+.table-header{padding:0.9rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.table-header-title{font-family:var(--mono);font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+.table-header-title span{color:var(--accent);}
+.table-badge{font-family:var(--mono);font-size:0.6rem;padding:0.2rem 0.55rem;border:1px solid var(--border);color:var(--muted);}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.77rem;}
+thead th{padding:0.7rem 1.25rem;text-align:left;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--bg3);}
+tbody td{padding:0.65rem 1.25rem;color:var(--text);vertical-align:top;}
+td.pos{color:#059669;} td.neg{color:#ef4444;} td.acc{color:var(--accent);} td.mu{color:var(--muted);font-size:0.7rem;}
+/* INSIGHTS */
+.insights-list{list-style:none;margin-bottom:3rem;}
+.insights-list li{padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:1rem;align-items:flex-start;}
+.insights-list li:first-child{border-top:1px solid var(--border);}
+.insight-bullet{font-family:var(--mono);font-size:0.72rem;color:var(--accent);flex-shrink:0;margin-top:0.1rem;}
+.insight-text{font-size:0.86rem;color:var(--muted);}
+.insight-text strong{color:var(--text);}
+/* RISK & REC BLOCKS */
+.risk-block{border:1px solid rgba(239,68,68,0.25);background:rgba(239,68,68,0.05);padding:1.75rem 2rem;margin-bottom:1rem;}
+.rec-block{border:1px solid rgba(5,150,105,0.25);background:rgba(5,150,105,0.06);padding:1.75rem 2rem;margin-bottom:1rem;}
+.block-icon{font-size:1rem;margin-right:0.5rem;}
+.block-title{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;}
+.risk-block .block-title{color:var(--accent3);}
+.rec-block .block-title{color:var(--accent2);}
+.block-text{font-size:0.86rem;color:var(--muted);}
+.block-text strong{color:var(--text);}
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+/* SECTION ANCHOR HIGHLIGHT */
+.section-anchor{scroll-margin-top:110px;}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+footer span{font-family:var(--mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;}
+footer a{color:var(--accent);text-decoration:none;}
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;} .nav-links{display:none;}
+  .project-hero,.quick-nav{padding-left:1.5rem;padding-right:1.5rem;}
+  main{padding:3rem 1.5rem 5rem;}
+  .chart-row{grid-template-columns:1fr;}
+  .findings-grid{grid-template-columns:1fr 1fr;}
+  .findings-grid.col3{grid-template-columns:1fr 1fr;}
+}
+
+/* LANG TOGGLE */
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.lang-toggle{display:flex;align-items:center;gap:0.55rem;border-left:1px solid var(--border);padding-left:1.25rem;}
+.lang-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);opacity:0.38;transition:opacity 0.2s;user-select:none;}
+.lang-label.active{opacity:1;}
+.switch{position:relative;display:inline-block;width:36px;height:19px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;position:absolute;}
+.slider{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:19px;transition:0.3s;}
+.slider::before{content:'';position:absolute;height:11px;width:11px;left:3px;bottom:3px;background:var(--accent);border-radius:50%;transition:0.3s;}
+.switch input:checked + .slider::before{transform:translateX(17px);}
+
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+
+.lang-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);opacity:0.38;transition:opacity 0.2s;user-select:none;}
+.lang-label.active{opacity:1;}
+.switch{position:relative;display:inline-block;width:36px;height:19px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;position:absolute;}
+.slider{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:19px;transition:0.3s;}
+.slider::before{content:'';position:absolute;height:11px;width:11px;left:3px;bottom:3px;background:var(--accent);border-radius:50%;transition:0.3s;}
+.switch input:checked + .slider::before{transform:translateX(17px);}
+
+
+
+
+/* ── language toggle ── */
+.lang-pill{display:flex;background:#EDE9FE;border-radius:20px;padding:3px;}
+.lang-btn{padding:4px 14px;border:none;background:transparent;border-radius:16px;
+  font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;
+  color:#52525B;transition:all .2s;}
+.lang-btn.active{background:white;color:#7C3AED;box-shadow:0 1px 6px rgba(124,58,237,.14);}
+
+body{}
+`
+
+const bodyHtml = `
+<nav>
+  <a href="${import.meta.env.BASE_URL}" class="nav-logo">R.A.</a>
+  <div class="nav-right">
+    <a href="${import.meta.env.BASE_URL}" class="nav-back" id="navBack" data-en="← Back to Portfolio" data-az="← Portfolioya qayıt">← Back to Portfolio</a>
+    
+  </div>
+    <div class="lang-pill">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        onclick="setLang('az')">AZ</button>
+    </div>
+</nav>
+
+<div class="project-hero">
+  <div class="project-tag">Public Sector Analytics · Case Management</div>
+  <h1 class="project-title">Social Services:<br><em>Application & Risk Analysis</em></h1>
+    <!-- DATE: e.g. "March 2025 · University Internship Project" -->
+  <div class="project-meta">
+    <div><div class="meta-label">Tools</div><div class="meta-value">Excel · XLOOKUP · Pivot Tables · KPI Scorecard</div></div>
+    <div><div class="meta-label">Applications</div><div class="meta-value">420 total · 5 service types · 6 cities</div></div>
+    <div><div class="meta-label">Departments</div><div class="meta-value">Employment · Finance · Social · Psychological</div></div>
+    <div><div class="meta-label">Deliverables</div><div class="meta-value">Model · KPI Scorecard · Issue Join Table · 1-Page Summary</div></div>
+  </div>
+</div>
+<div class="quick-nav">
+  <span class="quick-nav-label">Jump to →</span>
+  <a class="qn-btn" href="#kpis">KPIs</a>
+  <a class="qn-btn" href="#service-dist">Service Mix</a>
+  <a class="qn-btn" href="#dept-load">Dept Load</a>
+  <a class="qn-btn" href="#geo">Geography</a>
+  <a class="qn-btn risk" href="#risks">⚠ Risks</a>
+  <a class="qn-btn rec" href="#recommendations">✓ Recommendations</a>
+</div>
+<main>
+  <div class="summary">
+    <p><strong>Objective:</strong> Build a unified data model from 5 source tables, compute KPIs, and analyse 420 social service applications by service type, department load, completion rates, risk levels, and geographic distribution across Azerbaijan.</p>
+    <p style="margin-top:0.75rem"><strong>Key Finding:</strong> Only 41% of applications are completed. 25% are flagged as high-risk. Processing times vary significantly by department — Psychological Services takes 6.69 days on average vs Finance at 5.22 days. Sumgayit (81 applications) and Baku (90) carry disproportionately high loads with similar staffing.</p>
+  </div>
+
+  <div id="kpis" class="section-anchor">
+    <p class="content-label">KPI Scorecard</p>
+    <h2 class="content-title">System Performance At a Glance</h2>
+  </div>
+  <div class="findings-grid">
+    <div class="finding-card"><div class="finding-num">420</div><div class="finding-label">Total Applications</div><div class="finding-desc">Across all 5 service types and 6 cities</div></div>
+    <div class="finding-card"><div class="finding-num">41%</div><div class="finding-label">Completion Rate</div><div class="finding-desc">171 applications completed — below typical 60–70% service targets</div></div>
+    <div class="finding-card"><div class="finding-num">5.77</div><div class="finding-label">Avg Processing Days</div><div class="finding-desc">Range: 5.16 (Employment) to 6.69 (Psychological)</div></div>
+    <div class="finding-card"><div class="finding-num">25%</div><div class="finding-label">High-Risk Cases</div><div class="finding-desc">105 of 420 applications flagged as priority risk</div></div>
+  </div>
+
+  <hr class="divider"/>
+  <div id="service-dist" class="section-anchor">
+    <p class="content-label">Service Distribution</p>
+    <h2 class="content-title">Application Volume & Completion by Service Type</h2>
+  </div>
+  <div class="chart-row">
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 01</span> — Applications by Service Type</div><div class="chart-canvas-wrap"><canvas id="c-svc-vol"></canvas></div></div>
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 02</span> — Completion Rate by Service Type (%)</div><div class="chart-canvas-wrap"><canvas id="c-svc-complete"></canvas></div></div>
+  </div>
+  <ul class="insights-list">
+    <li><span class="insight-bullet">01</span><span class="insight-text"><strong>Social Assistance leads in both volume (92) and completion rate (45.6%).</strong> It also has the highest risk flag rate (29.3%), suggesting that the most vulnerable citizens are disproportionately represented here.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text"><strong>Psychological Support has the lowest completion rate (33.7%).</strong> Combined with the longest processing time (6.69 days), this service is the most systemically strained — high need, low throughput.</span></li>
+  </ul>
+
+  <hr class="divider"/>
+  <div id="dept-load" class="section-anchor">
+    <p class="content-label">Department Analysis</p>
+    <h2 class="content-title">Processing Time & Workload by Department</h2>
+  </div>
+  <div class="chart-row">
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 03</span> — Avg Processing Days by Dept</div><div class="chart-canvas-wrap"><canvas id="c-dept-time"></canvas></div></div>
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 04</span> — Application Status Breakdown by Dept</div><div class="chart-canvas-wrap"><canvas id="c-dept-status"></canvas></div></div>
+  </div>
+  <ul class="insights-list">
+    <li><span class="insight-bullet">01</span><span class="insight-text"><strong>Psychological Services dept processes 84 applications yet takes 6.69 days on average</strong> — the longest in the system. The department has the 2nd highest refusal rate (10.7%), suggesting that capacity constraints may be driving premature case closures.</span></li>
+    <li><span class="insight-bullet">02</span><span class="insight-text"><strong>Employment & Labour (120 applications) has the best efficiency profile:</strong> fastest processing (5.53 days), highest completion rate (45%), and lowest high-risk proportion. This department should be studied as a benchmark.</span></li>
+  </ul>
+
+  <hr class="divider"/>
+  <div id="geo" class="section-anchor">
+    <p class="content-label">Geographic Distribution</p>
+    <h2 class="content-title">Applications by City & Age Group</h2>
+  </div>
+  <div class="chart-row">
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 05</span> — Applications by City</div><div class="chart-canvas-wrap"><canvas id="c-city"></canvas></div></div>
+    <div class="chart-wrap"><div class="chart-title"><span>Fig 06</span> — Age Group Distribution</div><div class="chart-canvas-wrap"><canvas id="c-age"></canvas></div></div>
+  </div>
+  <div class="table-wrap">
+    <div class="table-header"><span class="table-header-title"><span>Tab 01</span> — City × Service Type Cross-table</span><span class="table-badge">6 cities × 5 services</span></div>
+    <table><thead><tr><th>City</th><th>Social Assist.</th><th>Psychological</th><th>Disability</th><th>Employment</th><th>Pension</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td class="acc">Baku</td><td>18</td><td>26</td><td>15</td><td>15</td><td>16</td><td class="pos">90</td></tr>
+      <tr><td class="acc">Sumgayit</td><td>23</td><td>14</td><td>20</td><td>14</td><td>10</td><td class="pos">81</td></tr>
+      <tr><td class="acc">Ganja</td><td>14</td><td>7</td><td>19</td><td>15</td><td>15</td><td>70</td></tr>
+      <tr><td class="acc">Shaki</td><td>19</td><td>15</td><td>9</td><td>13</td><td>11</td><td>67</td></tr>
+      <tr><td class="acc">Quba</td><td>8</td><td>13</td><td>13</td><td>12</td><td>13</td><td>59</td></tr>
+      <tr><td class="acc">Lankaran</td><td>10</td><td>14</td><td>6</td><td>11</td><td>12</td><td class="neg">53</td></tr>
+    </tbody></table>
+  </div>
+
+  <hr class="divider"/>
+  <div id="risks" class="section-anchor">
+    <p class="content-label">Risk Assessment</p><h2 class="content-title">⚠ Key Risks</h2>
+  </div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span> 59% of cases are not completed</div><div class="block-text">With only 41% completion, a large portion of citizens who applied for social services are not receiving them — either due to refusal (8%), still in-progress cases (26%), or systemic delays. <strong>This is a direct equity and service delivery failure.</strong></div></div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span> Psychological Services bottleneck</div><div class="block-text">Longest processing time + lowest completion rate + high refusal rate: this department is under critical strain. Failing to address this risks further deterioration as demand for psychological support grows post-pandemic.</div></div>
+  <div class="risk-block"><div class="block-title"><span class="block-icon">⚠</span> Baku and Sumgayit volume concentration</div><div class="block-text">Baku (90) and Sumgayit (81) together account for 40.7% of all applications. If staffing is evenly distributed across cities, these two offices are significantly understaffed relative to their demand.</div></div>
+
+  <hr class="divider"/>
+  <div id="recommendations" class="section-anchor">
+    <p class="content-label">Action Items</p><h2 class="content-title">✓ Recommendations</h2>
+  </div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span> Reallocate staff to Psychological Services and Baku/Sumgayit offices</div><div class="block-text">Model the required staff count based on current caseloads and target a 5.5-day maximum processing time for all departments. <strong>Staff reallocation is the fastest lever available without structural changes.</strong></div></div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span> Set completion rate targets by service type</div><div class="block-text">The current 41% average is too broad to drive action. Set differentiated targets: Social Assistance ≥50%, Psychological Support ≥40%, Disability Support ≥45%. Track monthly to identify which departments are improving.</div></div>
+  <div class="rec-block"><div class="block-title"><span class="block-icon">→</span> Fast-track high-risk (priority) applications</div><div class="block-text">25% of applications are flagged high-risk. Create a separate processing queue for these cases with a 3-day target completion window. <strong>A dedicated high-risk lane exists in most well-functioning case management systems — this should be adopted here.</strong></div></div>
+</main>
+
+<footer>
+  <span>← <a href="${import.meta.env.BASE_URL}">Back to Portfolio</a></span>
+  <span>© 2026 — Junior Data Analyst Portfolio</span>
+</footer>
+`
+
+const script = `
+const A='#7c3aed',A2='#059669',A3='#ef4444',A4='#10b981',A5='rgba(124,58,237,0.45)';
+const GRID='rgba(0,0,0,0.07)',MUT='#6b7280',BG3='#f0ecff';
+const FONT="'Syne',sans-serif";
+Chart.defaults.color=MUT;Chart.defaults.borderColor=GRID;
+Chart.defaults.font.family=FONT;Chart.defaults.font.size=11;
+const scl={x:{grid:{color:GRID},ticks:{color:MUT}},y:{grid:{color:GRID},ticks:{color:MUT}}};
+
+
+new Chart(document.getElementById('c-svc-vol'),{type:'bar',data:{
+  labels:['Social Assist.','Psychological','Disability','Employment','Pension'],
+  datasets:[{label:'Applications',data:[92,89,82,80,77],backgroundColor:[A,A2,'rgba(124,58,237,0.6)','rgba(76,159,255,0.5)','rgba(255,255,255,0.15)'],borderWidth:0,borderRadius:2}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:scl}});
+
+new Chart(document.getElementById('c-svc-complete'),{type:'bar',data:{
+  labels:['Social Assist.','Employment','Disability','Pension','Psychological'],
+  datasets:[{label:'Completion %',data:[45.6,46.25,40.24,37.66,33.7],backgroundColor:[A,A2,'rgba(124,58,237,0.55)','rgba(124,58,237,0.35)',A3],borderWidth:0,borderRadius:2}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{...scl,y:{...scl.y,min:25,max:55}}}});
+
+new Chart(document.getElementById('c-dept-time'),{type:'bar',data:{
+  labels:['Psych. Services','Social Dept','Employment','Finance'],
+  datasets:[{label:'Avg Processing Days',data:[6.69,5.86,5.53,5.22],backgroundColor:[A3,'rgba(124,58,237,0.6)',A2,'rgba(76,159,255,0.45)'],borderWidth:0,borderRadius:2}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{...scl,y:{...scl.y,min:4.5,max:7.5}}}});
+
+new Chart(document.getElementById('c-dept-status'),{type:'bar',data:{
+  labels:['Employment','Finance','Social Dept','Psych. Svcs'],
+  datasets:[
+    {label:'Completed',data:[54,48,39,30],backgroundColor:A4,borderWidth:0},
+    {label:'In Progress',data:[27,32,28,22],backgroundColor:A,borderWidth:0},
+    {label:'Approved',data:[33,21,29,23],backgroundColor:A2,borderWidth:0},
+    {label:'Rejected',data:[6,7,12,9],backgroundColor:A3,borderWidth:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:MUT,padding:10,boxWidth:10}}},
+  scales:{x:{...scl.x,stacked:true},y:{...scl.y,stacked:true}}}});
+
+new Chart(document.getElementById('c-city'),{type:'bar',data:{
+  labels:['Baku','Sumgayit','Ganja','Shaki','Quba','Lankaran'],
+  datasets:[{label:'Applications',data:[90,81,70,67,59,53],backgroundColor:[A,A,'rgba(124,58,237,0.65)','rgba(124,58,237,0.5)','rgba(124,58,237,0.35)',A3],borderWidth:0,borderRadius:2}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:scl}});
+
+new Chart(document.getElementById('c-age'),{type:'doughnut',data:{
+  labels:['30–44 (highest)','60+ (seniors)','18–29 (youth)','45–59'],
+  datasets:[{data:[118,108,97,97],backgroundColor:[A,A2,'rgba(93,216,122,0.7)','rgba(168,85,247,0.6)'],borderColor:'#faf9f7',borderWidth:3}]
+},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{color:MUT,padding:12,boxWidth:10}}}}});
+
+
+
+
+const PAGE_T={en:{
+  back:'← Back to Portfolio', tag:'Public Sector Analytics · Social Services',
+  title_html:'Social Services<br><em>Application Analysis</em>',
+  meta_labels:['Tools','Applications','Service Types','Cities'],
+  jt:'Jump to →',
+  qn_labels:['KPIs','Service Mix','Dept Load','Geography','⚠ Risks','✓ Recommendations'],
+  obj_lbl:'Objective:', obj_text:'Map the flow of 420 social service applications across 5 service types, 6 cities, and multiple departments — identifying completion bottlenecks, geographic concentration, and highest-risk service segments.',
+  kf_lbl:'Key Finding:', kf_text:"Only 41% of applications are completed. Psychological Support has the longest processing time (6.69 days) and lowest completion rate (33.7%). Baku and Sumgayit together account for 40.7% of all applications — creating concentration risk if staffing is evenly distributed.",
+  finding_labels:['Total Applications','Completion Rate','Avg Processing Days','High-Risk Cases'],
+  finding_descs:['Across all 5 service types and 6 cities','171 applications completed — below typical 60–70% service targets','Range: 5.16 (Employment) to 6.69 (Psychological)','105 of 420 applications flagged as priority risk'],
+  section_labels:['KPI Scorecard','Service Distribution','Department Analysis','Geographic Distribution','Risk Assessment','Action Items'],
+  section_titles:['System Performance At a Glance','Application Volume & Completion by Service Type','Processing Time & Workload by Department','Applications by City & Age Group','⚠ Key Risks','✓ Recommendations'],
+  section_texts:[
+    'The system handles 420 applications with a 41% completion rate. The gap between best and worst processing times (5.16–6.69 days) reveals significant operational inequality across service types.',
+    'Social Assistance leads in volume (92) and completion rate (45.6%). Psychological Support has the lowest completion rate (33.7%) and longest processing time — the most systemically strained service.',
+    'Employment & Labour handles the most applications (120) with the best efficiency. Psychological Services (84 applications) has the longest processing time and second-highest refusal rate — capacity constraints driving premature closures.',
+    'Baku (90) and Sumgayit (81) dominate application volume. Young adults (18–35) represent the largest applicant group. Geographic concentration combined with even staff distribution creates structural understaffing in high-demand cities.'],
+  chart_titles:[
+    '<span>Fig 01</span> — Application Volume by Service Type',
+    '<span>Fig 02</span> — Completion Rate by Service (%)',
+    '<span>Fig 03</span> — Avg Processing Time by Department (days)',
+    '<span>Fig 04</span> — Application Volume by City',
+    '<span>Fig 05</span> — Age Distribution of Applicants'],
+  insights:[
+    "<strong>Social Assistance leads in both volume (92) and completion rate (45.6%).</strong> It also has the highest risk flag rate (29.3%), suggesting that the most vulnerable citizens are disproportionately represented here.",
+    "<strong>Psychological Support has the lowest completion rate (33.7%).</strong> Combined with the longest processing time (6.69 days), this service is the most systemically strained — high need, low throughput.",
+    "<strong>Psychological Services dept processes 84 applications yet takes 6.69 days on average</strong> — the longest in the system. The department has the 2nd highest refusal rate (10.7%), suggesting that capacity constraints may be driving premature case closures.",
+    "<strong>Employment & Labour (120 applications) has the best efficiency profile:</strong> fastest processing (5.53 days), highest completion rate (45%), and lowest high-risk proportion. This department should be studied as a benchmark."],
+  risk_titles:['⚠ 59% of cases are not completed','⚠ Psychological Services bottleneck','⚠ Baku and Sumgayit volume concentration'],
+  risk_texts:["With only 41% completion, a large portion of citizens who applied for social services are not receiving them — either due to refusal (8%), still in-progress cases (26%), or systemic delays. <strong>This is a direct equity and service delivery failure.</strong>",
+    "Longest processing time + lowest completion rate + high refusal rate: this department is under critical strain. Failing to address this risks further deterioration as demand for psychological support grows post-pandemic.",
+    "Baku (90) and Sumgayit (81) together account for 40.7% of all applications. If staffing is evenly distributed across cities, these two offices are significantly understaffed relative to their demand."],
+  rec_titles:['→ Reallocate staff to Psychological Services and Baku/Sumgayit offices','→ Set completion rate targets by service type','→ Fast-track high-risk (priority) applications'],
+  rec_texts:["Model the required staff count based on current caseloads and target a 5.5-day maximum processing time for all departments. <strong>Staff reallocation is the fastest lever available without structural changes.</strong>",
+    "The current 41% average is too broad to drive action. Set differentiated targets: Social Assistance ≥50%, Psychological Support ≥40%, Disability Support ≥45%. Track monthly to identify which departments are improving.",
+    "25% of applications are flagged high-risk. Create a separate processing queue for these cases with a 3-day target completion window. <strong>A dedicated high-risk lane exists in most well-functioning case management systems — this should be adopted here.</strong>"]
+},az:{
+  back:'← Portfolioya Qayıt', tag:'Dövlət Sektoru Analizi · Sosial Xidmətlər',
+  title_html:'Sosial Xidmətlərə<br><em>Müraciət Analizi</em>',
+  meta_labels:['Alətlər','Müraciətlər','Xidmət Növləri','Şəhərlər'],
+  jt:'Keç →',
+  qn_labels:['KPI-lər','Xidmət Qarışığı','Dept Yükü','Coğrafiya','⚠ Risklər','✓ Tövsiyələr'],
+  obj_lbl:'Məqsəd:', obj_text:'5 xidmət növü, 6 şəhər və çoxsaylı departament üzrə 420 sosial xidmət müraciətinin axışını xəritəyə çəkmək — tamamlama darboğazlarını, coğrafi konsentrasiyasını və ən yüksək risk xidmət seqmentlərini müəyyənləşdirmək.',
+  kf_lbl:'Əsas Tapıntı:', kf_text:'Müraciətlərin yalnız 41%-i tamamlanır. Psixoloji Dəstək ən uzun emal müddətinə (6.69 gün) və ən aşağı tamamlama dərəcəsinə (33.7%) malikdir. Bakı və Sumqayıt birlikdə bütün müraciətlərin 40.7%-ni təşkil edir.',
+  finding_labels:['Ümumi Müraciət','Tamamlama Dərəcəsi','Orta Emal Günləri','Yüksək Risk İşləri'],
+  finding_descs:['Bütün 5 xidmət növü və 6 şəhər üzrə','171 müraciət tamamlandı — tipik 60–70% xidmət hədəfindən aşağı','Diapazon: 5.16 (Məşğulluq) - 6.69 (Psixoloji)','420-dən 105 müraciət prioritet risk olaraq işarələnib'],
+  section_labels:['KPI Göstərici Cədvəli','Xidmət Bölgüsü','Departament Analizi','Coğrafi Bölgü','Risk Qiymətləndirməsi','Fəaliyyət Addımları'],
+  section_titles:['Sistemin Performansına Ümumi Baxış','Xidmət Növünə Görə Müraciət Həcmi & Tamamlama','Departamente Görə Emal Müddəti & İş Yükü','Şəhər & Yaş Qrupuna Görə Müraciətlər','⚠ Əsas Risklər','✓ Tövsiyələr'],
+  section_texts:[
+    'Sistem 41% tamamlama dərəcəsi ilə 420 müraciəti idarə edir. Ən yaxşı və ən pis emal müddətləri (5.16–6.69 gün) arasındakı fərq xidmət növləri üzrə əhəmiyyətli əməliyyat bərabərsizliyini ortaya qoyur.',
+    'Sosial Yardım həcmdə (92) və tamamlama dərəcəsindədir (45.6%). Psixoloji Dəstəyin tamamlama dərəcəsi ən aşağı (33.7%) və emal müddəti ən uzundur — sistemik cəhətdən ən gərgin xidmət.',
+    'Məşğulluq & Əmək ən çox müraciəti (120) ən yüksək effektivliklə idarə edir. Psixoloji Xidmətlər (84 müraciət) ən uzun emal müddətinə malikdir — güc çatışmazlığı vaxtından əvvəl iş bağlamalarını idarə edir.',
+    'Bakı (90) və Sumqayıt (81) müraciət həcmini üstələyir. Gənc yetkinlər (18–35) ən böyük ərizəçi qrupunu təşkil edir.'],
+  chart_titles:[
+    '<span>Şəkil 01</span> — Xidmət Növünə Görə Müraciət Həcmi',
+    '<span>Şəkil 02</span> — Xidmətə Görə Tamamlama Dərəcəsi (%)',
+    '<span>Şəkil 03</span> — Departamente Görə Orta Emal Müddəti (gün)',
+    '<span>Şəkil 04</span> — Şəhərə Görə Müraciət Həcmi',
+    '<span>Şəkil 05</span> — Ərizəçilərin Yaş Bölgüsü'],
+  insights:[
+    "<strong>Sosial Yardım həm həcmdə (92), həm də tamamlama dərəcəsindədir (45.6%).</strong> Eyni zamanda ən yüksək risk bayrağı dərəcəsinə (29.3%) malikdir — ən həssas vətəndaşların burada orantısız şəkildə təmsil olunduğunu göstərir.",
+    "<strong>Psixoloji Dəstəyin tamamlama dərəcəsi ən aşağıdır (33.7%).</strong> Ən uzun emal müddəti (6.69 gün) ilə birlikdə bu xidmət sistemik cəhətdən ən gərgindir — yüksək ehtiyac, aşağı məhsuldarlıq.",
+    "<strong>Psixoloji Xidmətlər departamenti 84 müraciəti emal edir, lakin orta hesabla 6.69 gün aparır</strong> — sistemin ən uzunu. Departament 2-ci ən yüksək imtina dərəcəsinə (10.7%) malikdir.",
+    "<strong>Məşğulluq & Əmək (120 müraciət) ən yaxşı effektivlik profilinə malikdir:</strong> ən sürətli emal (5.53 gün), ən yüksək tamamlama dərəcəsi (45%) və ən aşağı yüksək risk payı. Bu departament etalon kimi öyrənilməlidir."],
+  risk_titles:['⚠ İşlərin 59%-i tamamlanmır','⚠ Psixoloji Xidmətlər darboğazı','⚠ Bakı və Sumqayıt həcm konsentrasiyası'],
+  risk_texts:["Yalnız 41% tamamlama ilə sosial xidmətlərə müraciət edən vətəndaşların böyük hissəsi onları almır — ya imtina (8%), ya hələ prosesdəki işlər (26%), ya da sistemik gecikmələr səbəbindən. <strong>Bu birbaşa bərabərlik və xidmət çatdırılması uğursuzluğudur.</strong>",
+    "Ən uzun emal müddəti + ən aşağı tamamlama dərəcəsi + yüksək imtina dərəcəsi: bu departament kritik gərginlik altındadır. Bunu həll etməmək pandemiyadan sonra psixoloji dəstəyə tələb artdıqca daha da pisləşmə riski daşıyır.",
+    "Bakı (90) və Sumqayıt (81) birlikdə bütün müraciətlərin 40.7%-ni təşkil edir. Əgər işçilik şəhərlər üzrə bərabər bölünürsə, bu iki ofis tələblərinə nisbətən əhəmiyyətli dərəcədə az işçiyə malikdir."],
+  rec_titles:['→ İşçiləri Psixoloji Xidmətlərə və Bakı/Sumqayıt ofislərinə yenidən yerləşdirin','→ Xidmət növünə görə tamamlama dərəcəsi hədəflərini müəyyənləşdirin','→ Yüksək risk (prioritet) müraciətlərini sürətlə emal edin'],
+  rec_texts:["Cari iş yüklərinə əsaslanaraq lazımi işçi sayını modelləyin və bütün departamentlər üçün maksimum 5.5 günlük emal müddəti hədəfləyin. <strong>İşçilərin yenidən yerləşdirilməsi struktur dəyişikliklərsiz mövcud ən sürətli leverdir.</strong>",
+    "Hazırkı 41% ortalama hərəkəti idarə etmək üçün çox genişdir. Fərqlilləşdirilmiş hədəflər müəyyənləşdirin: Sosial Yardım ≥50%, Psixoloji Dəstək ≥40%, Əlillik Dəstəyi ≥45%. Hansı departamentlərin inkişaf etdiyini müəyyənləşdirmək üçün aylıq izləyin.",
+    "Müraciətlərin 25%-i yüksək risk olaraq işarələnib. Bu işlər üçün 3 günlük hədəf tamamlama pəncərəsi ilə ayrı bir emal növbəsi yaradın. <strong>Ayrılmış yüksək risk zolağı yaxşı işləyən əksər vəziyyəti idarəetmə sistemlərindədir.</strong>"]
+}};
+const CHART_LABELS={en:{
+  'c-service-vol': ['Social Assistance','Disability Support','Psychological Support','Housing','Employment'],
+  'c-completion': ['Employment','Social Assistance','Housing','Disability','Psychological'],
+  'c-dept-time': ['Employment & Labour','Disability Dept','Housing Dept','Social Assistance','Psychological Svcs'],
+  'c-city-vol': ['Baku','Sumgayit','Ganja','Khirdalan','Shaki','Absheron'],
+  'c-age': ['18–25','26–35','36–45','46–55','55+']
+},az:{
+  'c-service-vol': ['Sosial Yardım','Əlillik Dəstəyi','Psixoloji Dəstək','Mənzil','Məşğulluq'],
+  'c-completion': ['Məşğulluq','Sosial Yardım','Mənzil','Əlillik','Psixoloji'],
+  'c-dept-time': ['Məşğulluq & Əmək','Əlillik Dept.','Mənzil Dept.','Sosial Yardım','Psixoloji Xidm.'],
+  'c-city-vol': ['Bakı','Sumqayıt','Gəncə','Xırdalan','Şəki','Abşeron'],
+  'c-age': ['18–25','26–35','36–45','46–55','55+']
+}};
+let lang=localStorage.getItem('portfolioLang')||'en';
+
+function updateProjectCharts(l){
+  const L=CHART_LABELS[l];
+  for(const c of Object.values(Chart.instances||{})){
+    if(!c.canvas) continue;
+    const id=c.canvas.id;
+    if(L[id]){
+      if(Array.isArray(L[id])) c.data.labels=L[id];
+      else if(L[id].labels) c.data.labels=L[id].labels;
+      if(L[id].datasets) L[id].datasets.forEach((d,i)=>{if(c.data.datasets[i])c.data.datasets[i].label=d;});
+      if(L[id].xTitle) c.options.scales.x.title.text=L[id].xTitle;
+      if(L[id].yTitle) c.options.scales.y.title.text=L[id].yTitle;
+      c.update();
+    }
+  }
+}
+
+function applyProjectLang(l){
+  lang=l;localStorage.setItem('portfolioLang',l);
+  document.documentElement.lang=l==='az'?'az':'en';
+  const t=PAGE_T[l];
+  const q=s=>document.querySelector(s);
+  const qa=s=>[...document.querySelectorAll(s)];
+  
+  if(q('#navBack'))q('#navBack').textContent=t.back;
+  const tg=q('.project-tag');if(tg)tg.innerHTML=t.tag;
+  const ti=q('.project-title');if(ti)ti.innerHTML=t.title_html;
+  
+  // Meta
+  const mls=qa('.meta-label');
+  t.meta_labels&&t.meta_labels.forEach((v,i)=>{if(mls[i])mls[i].textContent=v;});
+  
+  // Quick nav
+  const qnl=q('.quick-nav-label');if(qnl)qnl.textContent=t.jt;
+  const qns=qa('.qn-btn');
+  t.qn_labels&&t.qn_labels.forEach((v,i)=>{if(qns[i])qns[i].innerHTML=v;});
+  
+  // Summary
+  const sps=qa('.summary p');
+  if(sps[0]&&t.obj_lbl)sps[0].innerHTML='<strong>'+t.obj_lbl+'</strong> '+t.obj_text;
+  if(sps[1]&&t.kf_lbl)sps[1].innerHTML='<strong>'+t.kf_lbl+'</strong> '+t.kf_text;
+  
+  // Finding cards
+  const fls=qa('.finding-label');const fds=qa('.finding-desc');
+  t.finding_labels&&t.finding_labels.forEach((v,i)=>{if(fls[i])fls[i].textContent=v;});
+  t.finding_descs&&t.finding_descs.forEach((v,i)=>{if(fds[i])fds[i].textContent=v;});
+  
+  // Section labels, titles, texts
+  const cls=qa('.content-label');
+  const cts=qa('.content-title');
+  const ctx=qa('.content-text');
+  const ctit=qa('.chart-title');
+  const ils=qa('.insight-text');
+  
+  t.section_labels&&t.section_labels.forEach((v,i)=>{if(cls[i])cls[i].textContent=v;});
+  t.section_titles&&t.section_titles.forEach((v,i)=>{if(cts[i])cts[i].innerHTML=v;});
+  t.section_texts&&t.section_texts.forEach((v,i)=>{if(ctx[i])ctx[i].textContent=v;});
+  t.chart_titles&&t.chart_titles.forEach((v,i)=>{if(ctit[i])ctit[i].innerHTML=v;});
+  t.insights&&t.insights.forEach((v,i)=>{if(ils[i])ils[i].innerHTML=v;});
+  
+  // Risk/rec blocks
+  qa('.risk-block .block-title').forEach((el,i)=>{if(t.risk_titles&&t.risk_titles[i])el.innerHTML=t.risk_titles[i];});
+  qa('.risk-block .block-text').forEach((el,i)=>{if(t.risk_texts&&t.risk_texts[i])el.innerHTML=t.risk_texts[i];});
+  qa('.rec-block .block-title').forEach((el,i)=>{if(t.rec_titles&&t.rec_titles[i])el.innerHTML=t.rec_titles[i];});
+  qa('.rec-block .block-text').forEach((el,i)=>{if(t.rec_texts&&t.rec_texts[i])el.innerHTML=t.rec_texts[i];});
+  
+  // Table headers
+  const ths=qa('thead th');
+  t.table_headers&&t.table_headers.forEach((v,i)=>{if(ths[i])ths[i].textContent=v;});
+  
+  // Footer
+  const fs=qa('footer span');
+  if(fs[1])fs[1].textContent=l==='az'?'© 2026 — Gənc Data Analitik Portfolio':'© 2026 — Junior Data Analyst Portfolio';
+  
+  
+  
+  
+  
+  updateProjectCharts(l);
+}
+function toggleLang(c){applyProjectLang(c?'az':'en');}
+
+window.addEventListener('load',()=>applyProjectLang(lang));
+applyProjectLang(lang);
+
+function setLang(l){
+  localStorage.setItem('site-lang',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===l));
+  applyProjectLang(l);
+}
+window.addEventListener('load',()=>{
+  const l=localStorage.getItem('site-lang')||'en';
+  setLang(l);
+});
+`
+
+export default function SocialServices() {
+  useEffect(() => {
+    const tag = document.createElement('script')
+    tag.textContent = script
+    document.body.appendChild(tag)
+    return () => { document.body.removeChild(tag) }
+  }, [])
+
+  return (
+    <>
+      <style>{css}</style>
+      {parseWithHandlers(bodyHtml)}
+    </>
+  )
+}
