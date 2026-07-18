@@ -109,9 +109,21 @@ const bodyHtml = `
   <button class="fbtn" onclick="filter('cs',this)" data-en="CS Teacher" data-az="Kompüter müəllimi">CS Teacher</button>
 </div>
 
-<!-- DA -->
+<!-- DA P -->
 <div class="sec-title" data-role-sec="da"><span data-en="Data Analysis" data-az="Data Analiz">Data Analysis</span></div>
 <div class="grid" data-role-grid="da">
+
+  <div class="pcard" data-role="da">
+    <div class="preview" style="background:linear-gradient(135deg,#f5f3ff,#e9e3fd)"><i class="fa-solid fa-bed" style="font-size:2.2rem;color:#7c3aed"></i></div>
+    <div class="card-body">
+      <div class="role-tag" style="background:#e0f2fe;color:#0284c7" data-en="IT Business Analysis" data-az="IT Biznes Analizi">IT Business Analysis</div>
+      <h3 data-en="Hotel Reservation System" data-az="Hotel Rezervasiya Sistemi">Hotel Reservation System</h3>
+      <!-- DATE: add date e.g. "March 2025 · Internship" -->
+      <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
+      <p data-en="Redesigned the cancellation, no-show, and waitlist policies. A 48-hour free-cancel window, automatic penalties, and a two-tier waitlist to stop rooms sitting empty." data-az="Ləğvetmə, no-show və gözləmə siyahısı siyasətlərini yenidən qurdum. 48 saatlıq pulsuz ləğv, avtomatik cərimələr və otaqların boş qalmasının qarşısını alan ikipilləli gözləmə siyahısı.">Redesigned the cancellation, no-show, and waitlist policies. A 48-hour free-cancel window, automatic penalties, and a two-tier waitlist to stop rooms sitting empty.</p>
+      <a href="${import.meta.env.BASE_URL}projects/hotel-reservation" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+    </div>
+  </div>
 
   <div class="pcard" data-role="<div class="pcard" data-role="da">
     <div class="preview" style="background:linear-gradient(135deg,#f5f3ff,#e9e3fd)"><i class="fa-solid fa-building-columns" style="font-size:2.2rem;color:#7c3aed"></i></div>
@@ -403,7 +415,7 @@ export default function Projects() {
     document.body.appendChild(tag)
     return () => { document.body.removeChild(tag) }
   }, [])
-
+ 
   return (
     <>
       <style>{css}</style>
