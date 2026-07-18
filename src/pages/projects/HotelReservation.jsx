@@ -376,8 +376,7 @@ export default function HotelReservation() {
         </div>
         <div className="video-wrap">
   <video controls preload="none">
-    <source src="/videos/hotel-reservation-demo.mp4" type="video/mp4" />
-  </video>
+<source src={`${import.meta.env.BASE_URL}videos/hotel-reservation-demo.mp4`} type="video/mp4" />  </video>
 </div>
       </main>
 
