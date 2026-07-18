@@ -7,7 +7,7 @@ import App from './App.jsx'
 // idempotent (e.g. they create Chart.js instances on mount) — StrictMode's
 // double-invoke-effects-in-dev behavior would break them.
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <BrowserRouter basename="/Personal-Website">
+  <App />
+</BrowserRouter>
 )
