@@ -81,7 +81,7 @@ footer a{color:var(--lav-mid);font-family:'Syne',sans-serif;text-decoration:none
 
 const bodyHtml = `
 <nav>
-  <a href="/" class="nav-logo">R.A.</a>
+  <a href="${import.meta.env.BASE_URL}" class="nav-logo">R.A.</a>
   <div class="nav-links">
     <a href="index.html#about" data-en="About" data-az="Haqqımda">About</a>
     <a href="index.html#experience" data-en="Experience" data-az="Təcrübə">Experience</a>
@@ -121,7 +121,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Compared deposit rates across 5 Azerbaijani banks. Kapital Bank leads at 11.90% — 165 AZN more per year than the market minimum.</p>
-      <a href="/projects/bank-deposits" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/bank-deposits" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -133,7 +133,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Performance model for 6 clinics. The highest-volume doctor also holds 159 complaints — the network's biggest hidden risk.</p>
-      <a href="/projects/clinic-dashboard" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/clinic-dashboard" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -145,7 +145,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>8 pivot analyses across attendance, grades, complaints and dorm payments. Identified a single outlier teacher responsible for most academic failures.</p>
-      <a href="/projects/academic-analytics" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/academic-analytics" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -157,7 +157,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Mapped the Azerbaijani ISO training market: pricing ranges from 50 to 400 AZN for the same certification depending on provider.</p>
-      <a href="/projects/iso-training" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/iso-training" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -169,7 +169,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Analysed sales across 5 regions. Heavy Cosmetics discounts caused a 5,928 AZN loss — hiding a profitability problem.</p>
-      <a href="/projects/regional-sales" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/regional-sales" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -181,7 +181,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Tracked 420 applications. Only 41% completed; 25% flagged high-risk. Processing time varies sharply by department.</p>
-      <a href="/projects/social-services" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/social-services" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -193,7 +193,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Joined 5 tables to analyse booking channels. 60% of cancellations come from agentless bookings — the website's hidden conversion problem.</p>
-      <a href="/projects/travel-booking" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/travel-booking" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -205,7 +205,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Operations and Customer Service carry the highest resignation risk — high workload and low satisfaction scores, not poor performance.</p>
-      <a href="/projects/hr-analytics" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/hr-analytics" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -217,7 +217,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Oracle SQL schema with 15 queries. Overall availability rate: 61%. Mystery and Horror genres top the borrowing charts.</p>
-      <a href="/projects/library" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/library" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -229,7 +229,7 @@ const bodyHtml = `
       <!-- DATE: add date e.g. "March 2025 · Internship" -->
       <p class="card-date" style="font-size:.75rem;color:#9b9bbf;font-family:'Syne',sans-serif;margin:-8px 0 10px;letter-spacing:.04em"><!-- e.g. March 2025 · University Project --></p>
       <p>Applied the Fisher equation to 3 Azerbaijani banks to compare real vs nominal returns. Shows which bank actually beats inflation after tax.</p>
-      <a href="/projects/investment-analysis" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
+      <a href="${import.meta.env.BASE_URL}projects/investment-analysis" class="play-btn" style="background:#7c3aed;color:white;text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i data-en="View Project" data-az="Layihəyə bax"> View Project</a>
     </div>
   </div>
 
@@ -335,7 +335,7 @@ const bodyHtml = `
 </div>
 
 <footer>
-  <a href="/" data-en="← Back to portfolio" data-az="← Portfolioya qayıt">← Back to portfolio</a>
+  <a href="${import.meta.env.BASE_URL}" data-en="← Back to portfolio" data-az="← Portfolioya qayıt">← Back to portfolio</a>
   <p style="margin-top:10px" data-en="Built by Ruqiyya Aghatalibova" data-az="Ruqiyya Ağatalıbova tərəfindən hazırlanıb">Built by Ruqiyya Aghatalibova</p>
 </footer>
 `
