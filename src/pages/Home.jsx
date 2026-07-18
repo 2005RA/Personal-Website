@@ -1120,7 +1120,7 @@ const bodyHtml = `
       <div class="proj-grid reveal" style="margin-top:40px">
 
         <!-- DA -->
-        <div class="pc" data-cat="da" onclick="location.href='project-bank-deposits.html'" style="">
+        <div class="pc" data-cat="da" onclick="location.href='/projects/bank-deposits'" style="">
           <div class="pt" style="background:linear-gradient(135deg,#f5f3ff,#e9e3fd)">
             <i class="fa-solid fa-building-columns pt-icon"></i>
             <span class="pt-type" data-en="Data Analysis" data-az="Data Analiz">Data Analysis</span>

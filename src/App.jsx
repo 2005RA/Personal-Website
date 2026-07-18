@@ -12,6 +12,7 @@ import RegionalSales from './pages/projects/RegionalSales.jsx'
 import SocialServices from './pages/projects/SocialServices.jsx'
 import TravelBooking from './pages/projects/TravelBooking.jsx'
 import HotelReservation from './pages/projects/HotelReservation.jsx'
+import HotelReservation from './pages/projects/hotel-reservation.jsx'
 
 export default function App() {
   return (
@@ -29,6 +30,8 @@ export default function App() {
       <Route path="/projects/social-services" element={<SocialServices />} />
       <Route path="/projects/travel-booking" element={<TravelBooking />} />
       <Route path="/projects/hotel-reservation" element={<HotelReservation />} />
+      <Route path="/projects/hotel-reservation" element={<HotelReservation />} />
+
 
       {/* Safety-net aliases: in case anything still links to the old .html
           filenames (e.g. a browser bookmark, or a URL typed by hand), send
