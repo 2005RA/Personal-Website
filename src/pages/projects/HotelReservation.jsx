@@ -48,14 +48,17 @@ main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
 .content-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
 .content-title{font-family:var(--serif);font-size:1.75rem;margin-bottom:1.25rem;}
 .content-text{color:var(--muted);margin-bottom:2rem;max-width:740px;font-size:0.92rem;}
-.task-steps{list-style:none;counter-reset:step;margin-bottom:2.25rem;max-width:740px;}
-.task-steps li{counter-increment:step;padding:0.65rem 0;border-top:1px solid var(--border);display:flex;gap:0.85rem;font-size:0.9rem;color:var(--muted);}
+.task-wrap{background:var(--bg2);border:1px solid var(--border);padding:2rem 2.25rem;margin-bottom:3rem;}
+.task-intro{color:var(--muted);font-size:0.92rem;margin-bottom:1.25rem;}
+.task-steps{list-style:none;counter-reset:step;margin-bottom:0;}
+.task-steps li{counter-increment:step;padding:0.6rem 0;border-top:1px solid var(--border);display:flex;gap:0.85rem;font-size:0.88rem;color:var(--muted);}
 .task-steps li:first-child{border-top:none;}
-.task-steps li::before{content:counter(step);font-family:var(--mono);font-size:0.72rem;color:var(--accent);flex-shrink:0;margin-top:0.15rem;}
-.task-list{list-style:none;margin-bottom:2.25rem;max-width:740px;}
-.task-list li{padding:0.5rem 0;padding-left:1.25rem;position:relative;font-size:0.9rem;color:var(--muted);}
-.task-list li::before{content:'—';position:absolute;left:0;color:var(--accent);}
-.task-subhead{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);margin-bottom:0.75rem;}
+.task-steps li::before{content:counter(step);font-family:var(--mono);font-size:0.7rem;color:var(--accent);flex-shrink:0;margin-top:0.15rem;}
+.task-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.75rem;}
+.task-grid .risk-block,.task-grid .rec-block{margin-bottom:0;}
+.task-list{list-style:none;}
+.task-list li{padding:0.4rem 0;padding-left:1.1rem;position:relative;font-size:0.85rem;color:var(--muted);}
+.task-list li::before{content:'—';position:absolute;left:0;color:inherit;opacity:0.6;}
 .problem-block{margin-bottom:2.5rem;}
 .problem-num{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
 .risk-block{border:1px solid rgba(239,68,68,0.25);background:rgba(239,68,68,0.05);padding:1.5rem 1.75rem;margin-bottom:0.9rem;}
@@ -130,6 +133,7 @@ footer a{color:var(--accent);text-decoration:none;}
   main{padding:3rem 1.5rem 5rem;}
   .scenario-grid{grid-template-columns:1fr !important;}
   .fc-columns{grid-template-columns:1fr;}
+  .task-grid{grid-template-columns:1fr;}
   .fc-outcomes{grid-template-columns:1fr 1fr;}
 }
 `
@@ -168,6 +172,7 @@ const T = {
       'Ödəniş uğurla tamamlandıqdan sonra rezervasiya təsdiqlənir.',
       'Müştəri rezervasiyanı müəyyən edilmiş qaydalara uyğun olaraq ləğv edə bilər.',
     ],
+    taskProblemsHeading: 'Müşahidə Olunan Problemlər',
     taskProblemsIntro: 'Son aylarda biznes aşağıdakı problemləri müşahidə edib:',
     taskProblems: [
       'Müştərilər rezervasiya etdikləri otaqları son anda ləğv edirlər.',
@@ -175,6 +180,7 @@ const T = {
       'Bu səbəbdən otaqlar uzun müddət boş qalır və hotel gəlir itkisi yaşayır.',
       'Digər tərəfdən, bəzi tarixlərdə otaq olmadığı göstərildiyi üçün yeni müştərilər rezervasiya edə bilmirlər.',
     ],
+    taskReqHeading: 'Biznes Tələbləri',
     taskReqIntro: 'Biznes tələblər:',
     taskRequirements: [
       'Son anda ləğv olunan rezervasiyalar nəticəsində otaqların boş qalmasının qarşısı alınsın.',
@@ -316,6 +322,7 @@ const T = {
       'Once payment is completed successfully, the reservation is confirmed.',
       'The customer can cancel the reservation according to the established rules.',
     ],
+    taskProblemsHeading: 'Observed Problems',
     taskProblemsIntro: 'In recent months, the business has observed the following problems:',
     taskProblems: [
       'Customers cancel their reserved rooms at the last minute.',
@@ -323,6 +330,7 @@ const T = {
       'As a result, rooms stay empty for long periods and the hotel experiences revenue loss.',
       "On top of that, on certain dates new customers can't make a reservation because the system shows no rooms available.",
     ],
+    taskReqHeading: 'Business Requirements',
     taskReqIntro: 'Business requirements:',
     taskRequirements: [
       'Prevent rooms from staying empty as a result of last-minute cancellations.',
@@ -484,26 +492,35 @@ export default function HotelReservation() {
           <p className="content-label">{t.taskLabel}</p>
           <h2 className="content-title">{t.taskTitle}</h2>
         </div>
-        <p className="content-text">{t.taskIntro}</p>
-        <ol className="task-steps">
-          {t.taskSteps.map((step, i) => (
-            <li key={i}>{step}</li>
-          ))}
-        </ol>
 
-        <p className="task-subhead">{t.taskProblemsIntro}</p>
-        <ul className="task-list">
-          {t.taskProblems.map((p, i) => (
-            <li key={i}>{p}</li>
-          ))}
-        </ul>
+        <div className="task-wrap">
+          <p className="task-intro">{t.taskIntro}</p>
+          <ol className="task-steps">
+            {t.taskSteps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
 
-        <p className="task-subhead">{t.taskReqIntro}</p>
-        <ul className="task-list">
-          {t.taskRequirements.map((r, i) => (
-            <li key={i}>{r}</li>
-          ))}
-        </ul>
+          <div className="task-grid">
+            <div className="risk-block">
+              <div className="block-title">⚠ {t.taskProblemsHeading}</div>
+              <p className="block-text" style={{ marginBottom: '0.6rem' }}>{t.taskProblemsIntro}</p>
+              <ul className="task-list">
+                {t.taskProblems.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rec-block">
+              <div className="block-title">✓ {t.taskReqHeading}</div>
+              <ul className="task-list">
+                {t.taskRequirements.map((r, i) => (
+                  <li key={i}>{r}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
 
         <hr className="divider" />
 
