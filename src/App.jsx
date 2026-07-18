@@ -12,7 +12,6 @@ import RegionalSales from './pages/projects/RegionalSales.jsx'
 import SocialServices from './pages/projects/SocialServices.jsx'
 import TravelBooking from './pages/projects/TravelBooking.jsx'
 import HotelReservation from './pages/projects/HotelReservation.jsx'
-import HotelReservation from './pages/projects/hotel-reservation.jsx'
 
 export default function App() {
   return (
