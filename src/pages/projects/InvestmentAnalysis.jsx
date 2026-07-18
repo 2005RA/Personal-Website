@@ -156,9 +156,9 @@ body{}
 
 const bodyHtml = `
 <nav>
-  <a href="/" class="nav-logo">R.A.</a>
+  <a href="${import.meta.env.BASE_URL}" class="nav-logo">R.A.</a>
   <div class="nav-right">
-    <a href="/" class="nav-back" data-i18n="back">← Back</a>
+    <a href="${import.meta.env.BASE_URL}" class="nav-back" data-i18n="back">← Back</a>
     
   </div>
     <div class="lang-pill">
@@ -474,7 +474,7 @@ const bodyHtml = `
 </main>
 
 <footer>
-  <span>← <a href="/" data-i18n="back">← Back to Portfolio</a></span>
+  <span>← <a href="${import.meta.env.BASE_URL}" data-i18n="back">← Back to Portfolio</a></span>
   <span>© 2026 · Junior Data Analyst Portfolio</span>
 </footer>
 `

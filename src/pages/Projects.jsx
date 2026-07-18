@@ -83,10 +83,10 @@ const bodyHtml = `
 <nav>
   <a href="${import.meta.env.BASE_URL}" class="nav-logo">R.A.</a>
   <div class="nav-links">
-    <a href="${import.meta.env.BASE_URL}#about" data-en="About" data-az="Haqqımda">About</a>
-    <a href="${import.meta.env.BASE_URL}#experience" data-en="Experience" data-az="Təcrübə">Experience</a>
-    <a href="${import.meta.env.BASE_URL}#portfolio" data-en="Portfolio" data-az="Portfolio">Portfolio</a>
-    <a href="${import.meta.env.BASE_URL}#contact" data-en="Contact" data-az="Əlaqə">Contact</a>
+    <a href="index.html#about" data-en="About" data-az="Haqqımda">About</a>
+    <a href="index.html#experience" data-en="Experience" data-az="Təcrübə">Experience</a>
+    <a href="index.html#portfolio" data-en="Portfolio" data-az="Portfolio">Portfolio</a>
+    <a href="index.html#contact" data-en="Contact" data-az="Əlaqə">Contact</a>
     
   </div>
     <div class="lang-pill">

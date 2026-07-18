@@ -99,9 +99,9 @@ export default function HotelReservation() {
       <style>{css}</style>
 
       <nav>
-        <a href="/" className="nav-logo">R.A.</a>
+        <a href="${import.meta.env.BASE_URL}" className="nav-logo">R.A.</a>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <a href="/" className="nav-back">← Back to Portfolio</a>
+          <a href="${import.meta.env.BASE_URL}" className="nav-back">← Back to Portfolio</a>
           <span className="lang-badge">AZ</span>
         </div>
       </nav>
@@ -387,7 +387,7 @@ export default function HotelReservation() {
 
       <footer>
         <span>© 2026 — Ruqiyya Aghatalibova</span>
-        <a href="/">Portfolioya qayıt →</a>
+        <a href="${import.meta.env.BASE_URL}">Portfolioya qayıt →</a>
       </footer>
     </>
   )
