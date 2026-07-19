@@ -226,7 +226,7 @@ const css = `
     .photo-inner {
       position:absolute; inset:22px;
       border-radius:55% 45% 50% 50%/48% 55% 45% 52%;
-      /* background:<img src="my_picture.jpg" style="width:100%;height:100%;object-fit:cover">; */
+      /* background:<img src="my_picture.jpg" style="padding-left:15px;width:110%;height:110%;object-fit:cover">; */
       display:flex; align-items:center; justify-content:center;
       flex-direction:column; gap:6px; overflow:hidden;
     }
