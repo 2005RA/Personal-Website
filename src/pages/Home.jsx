@@ -799,7 +799,7 @@ const bodyHtml = `
         <div class="reveal">
           <span class="ey" data-en="Who I am" data-az="Mən kiməm">Who I am</span>
           <h2 class="sec-h"
-              data-en="Data Analyst<em></em>, <br>Teacher<em>CS Student</em>"
+              data-en="<em>With my knowledge and experience, I perform my work more efficiently and achieve fast results.</em>"
               data-az="<em>Bilik və təcrübəmlə işimi daha səmərəli icra edir, sürətli nəticələr əldə edirəm.</em>">
             Data Analyst, Teacher,<em><br>CS student</em>
           </h2>
