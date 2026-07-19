@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Reservation System Improvement — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#faf9f7;--bg2:#ffffff;--bg3:#f0ecff;
+  --border:#e8e4f0;
+  --accent:#7c3aed;--accent2:#059669;--accent3:#ef4444;
+  --text:#1a1a2e;--muted:#4a4a6a;
+  --mono:'Syne',sans-serif;
+  --serif:'Fraunces',serif;
+  --sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(0,0,0,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.028) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;}
+nav,main,footer,.project-hero{position:relative;z-index:1;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 3rem;background:rgba(250,249,247,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--mono);font-size:0.84rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;}
+.nav-back{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.lang-pill{display:flex;background:#EDE9FE;border-radius:20px;padding:3px;}
+.lang-btn{padding:4px 14px;border:none;background:transparent;border-radius:16px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;
+  color:#52525B;transition:all .2s;}
+.lang-btn.active{background:white;color:#7C3AED;box-shadow:0 1px 6px rgba(124,58,237,.14);}
+/* HERO */
+.project-hero{padding:9rem 3rem 4rem;border-bottom:1px solid var(--border);}
+.project-tag{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.project-title{font-family:var(--serif);font-size:clamp(2rem,5.5vw,4.5rem);line-height:1.05;letter-spacing:-0.02em;max-width:900px;}
+.project-title em{font-style:italic;color:var(--accent);}
+.project-meta{display:flex;gap:3rem;margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.5rem;flex-wrap:wrap;}
+.meta-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
+.meta-value{font-family:var(--mono);font-size:0.78rem;color:var(--text);}
+/* QUICK-NAV */
+.quick-nav{position:sticky;top:65px;z-index:50;background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0.65rem 3rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.quick-nav-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;}
+.qn-btn{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.3rem 0.8rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.qn-btn:hover{border-color:var(--accent);color:var(--accent);}
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:4rem 3rem 6rem;}
+.summary{border-left:2px solid var(--accent);padding:1.5rem 2rem;background:var(--bg2);margin-bottom:4rem;}
+.summary p{color:var(--muted);}
+.summary p strong{color:var(--text);}
+.content-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+.content-title{font-family:var(--serif);font-size:1.75rem;margin-bottom:1.25rem;}
+.content-text{color:var(--muted);margin-bottom:2rem;max-width:740px;font-size:0.92rem;}
+.task-wrap{background:var(--bg2);border:1px solid var(--border);padding:2rem 2.25rem;margin-bottom:3rem;}
+.task-intro{color:var(--muted);font-size:0.92rem;margin-bottom:1.25rem;}
+.task-steps{list-style:none;counter-reset:step;margin-bottom:0;}
+.task-steps li{counter-increment:step;padding:0.6rem 0;border-top:1px solid var(--border);display:flex;gap:0.85rem;font-size:0.88rem;color:var(--muted);}
+.task-steps li:first-child{border-top:none;}
+.task-steps li::before{content:counter(step);font-family:var(--mono);font-size:0.7rem;color:var(--accent);flex-shrink:0;margin-top:0.15rem;}
+.task-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.75rem;}
+.task-grid .risk-block,.task-grid .rec-block{margin-bottom:0;}
+.task-list{list-style:none;}
+.task-list li{padding:0.4rem 0;padding-left:1.1rem;position:relative;font-size:0.85rem;color:var(--muted);}
+.task-list li::before{content:'—';position:absolute;left:0;color:inherit;opacity:0.6;}
+.problem-block{margin-bottom:2.5rem;}
+.problem-num{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
+.risk-block{border:1px solid rgba(239,68,68,0.25);background:rgba(239,68,68,0.05);padding:1.5rem 1.75rem;margin-bottom:0.9rem;}
+.rec-block{border:1px solid rgba(5,150,105,0.25);background:rgba(5,150,105,0.06);padding:1.5rem 1.75rem;}
+.block-title{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;}
+.risk-block .block-title{color:var(--accent3);}
+.rec-block .block-title{color:var(--accent2);}
+.block-text{font-size:0.86rem;color:var(--muted);}
+.block-text strong{color:var(--text);}
+.insights-list{list-style:none;margin-top:0.75rem;}
+.insights-list li{padding:0.6rem 0;border-top:1px solid rgba(5,150,105,0.15);display:flex;gap:0.75rem;align-items:flex-start;}
+.insights-list li:first-child{border-top:none;}
+.insight-bullet{font-family:var(--mono);font-size:0.72rem;color:var(--accent2);flex-shrink:0;margin-top:0.1rem;}
+.insight-text{font-size:0.85rem;color:var(--muted);}
+.insight-text strong{color:var(--text);}
+.flow-wrap{background:var(--bg2);border:1px solid var(--border);padding:2.5rem 2rem;margin-bottom:1.5rem;}
+.flow-link{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.75rem;
+  color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);margin-bottom:3rem;}
+.scenario-card{background:var(--bg2);padding:1.75rem 2rem;}
+.scenario-title{font-family:var(--serif);font-size:1.15rem;margin-bottom:1rem;}
+.scenario-row{margin-bottom:0.65rem;font-size:0.86rem;}
+.scenario-row:last-child{margin-bottom:0;}
+.scenario-row span{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:0.2rem;}
+.scenario-row p{color:var(--muted);}
+.video-wrap{background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:1.5rem;}
+.video-wrap video{width:100%;display:block;background:#000;}
+.divider{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+.section-anchor{scroll-margin-top:110px;}
+footer{border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+footer span{font-family:var(--mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;}
+footer a{color:var(--accent);text-decoration:none;}
+
+/* ---- Flowchart ---- */
+.fc{display:flex;flex-direction:column;align-items:center;}
+.fc-shared{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:0.35rem;}
+.fc-node{width:100%;text-align:center;padding:0.85rem 1.25rem;border:1px solid var(--border);background:var(--bg2);
+  font-size:0.83rem;color:var(--text);}
+.fc-node.cap{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;border-radius:30px;padding:0.6rem 1.25rem;}
+.fc-node.end{background:var(--text);color:#fff;}
+.fc-node.decision{background:#fdf6e3;border-color:#e8cf85;font-weight:600;}
+.fc-arrow{font-family:var(--mono);color:var(--muted);font-size:1rem;line-height:1;padding:0.1rem 0;}
+.fc-columns{display:grid;grid-template-columns:1fr 1fr;gap:2rem;width:100%;margin:0.35rem 0 1.25rem;align-items:start;}
+.fc-col{display:flex;flex-direction:column;align-items:center;gap:0.35rem;}
+.fc-col-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  padding:0.3rem 0.9rem;border-radius:20px;margin-bottom:0.3rem;}
+.fc-col-label.yes{background:rgba(5,150,105,0.1);color:var(--accent2);}
+.fc-col-label.no{background:rgba(239,68,68,0.1);color:var(--accent3);}
+.fc-split{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;width:100%;}
+.fc-split .fc-node{font-size:0.74rem;padding:0.7rem 0.6rem;}
+.fc-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;width:100%;}
+.fc-outcome{border:1px solid var(--border);padding:0.7rem 0.5rem;text-align:center;}
+.fc-outcome-title{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4rem;}
+.fc-outcome-text{font-size:0.72rem;color:var(--muted);}
+.fc-outcome.ok{border-color:rgba(5,150,105,.3);background:rgba(5,150,105,.05);}
+.fc-outcome.ok .fc-outcome-title{color:var(--accent2);}
+.fc-outcome.warn{border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.05);}
+.fc-outcome.warn .fc-outcome-title{color:#d97706;}
+.fc-outcome.danger{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05);}
+.fc-outcome.danger .fc-outcome-title{color:var(--accent3);}
+.fc-outcome.success{border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.05);}
+.fc-outcome.success .fc-outcome-title{color:var(--accent);}
+.fc-loop{font-family:var(--mono);font-size:0.66rem;color:var(--accent);text-align:center;padding:0.45rem 0.6rem;
+  border:1px dashed var(--accent);border-radius:6px;}
+.fc-note{font-size:0.72rem;color:var(--muted);text-align:center;}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .project-hero,.quick-nav{padding-left:1.5rem;padding-right:1.5rem;}
+  main{padding:3rem 1.5rem 5rem;}
+  .scenario-grid{grid-template-columns:1fr !important;}
+  .fc-columns{grid-template-columns:1fr;}
+  .task-grid{grid-template-columns:1fr;}
+  .fc-outcomes{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">R.A.</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back" data-i18n="back">← Back to Portfolio</a>
+    <div class="lang-pill">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('az')">AZ</button>
+    </div>
+  </div>
+</nav>
+
+<div class="project-hero">
+  <div class="project-tag" data-i18n="tag">IT Business Analysis · Process Improvement</div>
+  <h1 class="project-title" data-i18n="title_html">Hotel Reservation System<br><em>Improvement</em></h1>
+  <div class="project-meta">
+    <div><div class="meta-label" data-i18n="m1l">Type</div><div class="meta-value" data-i18n="m1v">IT Business Analysis · Case Study</div></div>
+    <div><div class="meta-label" data-i18n="m2l">Tools</div><div class="meta-value" data-i18n="m2v">Process Modeling · Whimsical</div></div>
+    <div><div class="meta-label" data-i18n="m3l">Scope</div><div class="meta-value" data-i18n="m3v">Cancellation · No-show · Waitlist Policies</div></div>
+    <div><div class="meta-label" data-i18n="m4l">Goal</div><div class="meta-value" data-i18n="m4v">Reducing revenue loss from reservation cancellations and empty rooms</div></div>
+  </div>
+</div>
+
+<div class="quick-nav">
+  <span class="quick-nav-label" data-i18n="jt">Jump to →</span>
+  <a class="qn-btn" href="#task" data-i18n="qn1">Task</a>
+  <a class="qn-btn" href="#problem" data-i18n="qn2">Problem Analysis</a>
+  <a class="qn-btn" href="#flow" data-i18n="qn3">Process Flow</a>
+  <a class="qn-btn" href="#scenarios" data-i18n="qn4">Critical Scenarios</a>
+  <a class="qn-btn" href="#video" data-i18n="qn5">Video</a>
+</div>
+
+<main>
+  <div id="task" class="section-anchor">
+    <p class="content-label" data-i18n="taskLabel">Task</p>
+    <h2 class="content-title" data-i18n="taskTitle">Task Description</h2>
+  </div>
+
+  <div class="task-wrap">
+    <p class="task-intro" data-i18n="taskIntro">The company's hotel reservation system is already in use. The current reservation process works as follows:</p>
+    <ol class="task-steps">
+      <li data-i18n="step1">The user selects a hotel and dates.</li>
+      <li data-i18n="step2">The system shows available rooms.</li>
+      <li data-i18n="step3">The user selects a room and creates a reservation.</li>
+      <li data-i18n="step4">Once payment is completed successfully, the reservation is confirmed.</li>
+      <li data-i18n="step5">The customer can cancel the reservation according to the established rules.</li>
+    </ol>
+
+    <div class="task-grid">
+      <div class="risk-block">
+        <div class="block-title">⚠ <span data-i18n="taskProblemsHeading">Observed Problems</span></div>
+        <p class="block-text" style="margin-bottom:0.6rem" data-i18n="taskProblemsIntro">In recent months, the business has observed the following problems:</p>
+        <ul class="task-list">
+          <li data-i18n="prob1">Customers cancel their reserved rooms at the last minute.</li>
+          <li data-i18n="prob2">Some customers make a reservation but never show up at the hotel at all (no-show).</li>
+          <li data-i18n="prob3">As a result, rooms stay empty for long periods and the hotel experiences revenue loss.</li>
+          <li data-i18n="prob4">On top of that, on certain dates new customers can't make a reservation because the system shows no rooms available.</li>
+        </ul>
+      </div>
+      <div class="rec-block">
+        <div class="block-title">✓ <span data-i18n="taskReqHeading">Business Requirements</span></div>
+        <ul class="task-list">
+          <li data-i18n="req1">Prevent rooms from staying empty as a result of last-minute cancellations.</li>
+          <li data-i18n="req2">Reduce the number of no-show cases.</li>
+          <li data-i18n="req3">Ensure that rooms which become available are made accessible to other customers more quickly.</li>
+          <li data-i18n="req4">The new rules must take into account both customer satisfaction and the hotel's revenue.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="summary">
+    <p><strong data-i18n="summaryGoalLabel">Goal:</strong> <span data-i18n="summaryGoal">To propose process improvements that prevent revenue loss caused by last-minute cancellations, no-shows, and rooms left vacant in the hotel reservation system.</span></p>
+    <p style="margin-top:0.75rem"><strong data-i18n="summaryPropLabel">Main Proposal:</strong> <span data-i18n="summaryProp">A 48-hour free-cancellation policy, automatic reminders before check-in, an automatic penalty after a 3-hour grace period for no-shows, and a loyal/regular customer waitlist system for rooms that become available.</span></p>
+  </div>
+
+  <div id="problem" class="section-anchor">
+    <p class="content-label" data-i18n="problemLabel">Problem Analysis</p>
+    <h2 class="content-title" data-i18n="problemTitle">Problem Analysis & Solutions</h2>
+  </div>
+
+  <div class="problem-block">
+    <div class="problem-num"><span data-i18n="problemWord">Problem</span> 1 / 4</div>
+    <div class="risk-block">
+      <div class="block-title" data-i18n="problemBadge">⚠ Problem</div>
+      <p class="block-text" data-i18n="p1_problem">Customers cancel their reserved rooms at the last minute. The main reason is that cancellation carries no penalty at all.</p>
+    </div>
+    <div class="rec-block">
+      <div class="block-title" data-i18n="solutionWord">✓ Solution</div>
+      <p class="block-text" data-i18n="p1_solution">A customer can cancel free of charge up until 48 hours before the check-in date. Cancelling after that deducts one night's room rate plus certain taxes (depending on the hotel) — in line with the cancellation policies used by major chains such as Marriott and Hilton.</p>
+    </div>
+  </div>
+
+  <div class="problem-block">
+    <div class="problem-num"><span data-i18n="problemWord2">Problem</span> 2 / 4</div>
+    <div class="risk-block">
+      <div class="block-title" data-i18n="problemBadge2">⚠ Problem</div>
+      <p class="block-text" data-i18n="p2_problem">Some customers make a reservation but never show up at the hotel at all (no-show). Here too, the main reason is that no penalty is applied.</p>
+    </div>
+    <div class="rec-block">
+      <div class="block-title" data-i18n="solutionWord2">✓ Solution</div>
+      <p class="block-text" data-i18n="p2_solution">SMS/email reminders are sent 48 and 24 hours before check-in. On the check-in day a 3-hour grace period is given; if the guest still hasn't arrived after that, one night's room rate plus taxes is charged as a penalty.</p>
+    </div>
+  </div>
+
+  <div class="problem-block">
+    <div class="problem-num"><span data-i18n="problemWord3">Problem</span> 3 / 4</div>
+    <div class="risk-block">
+      <div class="block-title" data-i18n="problemBadge3">⚠ Problem</div>
+      <p class="block-text" data-i18n="p3_problem">No-shows leave rooms empty for long periods: the status isn't updated automatically in the system (it requires a manual update), and no penalty is applied for no-shows.</p>
+    </div>
+    <div class="rec-block">
+      <div class="block-title" data-i18n="solutionWord3">✓ Solution</div>
+      <ul class="insights-list">
+        <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="p3_sol1">Staff confirm check-in the moment the guest registers; once the grace period ends, the system notifies staff and updates the room status automatically.</span></li>
+        <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="p3_sol2">Once the 3-hour grace period ends, staff confirm the no-show and one night's payment plus taxes is automatically charged to the card on file.</span></li>
+        <li><span class="insight-bullet">03</span><span class="insight-text" data-i18n="p3_sol3">Customers are given 2 rate options: 1) reserve with just a card number — only one night's charge applies on no-show; 2) discounted prepayment — no refund on no-show.</span></li>
+        <li><span class="insight-bullet">04</span><span class="insight-text" data-i18n="p3_sol4">The database is used to analyze no-show/cancellation trends (holidays, vacations, concerts) and customer source (direct site vs. travel agency).</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="problem-block">
+    <div class="problem-num"><span data-i18n="problemWord4">Problem</span> 4 / 4</div>
+    <div class="risk-block">
+      <div class="block-title" data-i18n="problemBadge4">⚠ Problem</div>
+      <p class="block-text" data-i18n="p4_problem">Relying on a single reservation per room is risky — if the guest doesn't show up, it causes both revenue loss and the loss of new customers, since the vacant room still appears as "full."</p>
+    </div>
+    <div class="rec-block">
+      <div class="block-title" data-i18n="solutionWord4">✓ Solution</div>
+      <ul class="insights-list">
+        <li><span class="insight-bullet">01</span><span class="insight-text" data-i18n="p4_sol1">A waitlist for every room: if the first customer doesn't show up or cancels, the next customer is notified with a 30–60 minute window to confirm (in exchange for a small perk, e.g. free breakfast).</span></li>
+        <li><span class="insight-bullet">02</span><span class="insight-text" data-i18n="p4_sol2">A priority waitlist: loyal customers are notified first; if none accept, the slot passes to the regular-customer waitlist.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div id="flow" class="section-anchor">
+    <p class="content-label" data-i18n="flowLabel">Process Flow</p>
+    <h2 class="content-title" data-i18n="flowTitle">Reservation Process Diagram</h2>
+    <p class="content-text" data-i18n="flowText">The entire process — from room search to rate selection, the waitlist, and no-show handling — is mapped out below.</p>
+  </div>
+
+  <div class="flow-wrap">
+    <div class="fc">
+      <div class="fc-shared">
+        <div class="fc-node cap" data-i18n="fc_start">Customer selects hotel & dates</div>
+        <div class="fc-arrow">↓</div>
+        <div class="fc-node" data-i18n="fc_search">System shows available rooms</div>
+        <div class="fc-arrow">↓</div>
+        <div class="fc-node decision" data-i18n="fc_available">Is a room available?</div>
+      </div>
+
+      <div class="fc-columns">
+        <!-- LEFT — room not available -->
+        <div class="fc-col">
+          <div class="fc-col-label no" data-i18n="fc_no">No</div>
+          <div class="fc-node decision" data-i18n="fc_custType">Customer type?</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-split">
+            <div class="fc-node" data-i18n="fc_newCust">New / regular customer</div>
+            <div class="fc-node" data-i18n="fc_loyalCust">Loyal customer (priority)</div>
+          </div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node" data-i18n="fc_waitlist">Added to waitlist (payment pre-authorized)</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node" data-i18n="fc_notifyFirst">First customer gets a bonus offer, 30–60 min to respond</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node decision" data-i18n="fc_confirmed">Confirmed within 30 min?</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-split">
+            <div class="fc-node" data-i18n="fc_confirmedYes">✓ Reservation is created, rate is chosen → joins the flow on the right</div>
+            <div class="fc-node" data-i18n="fc_confirmedNo">✕ Removed from the list, next customer is notified</div>
+          </div>
+          <div class="fc-loop" data-i18n="fc_loopNext">↻ repeats for the next customer</div>
+        </div>
+
+        <!-- RIGHT — room available -->
+        <div class="fc-col">
+          <div class="fc-col-label yes" data-i18n="fc_yes">Yes</div>
+          <div class="fc-node decision" data-i18n="fc_rateChoice">Rate selection</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-split">
+            <div class="fc-node" data-i18n="fc_flexRate">Flexible (refundable) — free cancellation up to 48h</div>
+            <div class="fc-node" data-i18n="fc_discRate">Discounted — non-refundable, 10–20% cheaper</div>
+          </div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node" data-i18n="fc_confirm">Reservation confirmed, notification sent</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node" data-i18n="fc_reminders">Automatic reminder 48h and 24h before check-in</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-node decision" data-i18n="fc_whatDoes">What does the customer do?</div>
+          <div class="fc-arrow">↓</div>
+          <div class="fc-outcomes">
+            <div class="fc-outcome ok">
+              <div class="fc-outcome-title" data-i18n="fc_out1t">On-time cancel (48h+)</div>
+              <div class="fc-outcome-text" data-i18n="fc_out1">No penalty</div>
+            </div>
+            <div class="fc-outcome warn">
+              <div class="fc-outcome-title" data-i18n="fc_out2t">Late cancel (&lt;48h)</div>
+              <div class="fc-outcome-text" data-i18n="fc_out2">1 night's rate + taxes</div>
+            </div>
+            <div class="fc-outcome danger">
+              <div class="fc-outcome-title" data-i18n="fc_out3t">No-show (grace period over)</div>
+              <div class="fc-outcome-text" data-i18n="fc_out3">1 night's rate + taxes</div>
+            </div>
+            <div class="fc-outcome success">
+              <div class="fc-outcome-title" data-i18n="fc_out4t">Check-in</div>
+              <div class="fc-outcome-text" data-i18n="fc_out4">Successful stay</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-shared">
+        <div class="fc-arrow">↓</div>
+        <div class="fc-node" data-i18n="fc_merge">For the first 3 outcomes, room status updates to "available" in real time</div>
+        <div class="fc-arrow">↓</div>
+        <div class="fc-node decision" data-i18n="fc_waitlistCheck">Is anyone on the waitlist?</div>
+        <div class="fc-arrow">↓</div>
+        <div class="fc-split" style="max-width:560px">
+          <div class="fc-loop" data-i18n="fc_loopBack">↻ Yes — the next customer is notified (loops back to the step above)</div>
+          <div class="fc-node" data-i18n="fc_generalSearch">No — the room appears in general search results</div>
+        </div>
+        <div class="fc-arrow">↓</div>
+        <div class="fc-node cap end" data-i18n="fc_end">End of process</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-bottom:3rem">
+    <a class="flow-link" href="https://whimsical.com/ruqeyya-a/hotel-birbank-GeWD7LW7sPdoGkaPCWcASS" target="_blank" rel="noopener noreferrer" data-i18n="flowLink">View the interactive diagram (Whimsical) ↗</a>
+  </p>
+
+  <hr class="divider"/>
+
+  <div id="scenarios" class="section-anchor">
+    <p class="content-label" data-i18n="scenariosLabel">Critical Scenarios</p>
+    <h2 class="content-title" data-i18n="scenariosTitle">4 Key Scenarios</h2>
+  </div>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <div class="scenario-title" data-i18n="s1_title">1. On-Time Cancellation</div>
+      <div class="scenario-row"><span data-i18n="rowLabel_situation">Situation</span><p data-i18n="s1_situation">The customer cancels the reservation up to 48 hours before check-in.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_system">System</span><p data-i18n="s1_system">No penalty is applied at all. The system first checks the loyal-customer waitlist, then, if empty, notifies the first customer on the regular waitlist. If both lists are empty, the room is marked "available" in the system.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_result">Result</span><p data-i18n="s1_result">The room doesn't stay empty and no payment is lost.</p></div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title" data-i18n="s2_title">2. Last-Minute Cancellation</div>
+      <div class="scenario-row"><span data-i18n="rowLabel_situation2">Situation</span><p data-i18n="s2_situation">The customer cancels the reservation 24 hours before check-in.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_system2">System</span><p data-i18n="s2_system">A penalty is applied depending on the payment type: for a card-only reservation, one night's room rate plus taxes is charged automatically; for a discounted prepayment, the reservation is cancelled and the payment is not refunded.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_result2">Result</span><p data-i18n="s2_result">The hotel doesn't lose revenue.</p></div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title" data-i18n="s3_title">3. No-show</div>
+      <div class="scenario-row"><span data-i18n="rowLabel_situation3">Situation</span><p data-i18n="s3_situation">The guest still hasn't arrived after the 3-hour grace period on the check-in day.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_system3">System</span><p data-i18n="s3_system">A penalty is applied according to the rate type. If there's a customer on the waitlist, they're notified — otherwise the room's status updates to "available."</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_result3">Result</span><p data-i18n="s3_result">The hotel doesn't experience revenue loss.</p></div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title" data-i18n="s4_title">4. Joining the Waitlist</div>
+      <div class="scenario-row"><span data-i18n="rowLabel_situation4">Situation</span><p data-i18n="s4_situation">The room the customer wants to book is already full.</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_system4">System</span><p data-i18n="s4_system">The system identifies the customer type (loyal/regular) and offers to add them to the matching waitlist in exchange for a small perk (e.g. free breakfast).</p></div>
+      <div class="scenario-row"><span data-i18n="rowLabel_result4">Result</span><p data-i18n="s4_result">When the room becomes available, a notification is sent. If confirmed within 30–60 minutes, payment is charged per the chosen rate — the hotel loses neither the revenue nor the customer.</p></div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div id="video" class="section-anchor">
+    <p class="content-label" data-i18n="videoLabel">Video</p>
+    <h2 class="content-title" data-i18n="videoTitle">Project Walkthrough</h2>
+    <p class="content-text" data-i18n="videoText">A short video walkthrough of the project.</p>
+  </div>
+  <div class="video-wrap">
+    <video controls preload="none">
+      <source src="videos/hotel-reservation-demo.mp4" type="video/mp4"/>
+    </video>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 — Ruqiyya Aghatalibova</span>
+  <a href="index.html" data-i18n="footerBack">Back to Portfolio →</a>
+</footer>
+
+<script>
+let lang = localStorage.getItem('site-lang') || 'en';
+
+const T = {
+  en: {
+    back:'← Back to Portfolio',
+    tag:'IT Business Analysis · Process Improvement',
+    title_html:'Hotel Reservation System<br><em>Improvement</em>',
+    m1l:'Type',m1v:'IT Business Analysis · Case Study',
+    m2l:'Tools',m2v:'Process Modeling · Whimsical',
+    m3l:'Scope',m3v:'Cancellation · No-show · Waitlist Policies',
+    m4l:'Goal',m4v:'Reducing revenue loss from reservation cancellations and empty rooms',
+    jt:'Jump to →',qn1:'Task',qn2:'Problem Analysis',qn3:'Process Flow',qn4:'Critical Scenarios',qn5:'Video',
+    taskLabel:'Task',taskTitle:'Task Description',
+    taskIntro:"The company's hotel reservation system is already in use. The current reservation process works as follows:",
+    step1:'The user selects a hotel and dates.',
+    step2:'The system shows available rooms.',
+    step3:'The user selects a room and creates a reservation.',
+    step4:'Once payment is completed successfully, the reservation is confirmed.',
+    step5:'The customer can cancel the reservation according to the established rules.',
+    taskProblemsHeading:'Observed Problems',
+    taskProblemsIntro:'In recent months, the business has observed the following problems:',
+    prob1:'Customers cancel their reserved rooms at the last minute.',
+    prob2:'Some customers make a reservation but never show up at the hotel at all (no-show).',
+    prob3:'As a result, rooms stay empty for long periods and the hotel experiences revenue loss.',
+    prob4:"On top of that, on certain dates new customers can't make a reservation because the system shows no rooms available.",
+    taskReqHeading:'Business Requirements',
+    req1:'Prevent rooms from staying empty as a result of last-minute cancellations.',
+    req2:'Reduce the number of no-show cases.',
+    req3:'Ensure that rooms which become available are made accessible to other customers more quickly.',
+    req4:"The new rules must take into account both customer satisfaction and the hotel's revenue.",
+    summaryGoalLabel:'Goal:',
+    summaryGoal:'To propose process improvements that prevent revenue loss caused by last-minute cancellations, no-shows, and rooms left vacant in the hotel reservation system.',
+    summaryPropLabel:'Main Proposal:',
+    summaryProp:'A 48-hour free-cancellation policy, automatic reminders before check-in, an automatic penalty after a 3-hour grace period for no-shows, and a loyal/regular customer waitlist system for rooms that become available.',
+    problemLabel:'Problem Analysis',problemTitle:'Problem Analysis & Solutions',
+    problemWord:'Problem',problemWord2:'Problem',problemWord3:'Problem',problemWord4:'Problem',
+    solutionWord:'✓ Solution',solutionWord2:'✓ Solution',solutionWord3:'✓ Solution',solutionWord4:'✓ Solution',
+    problemBadge:'⚠ Problem',problemBadge2:'⚠ Problem',problemBadge3:'⚠ Problem',problemBadge4:'⚠ Problem',
+    p1_problem:'Customers cancel their reserved rooms at the last minute. The main reason is that cancellation carries no penalty at all.',
+    p1_solution:"A customer can cancel free of charge up until 48 hours before the check-in date. Cancelling after that deducts one night's room rate plus certain taxes (depending on the hotel) — in line with the cancellation policies used by major chains such as Marriott and Hilton.",
+    p2_problem:'Some customers make a reservation but never show up at the hotel at all (no-show). Here too, the main reason is that no penalty is applied.',
+    p2_solution:"SMS/email reminders are sent 48 and 24 hours before check-in. On the check-in day a 3-hour grace period is given; if the guest still hasn't arrived after that, one night's room rate plus taxes is charged as a penalty.",
+    p3_problem:"No-shows leave rooms empty for long periods: the status isn't updated automatically in the system (it requires a manual update), and no penalty is applied for no-shows.",
+    p3_sol1:'Staff confirm check-in the moment the guest registers; once the grace period ends, the system notifies staff and updates the room status automatically.',
+    p3_sol2:"Once the 3-hour grace period ends, staff confirm the no-show and one night's payment plus taxes is automatically charged to the card on file.",
+    p3_sol3:'Customers are given 2 rate options: 1) reserve with just a card number — only one night\'s charge applies on no-show; 2) discounted prepayment — no refund on no-show.',
+    p3_sol4:'The database is used to analyze no-show/cancellation trends (holidays, vacations, concerts) and customer source (direct site vs. travel agency).',
+    p4_problem:'Relying on a single reservation per room is risky — if the guest doesn\'t show up, it causes both revenue loss and the loss of new customers, since the vacant room still appears as "full."',
+    p4_sol1:"A waitlist for every room: if the first customer doesn't show up or cancels, the next customer is notified with a 30–60 minute window to confirm (in exchange for a small perk, e.g. free breakfast).",
+    p4_sol2:'A priority waitlist: loyal customers are notified first; if none accept, the slot passes to the regular-customer waitlist.',
+    flowLabel:'Process Flow',flowTitle:'Reservation Process Diagram',
+    flowText:'The entire process — from room search to rate selection, the waitlist, and no-show handling — is mapped out below.',
+    flowLink:'View the interactive diagram (Whimsical) ↗',
+    fc_start:'Customer selects hotel & dates',fc_search:'System shows available rooms',fc_available:'Is a room available?',
+    fc_no:'No',fc_yes:'Yes',fc_custType:'Customer type?',fc_newCust:'New / regular customer',fc_loyalCust:'Loyal customer (priority)',
+    fc_waitlist:'Added to waitlist (payment pre-authorized)',fc_notifyFirst:'First customer gets a bonus offer, 30–60 min to respond',
+    fc_confirmed:'Confirmed within 30 min?',fc_confirmedYes:'✓ Reservation is created, rate is chosen → joins the flow on the right',
+    fc_confirmedNo:'✕ Removed from the list, next customer is notified',fc_loopNext:'↻ repeats for the next customer',
+    fc_rateChoice:'Rate selection',fc_flexRate:'Flexible (refundable) — free cancellation up to 48h',fc_discRate:'Discounted — non-refundable, 10–20% cheaper',
+    fc_confirm:'Reservation confirmed, notification sent',fc_reminders:'Automatic reminder 48h and 24h before check-in',
+    fc_whatDoes:'What does the customer do?',
+    fc_out1t:'On-time cancel (48h+)',fc_out1:'No penalty',
+    fc_out2t:'Late cancel (<48h)',fc_out2:"1 night's rate + taxes",
+    fc_out3t:'No-show (grace period over)',fc_out3:"1 night's rate + taxes",
+    fc_out4t:'Check-in',fc_out4:'Successful stay',
+    fc_merge:'For the first 3 outcomes, room status updates to "available" in real time',
+    fc_waitlistCheck:'Is anyone on the waitlist?',
+    fc_loopBack:'↻ Yes — the next customer is notified (loops back to the step above)',
+    fc_generalSearch:'No — the room appears in general search results',
+    fc_end:'End of process',
+    scenariosLabel:'Critical Scenarios',scenariosTitle:'4 Key Scenarios',
+    rowLabel_situation:'Situation',rowLabel_system:'System',rowLabel_result:'Result',
+    rowLabel_situation2:'Situation',rowLabel_system2:'System',rowLabel_result2:'Result',
+    rowLabel_situation3:'Situation',rowLabel_system3:'System',rowLabel_result3:'Result',
+    rowLabel_situation4:'Situation',rowLabel_system4:'System',rowLabel_result4:'Result',
+    s1_title:'1. On-Time Cancellation',
+    s1_situation:'The customer cancels the reservation up to 48 hours before check-in.',
+    s1_system:'No penalty is applied at all. The system first checks the loyal-customer waitlist, then, if empty, notifies the first customer on the regular waitlist. If both lists are empty, the room is marked "available" in the system.',
+    s1_result:"The room doesn't stay empty and no payment is lost.",
+    s2_title:'2. Last-Minute Cancellation',
+    s2_situation:'The customer cancels the reservation 24 hours before check-in.',
+    s2_system:"A penalty is applied depending on the payment type: for a card-only reservation, one night's room rate plus taxes is charged automatically; for a discounted prepayment, the reservation is cancelled and the payment is not refunded.",
+    s2_result:"The hotel doesn't lose revenue.",
+    s3_title:'3. No-show',
+    s3_situation:"The guest still hasn't arrived after the 3-hour grace period on the check-in day.",
+    s3_system:'A penalty is applied according to the rate type. If there\'s a customer on the waitlist, they\'re notified — otherwise the room\'s status updates to "available."',
+    s3_result:"The hotel doesn't experience revenue loss.",
+    s4_title:'4. Joining the Waitlist',
+    s4_situation:'The room the customer wants to book is already full.',
+    s4_system:'The system identifies the customer type (loyal/regular) and offers to add them to the matching waitlist in exchange for a small perk (e.g. free breakfast).',
+    s4_result:"When the room becomes available, a notification is sent. If confirmed within 30–60 minutes, payment is charged per the chosen rate — the hotel loses neither the revenue nor the customer.",
+    videoLabel:'Video',videoTitle:'Project Walkthrough',videoText:'A short video walkthrough of the project.',
+    footerBack:'Back to Portfolio →',
+  },
+  az: {
+    back:'← Portfolioya qayıt',
+    tag:'IT Biznes Analizi · Proses Təkmilləşdirilməsi',
+    title_html:'Hotel Rezervasiya Sisteminin<br><em>Təkmilləşdirilməsi</em>',
+    m1l:'Növ',m1v:'IT Biznes Analiz · Case Study',
+    m2l:'Alətlər',m2v:'Proses Modelləşdirmə · Whimsical',
+    m3l:'Sahə',m3v:'Ləğvetmə · No-show · Gözləmə Siyahısı Siyasətləri',
+    m4l:'Məqsəd',m4v:'Rezervasiya ləğvləri və boş qalan otaqlardan yaranan gəlir itkisinin azaldılması',
+    jt:'Keç →',qn1:'Tapşırıq',qn2:'Problem Analizi',qn3:'Proses Axını',qn4:'Kritik Ssenarilər',qn5:'Video',
+    taskLabel:'Tapşırıq',taskTitle:'Taskın Təsviri',
+    taskIntro:'Şirkətin hotel rezervasiya sistemi artıq istifadədədir. Hazırda rezervasiya prosesi aşağıdakı kimidir:',
+    step1:'İstifadəçi hotel və tarixləri seçir.',
+    step2:'Sistem uyğun otaqları göstərir.',
+    step3:'İstifadəçi otağı seçərək rezervasiya yaradır.',
+    step4:'Ödəniş uğurla tamamlandıqdan sonra rezervasiya təsdiqlənir.',
+    step5:'Müştəri rezervasiyanı müəyyən edilmiş qaydalara uyğun olaraq ləğv edə bilər.',
+    taskProblemsHeading:'Müşahidə Olunan Problemlər',
+    taskProblemsIntro:'Son aylarda biznes aşağıdakı problemləri müşahidə edib:',
+    prob1:'Müştərilər rezervasiya etdikləri otaqları son anda ləğv edirlər.',
+    prob2:'Bəzi müştərilər rezervasiya etsələr də, ümumiyyətlə hotelə gəlmirlər (No show).',
+    prob3:'Bu səbəbdən otaqlar uzun müddət boş qalır və hotel gəlir itkisi yaşayır.',
+    prob4:'Digər tərəfdən, bəzi tarixlərdə otaq olmadığı göstərildiyi üçün yeni müştərilər rezervasiya edə bilmirlər.',
+    taskReqHeading:'Biznes Tələbləri',
+    req1:'Son anda ləğv olunan rezervasiyalar nəticəsində otaqların boş qalmasının qarşısı alınsın.',
+    req2:'No show hallarının sayı azaldılsın.',
+    req3:'Boşalan otaqların digər müştərilər üçün daha operativ şəkildə əlçatan olması təmin edilsin.',
+    req4:'Yeni qaydalar həm müştəri məmnuniyyətini, həm də hotelin gəlirlərini nəzərə almalıdır.',
+    summaryGoalLabel:'Məqsəd:',
+    summaryGoal:'Otel rezervasiya sistemində son anda ləğvetmə, no-show halları və boş qalan otaqlardan yaranan gəlir itkisinin qarşısını almaq üçün proses təkmilləşdirmələri təklif etmək.',
+    summaryPropLabel:'Əsas Təklif:',
+    summaryProp:'48 saatlıq ödənişsiz ləğvetmə siyasəti, check-in öncəsi avtomatik xatırlatmalar, no-show üçün 3 saatlıq güzəşt müddəti ilə avtomatik cərimə, və boşalan otaqlar üçün sadiq/adi müştəri gözləmə siyahısı sistemi.',
+    problemLabel:'Problem Analizi',problemTitle:'Problem Analizi və Həll',
+    problemWord:'Problem',problemWord2:'Problem',problemWord3:'Problem',problemWord4:'Problem',
+    solutionWord:'✓ Həll',solutionWord2:'✓ Həll',solutionWord3:'✓ Həll',solutionWord4:'✓ Həll',
+    problemBadge:'⚠ Problem',problemBadge2:'⚠ Problem',problemBadge3:'⚠ Problem',problemBadge4:'⚠ Problem',
+    p1_problem:'Müştərilər rezervasiya etdikləri otaqları son anda ləğv edirlər. Əsas səbəb — ləğvin heç bir cəriməsi olmamasıdır.',
+    p1_solution:'Müştəri check-in tarixindən 48 saat əvvələ qədər ödənişsiz ləğv edə bilər. 48 saatdan sonra ləğv edərsə 1 gecəlik otaq haqqı və oteldən asılı olaraq müəyyən vergilər tutulur — Marriott və Hilton kimi böyük otellərdə tətbiq olunan ləğvetmə siyasətinə uyğun olaraq.',
+    p2_problem:'Bəzi müştərilər rezervasiya etsələr də ümumiyyətlə otelə gəlmirlər (No-show). Bunun da əsas səbəbi cərimə tətbiq olunmamasıdır.',
+    p2_solution:'Check-in tarixindən 48 və 24 saat əvvəl SMS/mail xatırlatması göndərilir. Check-in günü 3 saatlıq güzəşt müddəti verilir; bu müddət ərzində də gəlmirsə, 1 gecəlik otaq haqqı və vergilər ilə cərimə edilir.',
+    p3_problem:'No-show halları uzun müddət boş qalan otaqlara səbəb olur: status sistemdə avtomatik yenilənmir (manual güncəllənmə tələb edir) və no-show üçün cərimə tətbiq olunmur.',
+    p3_sol1:'Əməkdaş check-in zamanı qeydiyyatı anında təsdiqləyir; güzəşt vaxtı bitdikdə sistem əməkdaşa bildiriş göndərib statusu avtomatik yeniləyir.',
+    p3_sol2:'3 saatlıq güzəşt bitdikdə no-show əməkdaş tərəfindən təsdiqlənir və 1 gecəlik ödəniş + vergilər qeydiyyat kartından avtomatik çıxılır.',
+    p3_sol3:'Müştəriyə 2 tarif seçimi: 1) kart nömrəsi ilə rezerv — no-show halında yalnız 1 gecəlik haqq tutulur; 2) endirimli tam ödəniş — no-show halında ödəniş geri qaytarılmır.',
+    p3_sol4:'Databaza əsasında no-show/ləğvetmə trendləri (bayramlar, tətillər, konsertlər) və müştəri mənbəyi (birbaşa sayt / agentlik) təhlil olunur.',
+    p4_problem:'Bir otaq üçün yalnız bir rezervasiyanın olması risklidir — müştəri gəlmədikdə həm gəlir itkisi, həm də yeni müştərilər üçün "dolu" görünən boş otaq itkisi yaranır.',
+    p4_sol1:'Hər otaq üçün gözləmə siyahısı: ilk müştəri gəlməzsə/ləğv etsə, növbəti müştəriyə 30–60 dəqiqəlik təsdiq müddəti ilə bildiriş göndərilir (kiçik bonuslar — pulsuz səhər yeməyi və s. — qarşılığında).',
+    p4_sol2:'Prioritet gözləmə siyahısı: sadiq müştərilər əvvəlcə bildiriş alır, qəbul etmədikdə növbə adi müştərilərin siyahısına keçir.',
+    flowLabel:'Proses Axını',flowTitle:'Rezervasiya Proses Diaqramı',
+    flowText:'Bütün proses — otaq axtarışından tutmuş tarif seçiminə, gözləmə siyahısına və no-show halına qədər — aşağıdakı sxemdə göstərilib.',
+    flowLink:'İnteraktiv diaqrama bax (Whimsical) ↗',
+    fc_start:'Müştəri hotel və tarixləri seçir',fc_search:'Sistem uyğun otaqları göstərir',fc_available:'Otaq mövcuddur?',
+    fc_no:'Xeyr',fc_yes:'Bəli',fc_custType:'Müştəri tipi?',fc_newCust:'Adi / yeni müştəri',fc_loyalCust:'Sadiq müştəri (prioritet)',
+    fc_waitlist:'Ehtiyat siyahısına yazılma (ödəniş ön-təsdiqi)',fc_notifyFirst:'İlk müştəriyə bonuslu bildiriş, 30–60 dəq cavab müddəti',
+    fc_confirmed:'30 dəq ərzində təsdiqlədimi?',fc_confirmedYes:'✓ Rezervasiya yaranır, tarif seçilir → sağdakı axına keçir',
+    fc_confirmedNo:'✕ Siyahıdan çıxarılır, növbəti müştəriyə bildiriş göndərilir',fc_loopNext:'↻ növbəti müştəriyə təkrarlanır',
+    fc_rateChoice:'Tarif seçimi',fc_flexRate:'Sərbəst (refundable) — 48 saat pulsuz ləğv',fc_discRate:'Endirimli — geri qaytarılmayan, 10–20% ucuz',
+    fc_confirm:'Rezervasiya təsdiqlənir, bildiriş göndərilir',fc_reminders:'48 saat və 24 saat əvvəl avtomatik xatırlatma',
+    fc_whatDoes:'Müştəri nə edir?',
+    fc_out1t:'Vaxtında ləğv (48h+)',fc_out1:'Cərimə yoxdur',
+    fc_out2t:'Son anda ləğv (<48h)',fc_out2:'1 gecəlik haqq + vergi',
+    fc_out3t:'No-show (güzəşt bitib)',fc_out3:'1 gecəlik haqq + vergi',
+    fc_out4t:'Check-in',fc_out4:'Uğurlu qonaqlama',
+    fc_merge:'İlk 3 nəticədə otaq statusu real-time "əlçatan" olur',
+    fc_waitlistCheck:'Ehtiyat siyahısında müştəri var?',
+    fc_loopBack:'↻ Bəli — növbəti müştəriyə bildiriş göndərilir (yuxarıdakı addıma qayıdır)',
+    fc_generalSearch:'Xeyr — otaq ümumi axtarış nəticələrində göstərilir',
+    fc_end:'Prosesin sonu',
+    scenariosLabel:'Kritik Ssenarilər',scenariosTitle:'4 Əsas Ssenari',
+    rowLabel_situation:'Vəziyyət',rowLabel_system:'Sistem',rowLabel_result:'Nəticə',
+    rowLabel_situation2:'Vəziyyət',rowLabel_system2:'Sistem',rowLabel_result2:'Nəticə',
+    rowLabel_situation3:'Vəziyyət',rowLabel_system3:'Sistem',rowLabel_result3:'Nəticə',
+    rowLabel_situation4:'Vəziyyət',rowLabel_system4:'Sistem',rowLabel_result4:'Nəticə',
+    s1_title:'1. Vaxtında Ləğvetmə',
+    s1_situation:'Müştəri check-in-dən 48 saat öncəyə qədər rezervasiyanı ləğv edir.',
+    s1_system:'Heç bir cərimə tətbiq olunmur. Sistem əvvəlcə sadiq müştərilərin gözləmə siyahısını, orada müştəri olmadıqda isə adi müştərilərin siyahısındakı ilk müştəriyə bildiriş göndərir. Hər iki siyahı boşdursa, otaq sistemdə "əlçatan" olaraq qeyd edilir.',
+    s1_result:'Otaq boş qalmır və ödəniş itkisi yaşanmır.',
+    s2_title:'2. Son Anda Ləğvetmə',
+    s2_situation:'Müştəri rezervasiyanı check-in-ə 24 saat qalmış ləğv edir.',
+    s2_system:'Ödəniş növündən asılı olaraq cərimə tətbiq edilir: kart nömrəsi ilə rezervdə 1 gecəlik otaq haqqı və vergilər avtomatik tutulur; endirimli tam ödənişdə isə rezervasiya ləğv olunur və ödəniş geri qaytarılmır.',
+    s2_result:'Otel gəlir itirmir.',
+    s3_title:'3. No-show Halı',
+    s3_situation:'Müştəri check-in günü 3 saatlıq güzəşt müddəti bitsə də otelə gəlmir.',
+    s3_system:'Tarifdən asılı olaraq cərimə tətbiq olunur. Gözləmə siyahısında müştəri varsa ona bildiriş göndərilir, yoxdursa otağın statusu "əlçatan" olaraq yenilənir.',
+    s3_result:'Otel gəlir itkisi yaşamır.',
+    s4_title:'4. Ehtiyat Siyahısına Yazılma',
+    s4_situation:'Müştərinin rezerv etmək istədiyi otaq artıq doludur.',
+    s4_system:'Sistem müştərinin tipini (sadiq/adi) müəyyən edir və kiçik bir bonus qarşılığında (məsələn, ödənişsiz səhər yeməyi) uyğun gözləmə siyahısına yazılmağı təklif edir.',
+    s4_result:'Otaq boşaldıqda bildiriş göndərilir. 30–60 dəqiqə ərzində təsdiq edildiyi halda tarifə əsasən ödəniş tutulur — otel nə gəlir, nə də müştəri itirmir.',
+    videoLabel:'Video',videoTitle:'Layihə Təqdimatı',videoText:'Layihənin qısa video izahı.',
+    footerBack:'Portfolioya qayıt →',
+  }
+};
+
+function applyLang(l){
+  lang = l;
+  localStorage.setItem('site-lang', l);
+  document.documentElement.lang = l==='az'?'az':'en';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(T[l][k]!==undefined) el.innerHTML=T[l][k];
+  });
+}
+
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.textContent.trim().toLowerCase()===l));
+  applyLang(l);
+}
+
+window.addEventListener('load', ()=>{
+  setLang(lang);
+});
+</script>
+</body>
+</html>
