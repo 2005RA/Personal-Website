@@ -439,6 +439,8 @@
       color:var(--ink-3); width:100px; text-align:right; flex-shrink:0;
     }
 
+    
+
     /* Courses */
     .courses-row {
       display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
@@ -710,8 +712,21 @@
     .cert-lb-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;backdrop-filter:blur(4px);}
     .cert-lb-overlay.open{display:flex;}
     .cert-lb-inner{position:relative;max-width:90vw;max-height:90vh;}
-    .cert-lb-inner img{max-width:90vw;max-height:85vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5);object-fit:contain;}
+    .cert-lb-inner img{max-width:90vw;max-height:85vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5);object-fit:contain;display:block;}
     .cert-lb-close{position:absolute;top:-16px;right:-16px;width:36px;height:36px;border-radius:50%;background:white;border:none;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#7c3aed;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+    /* NEW: multi-page scrollable view */
+    .cert-lb-inner.multi{
+      max-height:90vh; overflow-y:auto; overflow-x:hidden;
+      display:flex; flex-direction:column; gap:14px;
+      padding:4px; border-radius:12px;
+    }
+    .cert-lb-inner.multi img{
+      max-height:none; width:100%; max-width:80vw;
+      border-radius:10px; box-shadow:0 12px 32px rgba(0,0,0,.4);
+    }
+    .cert-lb-inner.multi::-webkit-scrollbar{ width:6px; }
+    .cert-lb-inner.multi::-webkit-scrollbar-thumb{ background:var(--lav-400); border-radius:4px; }
 </style>
 </head>
 <body>
@@ -1005,8 +1020,8 @@
         <div class="ti reveal">
           <div class="tdot now"></div>
           <div class="ti-meta">
-            <span class="ti-date" data-en="January 2026 · Present" data-az="Yanvar 2026 · İndİ">January 2026 · Present</span>
-            <span class="badge b-now" data-en="Current" data-az="Hazırda">Current</span>
+            <span class="ti-date" data-en="January 2026 · July 2026" data-az="Yanvar 2026 · İyul 2026">January 2026 · July 2026</span>
+            <span class="badge b-now" data-en="Ended" data-az="Bitdi">Ended</span>
           </div>
           <div class="ti-role" data-en="Data Analyst Intern" data-az="Data Analitik Təcrübəçi">Data Analyst Intern</div>
           <!-- EXPERIENCE: Replace with your actual company name -->
@@ -1031,7 +1046,7 @@
           </div>
           <div class="ti-role" data-en="Computer Instructor" data-az="Kompüter Müəllimi">Computer Instructor</div>
           <!-- EXPERIENCE: Replace with actual course center name if you want -->
-          <div class="ti-org" data-en="İmpuls Academy" data-az="İmpuls Academy">Computer Education Center · Baku</div>
+          <div class="ti-org" data-en="İmpuls Academy" data-az="İmpuls Academy">İmpuls Academy · Baku</div>
           <p class="ti-desc"
              data-en="Teaching computer basics to students — software, digital tools, fundamentals. Designed my own course materials and exercises rather than using whatever was handed to me."
              data-az="Tələbələrə kompüter əsaslarını — proqramlaşdırma, rəqəmsal alətlər, əsaslar — öyrədirəm. Verilən materialları istifadə etmək əvəzinə öz kurs materiallarımı və tapşırıqlarımı Süni İntellekt vasitəsilə hazırladım.">
@@ -1121,14 +1136,14 @@
           </div>
         </div>
 
-        <div class="cert-card reveal d4">
-          <div class="cert-img-ph"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-info">
-            <div class="cert-name" data-en="Certificate Name" data-az="Sertifikat adı">Certificate Name</div>
-            <div class="cert-issuer" data-en="Issuer · Platform" data-az="Verən qurum · Platform">Issuer · Platform</div>
-            <div class="cert-year">20XX</div>
-          </div>
-        </div>
+        <div class="cert-card reveal d1" data-pages="cert2-page1.jpg,cert2-page2.jpg,cert2-page3.jpg">
+  <img src="cert2-page1.jpg" class="cert-img" alt="Certificate 1">
+  <div class="cert-info">
+    <div class="cert-name" data-en="Rəqəmsal Üfüqlər - Python Foundations" data-az="Rəqəmsal Üfüqlər - Python'un Əsasları">Rəqəmsal Üfüqlə - Python</div>
+    <div class="cert-issuer" data-en="Enalytics Academy" data-az="Alas Academy">Alas Academy</div>
+    <div class="cert-year">2025</div>
+  </div>
+</div>
 
         <!-- Duplicate a cert-card block above to add more certificates -->
 
@@ -1373,21 +1388,52 @@
             }
           });
         
-    /* Certificate lightbox */
-    document.addEventListener('click', function(e){
-      var img = e.target.closest('.cert-card') && e.target.closest('.cert-card').querySelector('img.cert-img');
-      if(img){ 
-        document.getElementById('certLbImg').src = img.src;
-        document.getElementById('certLbImg').alt = img.alt;
-        document.getElementById('certLb').classList.add('open');
+
+          document.addEventListener('click', function(e){
+  const card = e.target.closest('.cert-card');
+  if(card){
+    const lbInner = document.getElementById('certLbInner');
+    const pages = card.getAttribute('data-pages');
+
+    lbInner.innerHTML = ''; // clear previous content
+    lbInner.classList.remove('multi');
+
+    if(pages){
+      // Multi-page cert: render all pages stacked, scrollable
+      lbInner.classList.add('multi');
+      pages.split(',').forEach(src => {
+        const img = document.createElement('img');
+        img.src = src.trim();
+        img.alt = 'Certificate page';
+        lbInner.appendChild(img);
+      });
+    } else {
+      // Single-page cert: original behavior
+      const src = card.querySelector('img.cert-img');
+      if(src){
+        const img = document.createElement('img');
+        img.src = src.src;
+        img.alt = src.alt;
+        lbInner.appendChild(img);
       }
-      if(e.target.id === 'certLb' || e.target.closest('.cert-lb-close')){
-        document.getElementById('certLb').classList.remove('open');
-      }
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') document.getElementById('certLb').classList.remove('open');
-    });
+    }
+
+    // re-add close button (since we cleared innerHTML)
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'cert-lb-close';
+    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeBtn.onclick = () => document.getElementById('certLb').classList.remove('open');
+    lbInner.appendChild(closeBtn);
+
+    document.getElementById('certLb').classList.add('open');
+  }
+  if(e.target.id === 'certLb'){
+    document.getElementById('certLb').classList.remove('open');
+  }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') document.getElementById('certLb').classList.remove('open');
+});
 
 </script>
       </div>
@@ -1451,13 +1497,8 @@
   </script>
 
   <!-- Certificate Lightbox -->
-  <div class="cert-lb-overlay" id="certLb" onclick="closeCertLb(event)">
-    <div class="cert-lb-inner">
-      <button class="cert-lb-close" onclick="document.getElementById('certLb').classList.remove('open')">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <img id="certLbImg" src="" alt="Certificate">
-    </div>
+  <div class="cert-lb-overlay" id="certLb">
+    <div class="cert-lb-inner" id="certLbInner"></div>
   </div>
 </body>
 </html>
