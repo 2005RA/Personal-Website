@@ -363,7 +363,15 @@
       padding:3px 9px; background:var(--lav-100); border-radius:8px;
       font-size:.72rem; color:var(--lav-600); font-weight:500;
     }
-
+.ref-link {
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:.9rem; padding:6px 14px;
+  border:1.5px solid var(--lav-300); border-radius:16px;
+  font-size:.78rem; font-weight:500; color:var(--lav-600);
+  cursor:pointer; text-decoration:none; transition:all .2s;
+}
+.ref-link:hover { background:var(--lav-100); border-color:var(--lav-400); }
+.ref-link i { font-size:.8rem; }
     /* ══════════════════════════════════════════
        EDUCATION + LANGUAGES
     ══════════════════════════════════════════ */
@@ -1015,27 +1023,31 @@
           </div>
         </div>
 
-        <!-- ── Job 1 ── -->
-        <!-- EXPERIENCE: Update company name, dates, and description below -->
-        <div class="ti reveal">
-          <div class="tdot now"></div>
-          <div class="ti-meta">
-            <span class="ti-date" data-en="January 2026 · July 2026" data-az="Yanvar 2026 · İyul 2026">January 2026 · July 2026</span>
-            <span class="badge b-now" data-en="Ended" data-az="Bitdi">Ended</span>
-          </div>
-          <div class="ti-role" data-en="Data Analyst Intern" data-az="Data Analitik Təcrübəçi">Data Analyst Intern</div>
-          <!-- EXPERIENCE: Replace with your actual company name -->
-          <div class="ti-org" data-en="Enalytics Academy" data-az="Enalytics Academy">Enalytics Academy</div>
-          <p class="ti-desc"
-             data-en="I am learning and processing real datasets, building dashboards, contributing to reports. SQL, Python, and Excel day to day."
-             data-az="Real verilənlər bazalarını təmizləyib emal edir, Power Bİ ilə interaktiv dashboard-lar qurur və hesabatlar yaradıram. SQL, Python və Excel gündəlik istifadə edirəm.">
-            I am learning and processing real datasets, building dashboards, contributing to reports. SQL, Python, and Excel day to day.
-          </p>
-          <div class="ti-tags">
-            <span class="tt">Python</span><span class="tt">SQL</span>
-            <span class="tt">Excel</span><span class="tt">Power BI</span><span class="tt" data-en="Data Viz" data-az="Dashboard">Data Viz</span>
-          </div>
-        </div>
+       <!-- ── Job 1 ── -->
+<!-- EXPERIENCE: Update company name, dates, and description below -->
+<div class="ti reveal">
+  <div class="tdot now"></div>
+  <div class="ti-meta">
+    <span class="ti-date" data-en="January 2026 · July 2026" data-az="Yanvar 2026 · İyul 2026">January 2026 · July 2026</span>
+    <span class="badge b-now" data-en="Ended" data-az="Bitdi">Ended</span>
+  </div>
+  <div class="ti-role" data-en="Data Analyst Intern" data-az="Data Analitik Təcrübəçi">Data Analyst Intern</div>
+  <!-- EXPERIENCE: Replace with your actual company name -->
+  <div class="ti-org" data-en="Enalytics Academy" data-az="Enalytics Academy">Enalytics Academy</div>
+  <p class="ti-desc"
+     data-en="I learned to process real datasets, built dashboards, and contributed to reports. SQL, Python, and Excel every day."
+     data-az="Real verilənlər bazalarını təmizləyib emal etdim, Power Bİ ilə interaktiv dashboard-lar qurdum və hesabatlar yaratdım. SQL, Python və Excel gündəlik istifadə etdim.">
+    I learned to process real datasets, built dashboards, and contributed to reports. SQL, Python, and Excel every day.
+  </p>
+  <div class="ti-tags">
+    <span class="tt">Python</span><span class="tt">SQL</span>
+    <span class="tt">Excel</span><span class="tt">Power BI</span><span class="tt" data-en="Data Viz" data-az="Dashboard">Data Viz</span>
+  </div>
+  <a class="ref-link" data-pages="reference-letter.png">
+    <i class="fa-solid fa-file-lines"></i>
+    <span data-en="View Reference Letter" data-az="Referans Məktubuna Bax">View Reference Letter</span>
+  </a>
+</div>
 
         <!-- ── Job 2 ── -->
         <div class="ti reveal d1">
@@ -1390,7 +1402,7 @@
         
 
           document.addEventListener('click', function(e){
-  const card = e.target.closest('.cert-card');
+  const card = e.target.closest('.cert-card') || e.target.closest('.ref-link');
   if(card){
     const lbInner = document.getElementById('certLbInner');
     const pages = card.getAttribute('data-pages');
